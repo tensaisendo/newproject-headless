@@ -32,40 +32,47 @@
     "sub_title": "Let's explore the most popular categories"
   },
   "site_info": {
-    "site_title": "My TCG Hub",
-    "site_description": "Assemble your TCG Collection",
-    "site_keywords": "TCG Hub collection",
-    "site_author": "tensai.tcg",
-    "site_email": "contact@mytcghub.com",
-    "site_phone": "",
-    "site_address": "",
-    "site_city": "",
-    "site_state": "",
-    "site_zip": "",
-    "site_country": "",
-    "site_url": "http://www.mytcghub.com",
+    "site_title": "Ncmaz Nextjs Blog",
+    "site_description": "Ncmaz Nextjs Blog headless WordPress",
+    "site_keywords": "Ncmaz Nextjs Blog",
+    "site_author": "ChisNghiax",
+    "site_email": "Your Email",
+    "site_phone": "Your Phone",
+    "site_address": "Your Address",
+    "site_city": "Your City",
+    "site_state": "Your State",
+    "site_zip": "Your Zip",
+    "site_country": "Your Country",
+    "site_url": "https://www.yoursite.com",
     "site_logo": "/logo.png",
     "site_logo_light": "/logo-light.png",
     "site_favicon": "/favicon.png"
   },
   "site_socials": [
     {
-      "name": "Instagram",
-      "url": "https://www.instagram.com/tensai.tcg",
-      "icon": "/images/socials/instagram.svg",
-      "description": "follow us on Instagram"
+      "name": "facebook",
+      "url": "https://www.facebook.com/yourfacebookpage",
+      "icon": "/images/socials/facebook.svg",
+      "description": "Follow us on Facebook"
+    },
+    {
+      "name": "twitter",
+      "url": "https://twitter.com/yourtwitterpage",
+      "icon": "/images/socials/x-twitter.svg",
+      "description": "Follow us on Twitter"
+    },
+
+    {
+      "name": "github",
+      "url": "https://www.github.com/yourmediumpage",
+      "icon": "/images/socials/github.svg",
+      "description": "Follow us on Github"
     },
     {
       "name": "tiktok",
-      "url": "https://www.tiktok.com/tensai.tcg",
+      "url": "https://www.tiktok.com/yourtiktokpage",
       "icon": "/images/socials/tiktok.svg",
       "description": "Follow us on Tiktok"
-    },
-    {
-      "name": "Whatnot",
-      "url": "https://www.whatnot.com/tensai.tcg",
-      "icon": "/images/socials/whatnot.svg",
-      "description": "Follow us on Whatnot"
     }
   ],
   "site_header": {
@@ -74,7 +81,7 @@
     }
   },
   "site_footer": {
-    "all_rights_reserved_text": "© 2024 tensai.tcg, All rights reserved."
+    "all_rights_reserved_text": "© 2023 ChisNghiax Company, Inc. All rights reserved."
   },
   "single_page": {
     "show_view_cout": true,
@@ -124,24 +131,24 @@
     "title": "Lost your password?",
     "sub_title": "Enter your email below to reset your password.",
     "blockquote": {
-      "text": "This website has saved me countless hours of work and helped me assemble my collection of TCG cards.",
-      "author": "Maxildan"
+      "text": "This theme has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before.",
+      "author": "Chis agency"
     }
   },
   "signUp_page": {
     "title": "Create an account",
     "sub_title": "Enter your email below to create your account.",
     "blockquote": {
-      "text": "This website has saved me countless hours of work and helped me assemble my collection of TCG cards.",
-      "author": "Maxildan"
+      "text": "This theme has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before.",
+      "author": "Chis agency"
     }
   },
   "signIn_page": {
     "title": "Sign in to your account",
     "sub_title": "Enter your email below to sign in to your account.",
     "blockquote": {
-      "text": "This website has saved me countless hours of work and helped me assemble my collection of TCG cards.",
-      "author": "Maxildan"
+      "text": "This theme has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before.",
+      "author": "Chis agency"
     },
     "lost_password": {
       "is_use_lostpassword_default_of_wp": false,
@@ -169,17 +176,17 @@
       {
         "name": "address",
         "title": "🚀 ADDRESS",
-        "desc": ""
+        "desc": "123 Main Street, New York, NY 10001"
       },
       {
         "name": "email",
         "title": "💌 EMAIL",
-        "desc": "contact@mytcghub.com"
+        "desc": "example@example.com"
       },
       {
         "name": "phone",
         "title": "☎️ PHONE",
-        "desc": ""
+        "desc": "+88 123 456 789"
       },
       {
         "name": "working_hours",
