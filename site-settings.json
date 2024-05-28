@@ -49,18 +49,6 @@
     "site_favicon": "/favicon.png"
   },
   "site_socials": [
-    // {
-    //   "name": "facebook",
-    //   "url": "https://www.facebook.com/yourfacebookpage",
-    //   "icon": "/images/socials/facebook.svg",
-    //   "description": "Follow us on Facebook"
-    // },
-    // {
-    //   "name": "twitter",
-    //   "url": "https://twitter.com/yourtwitterpage",
-    //   "icon": "/images/socials/x-twitter.svg",
-    //   "description": "Follow us on Twitter"
-    // }
     {
       "name": "Instagram",
       "url": "https://www.instagram.com/tensai.tcg",
