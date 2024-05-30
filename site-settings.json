@@ -50,6 +50,12 @@
   },
   "site_socials": [
     {
+      "name": "instagram",
+      "url": "https://www.instagram.com/tensai.tcg",
+      "icon": "/images/socials/instagram.svg",
+      "description": "Follow us on Instagram"
+    },
+    {
       "name": "tiktok",
       "url": "https://www.tiktok.com/tensai.tcg",
       "icon": "/images/socials/tiktok.svg",
