@@ -19,6 +19,7 @@ import CreateBtn from "@/components/Header/CreateBtn";
 import errorHandling from "@/utils/errorHandling";
 import { useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
+import { PostStyleTemplate } from "@/components/PostSubmissionEditor/PostOptionsBtn";
 
 const Page: FaustPage<{}> = (props) => {
   const { isReady, isAuthenticated } = useSelector(
@@ -168,6 +169,10 @@ const Page: FaustPage<{}> = (props) => {
               databaseId: featuredImage?.databaseId || 0,
             }}
             defaultPostOptionsData={{
+              showRightSidebar: ncPostMetaData?.showRightSidebar || false,
+              postStyleSelected:
+                (ncPostMetaData?.template?.[0] as PostStyleTemplate) ||
+                "style1",
               timeSchedulePublication: status === "inherit" ? date : undefined,
               audioUrl: ncmazAudioUrl?.audioUrl || "",
               excerptText: excerpt,

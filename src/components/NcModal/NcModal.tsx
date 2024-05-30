@@ -3,6 +3,7 @@ import React, { FC, Fragment, ReactNode, useEffect, useState } from "react";
 import { Dialog, Transition } from "@/app/headlessui";
 import Button from "../Button/Button";
 import ButtonClose from "../ButtonClose/ButtonClose";
+import { DialogPanel, DialogTitle, TransitionChild } from "@headlessui/react";
 
 export interface NcModalProps {
   renderContent: (closeModal: () => void) => ReactNode;
@@ -65,7 +66,7 @@ const NcModal: FC<NcModalProps> = ({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-50" onClose={closeModal}>
           <div className="min-h-screen px-1 text-center md:px-4">
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="ease-out duration-75"
               enterFrom="opacity-0"
@@ -74,8 +75,11 @@ const NcModal: FC<NcModalProps> = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-neutral-900 bg-opacity-50 dark:bg-opacity-80" />
-            </Transition.Child>
+              <div
+                className="fixed inset-0 bg-neutral-900 bg-opacity-50 dark:bg-opacity-80"
+                aria-hidden="true"
+              />
+            </TransitionChild>
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
@@ -84,7 +88,7 @@ const NcModal: FC<NcModalProps> = ({
             >
               &#8203;
             </span>
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="ease-out duration-75"
               enterFrom="opacity-0 scale-95"
@@ -93,7 +97,7 @@ const NcModal: FC<NcModalProps> = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div
+              <DialogPanel
                 className={`inline-flex flex-col w-full overflow-hidden text-left align-middle transition-all transform bg-white border border-black border-opacity-5 shadow-xl rounded-2xl dark:bg-neutral-800 dark:border-neutral-700 text-neutral-900 dark:text-neutral-300 ${contentExtraClass} max-h-[85vh]`}
               >
                 <header
@@ -108,12 +112,12 @@ const NcModal: FC<NcModalProps> = ({
                     className="absolute left-2 top-2 sm:left-3 sm:top-3"
                   />
                   {!!modalTitle && (
-                    <Dialog.Title
+                    <DialogTitle
                       as="h3"
                       className="text-base font-semibold text-neutral-900 lg:text-xl dark:text-neutral-200 mx-10"
                     >
                       {modalTitle}
-                    </Dialog.Title>
+                    </DialogTitle>
                   )}
                 </header>
                 <div
@@ -141,8 +145,8 @@ const NcModal: FC<NcModalProps> = ({
                     </div>
                   </footer>
                 )}
-              </div>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </Dialog>
       </Transition>

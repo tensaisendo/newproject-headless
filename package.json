@@ -1,7 +1,7 @@
 {
   "name": "ncmaz-faust",
   "private": true,
-  "version": "2.2.1",
+  "version": "2.3.0",
   "scripts": {
     "dev": "npm run generate && concurrently \"faust dev\" \"npm run watch-codegen\"",
     "build": "faust build",
@@ -17,7 +17,7 @@
     "@faustwp/blocks": "^4.0.0",
     "@faustwp/cli": "^3.0.0",
     "@faustwp/core": "^3.0.0",
-    "@headlessui/react": "^1.7.17",
+    "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^2.2.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -40,11 +40,13 @@
     "@tiptap/starter-kit": "^2.3.1",
     "@wordpress/style-engine": "^1.29.0",
     "autoprefixer": "^10.4.16",
+    "clsx": "^2.1.1",
     "framer-motion": "^10.16.5",
     "graphql": "^16.8.1",
     "lodash": "^4.17.21",
     "next": "^14.2.3",
     "next-seo": "^6.4.0",
+    "nextjs-google-analytics": "^2.3.3",
     "nextjs-progressbar": "^0.0.16",
     "postcss": "^8.4.31",
     "react": "18.2.0",
@@ -58,7 +60,7 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "sass": "^1.69.5",
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",

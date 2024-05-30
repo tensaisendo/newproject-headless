@@ -1,5 +1,12 @@
-import { Listbox, Switch, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+  Switch,
+  Transition,
+} from "@headlessui/react";
+import { CheckIcon } from "@heroicons/react/24/solid";
 import ButtonPrimary from "@/components/Button/ButtonPrimary";
 import Input from "@/components/Input/Input";
 import Label from "@/components/Label/Label";
@@ -12,6 +19,8 @@ import Button from "../Button/Button";
 import NcModal from "../NcModal/NcModal";
 import { PostFormatNameType } from "@/utils/getPostDataFromPostFragment";
 import getTrans from "@/utils/getTrans";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import toast from "react-hot-toast";
 
 type GalleryImages = Record<string, ImageState>;
 
@@ -22,6 +31,7 @@ const postFormats: PostFormatNameType[] = [
   "gallery",
 ];
 
+export type PostStyleTemplate = "style1" | "style2" | "style3" | "style4";
 export interface PostOptionsData {
   postFormatsSelected: PostFormatNameType;
   excerptText: string;
@@ -30,12 +40,25 @@ export interface PostOptionsData {
   audioUrl: string;
   isAllowComments: boolean;
   timeSchedulePublication?: string;
+  showRightSidebar: boolean;
+  postStyleSelected?: PostStyleTemplate;
 }
 
 interface PostOptionsBtnProps {
   onSubmit: (data: PostOptionsData) => void;
   defaultData: PostOptionsData;
 }
+
+const postStyles: {
+  id: number;
+  name: PostStyleTemplate;
+  title: string;
+}[] = [
+  { id: 1, name: "style1", title: "Style 1" },
+  { id: 2, name: "style2", title: "Style 2" },
+  { id: 3, name: "style3", title: "Style 3" },
+  { id: 4, name: "style4", title: "Style 4" },
+];
 
 const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
   const T = getTrans();
@@ -54,6 +77,15 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
   >(defaultData.objGalleryImgs);
   const [isAllowComments, setIsAllowComments] = useState(
     defaultData.isAllowComments
+  );
+  const [isShowSidebar, setIsShowSidebar] = useState(
+    !!defaultData.showRightSidebar
+  );
+
+  const [postStyleSelected, setPostStyleSelected] = useState(
+    postStyles.find(
+      (item) => item.name === (defaultData.postStyleSelected || "style1")
+    )
   );
 
   //
@@ -77,7 +109,10 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
       objGalleryImgs,
       isAllowComments,
       timeSchedulePublication,
+      showRightSidebar: isShowSidebar,
+      postStyleSelected: postStyleSelected?.name || "style1",
     });
+    toast.success("Post options applied!");
   };
 
   const handleClickCancel = () => {};
@@ -114,35 +149,39 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
   const renderListBoxPostformat = () => {
     return (
       <div>
-        <Label>{T.pageSubmission["Post format"]}</Label>
+        <Label
+          className="block capitalize"
+          title={T.pageSubmission["Post format"]}
+        >
+          {T.pageSubmission["Post format"]}
+        </Label>
         <Listbox value={postFormatsSelected} onChange={setPostFormatsSelected}>
           <div className="relative z-10 mt-1">
-            <Listbox.Button className="focus:outline-none relative w-full cursor-default rounded-full py-2 pl-3 pr-10 text-left border border-neutral-100 hover:border-neutral-300 dark:border-neutral-700 dark:hover:border-neutral-600">
-              <span className="block truncate capitalize">
-                {postFormatsSelected.replace(/^post-format-/g, "")}
-              </span>
-              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                <ChevronUpDownIcon
-                  className="h-5 w-5 text-gray-400"
+            <ListboxButton as="div">
+              <Button pattern="third" fontSize="text-sm font-medium">
+                <span className="block truncate capitalize">
+                  {postFormatsSelected.replace(/^post-format-/g, "")}
+                </span>
+                <ChevronDownIcon
+                  className="w-4 h-4 ms-2 -me-1"
                   aria-hidden="true"
                 />
-              </span>
-            </Listbox.Button>
+              </Button>
+            </ListboxButton>
             <Transition
               as={Fragment}
               leave="transition ease-in duration-100"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="focus:outline-none absolute mt-2 max-h-60 w-full overflow-auto rounded-2xl bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
+              <ListboxOptions
+                anchor={{ to: "bottom start", gap: "4px" }}
+                className="absolute end-0 w-52 py-1 mt-2 overflow-auto text-sm text-neutral-900 dark:text-neutral-200 bg-white rounded-xl shadow-lg max-h-96 ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-900 dark:ring-neutral-700 z-50"
+              >
                 {postFormats.map((person, personIdx) => (
-                  <Listbox.Option
+                  <ListboxOption
                     key={personIdx}
-                    className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-amber-100 text-amber-900" : "text-gray-900"
-                      }`
-                    }
+                    className="data-[focus]:text-primary-700 dark:data-[focus]:text-neutral-200 data-[focus]:bg-primary-50 dark:data-[focus]:bg-neutral-700 cursor-default select-none relative py-2 ps-10 pe-4"
                     value={person}
                   >
                     {({ selected }) => (
@@ -155,15 +194,15 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
                           {person.replace(/^post-format-/g, "")}
                         </span>
                         {selected ? (
-                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                          <span className="text-primary-700 absolute inset-y-0 start-0 flex items-center ps-3 dark:text-neutral-200">
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>
                         ) : null}
                       </>
                     )}
-                  </Listbox.Option>
+                  </ListboxOption>
                 ))}
-              </Listbox.Options>
+              </ListboxOptions>
             </Transition>
           </div>
         </Listbox>
@@ -215,13 +254,18 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
       excerptText?.trim()?.replace(/^<[^>]+>|<\/[^>]+>$/g, "") || "";
     return (
       <div>
-        <Label>{T.pageSubmission["Write an excerpt (optional)"]}</Label>
+        <Label htmlFor="excerpt" className="block capitalize">
+          {T.pageSubmission["Write an excerpt (optional)"]}
+        </Label>
         <Textarea
           onChange={(event) => {
             debounceGetExcerpt(event.currentTarget.value);
           }}
           defaultValue={strippedExcerpt}
           className="mt-1"
+          placeholder="..."
+          name="excerpt"
+          id="excerpt"
         />
       </div>
     );
@@ -230,7 +274,9 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
   const renderSchedulePublication = () => {
     return (
       <div>
-        <Label>{T.pageSubmission["Schedule Publication"]} (UTC+0)</Label>
+        <Label htmlFor="Schedule-time">
+          {T.pageSubmission["Schedule Publication"]} (UTC+0)
+        </Label>
         <Input
           onChange={(event) => {
             settimeSchedulePublication(event.currentTarget.value);
@@ -249,7 +295,11 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
   const renderInputVideoUrl = () => {
     return (
       <div>
-        <Label>
+        <Label
+          htmlFor="video-url"
+          className="block capitalize"
+          title={T.pageSubmission["Video URL (Youtube, Vimeo, mp4 ... )"]}
+        >
           {T.pageSubmission["Video URL (Youtube, Vimeo, mp4 ... )"]}
         </Label>
         <Input
@@ -259,6 +309,9 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
           defaultValue={videoUrl}
           className="mt-1"
           placeholder={T.pageSubmission["Video url..."]}
+          type="url"
+          name="video-url"
+          id="video-url"
         />
       </div>
     );
@@ -269,7 +322,11 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
 
     return (
       <div>
-        <Label className="block capitalize">{`Audio URL (${sp})`}</Label>
+        <Label
+          className="block capitalize"
+          title={`Audio URL (${sp})`}
+          htmlFor="audio-url"
+        >{`Audio URL (${sp})`}</Label>
         <Input
           onChange={(event) => {
             debounceAudioUrlChange(event.currentTarget.value);
@@ -277,6 +334,9 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
           defaultValue={audioUrl}
           className="mt-1"
           placeholder={T.pageSubmission["Audio url..."]}
+          type="url"
+          name="audio-url"
+          id="audio-url"
         />
       </div>
     );
@@ -285,18 +345,132 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
   const renderAllowCommentSwitch = () => {
     return (
       <div className="flex gap-3 sm:gap-8 items-center">
-        <Label>{T.pageSubmission["Allow comments"]}</Label>
+        <Label htmlFor="allow-comments" className="block capitalize">
+          {T.pageSubmission["Allow comments"]}
+        </Label>
         <Switch
           checked={isAllowComments}
           onChange={setIsAllowComments}
           className={`${isAllowComments ? "bg-primary-700" : "bg-gray-700"}
           relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+          name="allow-comments"
+          id="allow-comments"
         >
           <span className="sr-only">Allow comments</span>
           <span
             aria-hidden="true"
             className={`${
               isAllowComments
+                ? "translate-x-9 rtl:-translate-x-9"
+                : "translate-x-0"
+            }
+            pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+          />
+        </Switch>
+      </div>
+    );
+  };
+
+  const renderSelectPostStyle = () => {
+    const selected = postStyleSelected;
+    const setSelected = setPostStyleSelected;
+    return (
+      <div>
+        <Label
+          className="block capitalize"
+          title={T.pageSubmission["Post style"]}
+        >
+          {T.pageSubmission["Post style"]}
+        </Label>
+        <Listbox
+          value={selected}
+          onChange={(value) => {
+            setSelected(value);
+          }}
+        >
+          <div className="relative z-10 mt-1">
+            <ListboxButton as={"div"}>
+              <Button pattern="third" fontSize="text-sm font-medium capitalize">
+                {selected?.title || postStyles[0].title}
+                <ChevronDownIcon
+                  className="w-4 h-4 ms-2 -me-1"
+                  aria-hidden="true"
+                />
+              </Button>
+            </ListboxButton>
+            <Transition
+              as={Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <ListboxOptions
+                anchor={{ to: "bottom start", gap: "4px" }}
+                className="absolute end-0 w-52 py-1 mt-2 overflow-auto text-sm text-neutral-900 dark:text-neutral-200 bg-white rounded-xl shadow-lg max-h-96 ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-900 dark:ring-neutral-700 z-50"
+              >
+                {postStyles.map((item, index: number) => (
+                  <ListboxOption
+                    key={index}
+                    className={
+                      "data-[focus]:text-primary-700 dark:data-[focus]:text-neutral-200 data-[focus]:bg-primary-50 dark:data-[focus]:bg-neutral-700 cursor-default select-none relative py-2 ps-10 pe-4"
+                    }
+                    value={item}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span
+                          className={`${
+                            selected ? "font-medium" : "font-normal"
+                          } block truncate capitalize`}
+                        >
+                          {item.title}
+                        </span>
+                        {selected ? (
+                          <span className="text-primary-700 absolute inset-y-0 start-0 flex items-center ps-3 dark:text-neutral-200">
+                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </ListboxOption>
+                ))}
+              </ListboxOptions>
+            </Transition>
+            <span>
+              <span className="text-xs text-neutral-500 dark:text-neutral-400">
+                {
+                  T.pageSubmission[
+                    "Choose the post style. Only applies to Standard format!"
+                  ]
+                }
+              </span>
+            </span>
+          </div>
+        </Listbox>
+      </div>
+    );
+  };
+
+  const renderShowSidebarSwitch = () => {
+    return (
+      <div className="flex gap-3 sm:gap-8 items-center">
+        <Label htmlFor="show-right-sidebar" className="block capitalize">
+          {T.pageSubmission["Show right sidebar"]}
+        </Label>
+
+        <Switch
+          checked={isShowSidebar}
+          onChange={setIsShowSidebar}
+          className={`${isShowSidebar ? "bg-primary-700" : "bg-gray-700"}
+          relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+          name="show-right-sidebar"
+          id="show-right-sidebar"
+        >
+          <span className="sr-only">Show right sidebar</span>
+          <span
+            aria-hidden="true"
+            className={`${
+              isShowSidebar
                 ? "translate-x-9 rtl:-translate-x-9"
                 : "translate-x-0"
             }
@@ -315,6 +489,7 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
 
           {renderSchedulePublication()}
           {renderListBoxPostformat()}
+          {renderAllowCommentSwitch()}
 
           {postFormatsSelected === "gallery" && renderUploadGallery()}
 
@@ -322,7 +497,8 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
 
           {postFormatsSelected === "audio" && renderInputAudio()}
 
-          {renderAllowCommentSwitch()}
+          {postFormatsSelected === "standard" && renderSelectPostStyle()}
+          {renderShowSidebarSwitch()}
         </div>
       </div>
     );
@@ -349,6 +525,7 @@ const PostOptionsBtn: FC<PostOptionsBtnProps> = ({ onSubmit, defaultData }) => {
                 {T.Cancel}
               </ButtonThird>
               <ButtonPrimary
+                type="submit"
                 onClick={() => {
                   handleClickApply();
                   closeModal();

@@ -27,7 +27,7 @@ const ModalUploadImage: FC<MenuItemImageProps> = ({
   onDelete,
   open = false,
   hanldeClose,
-  isLoading,
+  isLoading: isLoadingProp,
   defaultImage,
   enableUpload = true,
 }) => {
@@ -38,6 +38,8 @@ const ModalUploadImage: FC<MenuItemImageProps> = ({
   const [urlState, setUrlState] = useState(defaultImage?.url || "");
   const [altState, setAltState] = useState(defaultImage?.alt || "");
   let [fileLoading, setFileLoading] = useState(false);
+
+  const isLoading = isLoadingProp || fileLoading;
 
   useEffect(() => {
     setUrlState(defaultImage?.url || "");

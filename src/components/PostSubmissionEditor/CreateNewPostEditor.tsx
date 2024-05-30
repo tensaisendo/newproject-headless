@@ -72,6 +72,7 @@ const CreateNewPostEditor: FC<Props> = ({
     objGalleryImgs: undefined,
     isAllowComments: true,
     timeSchedulePublication: undefined,
+    showRightSidebar: true,
   },
 }) => {
   const { isReady, isAuthenticated } = useSelector(
@@ -228,6 +229,10 @@ const CreateNewPostEditor: FC<Props> = ({
             postOptionsData.postFormatsSelected !== ""
               ? postOptionsData.postFormatsSelected
               : null,
+          //
+          showRightSidebar: postOptionsData.showRightSidebar ? "1" : "0",
+          postStyle: postOptionsData.postStyleSelected,
+          //
         },
       });
     } else if (isEditingPage) {
@@ -287,6 +292,11 @@ const CreateNewPostEditor: FC<Props> = ({
             postOptionsData.postFormatsSelected !== ""
               ? postOptionsData.postFormatsSelected
               : null,
+
+          //
+          showRightSidebar: postOptionsData.showRightSidebar ? "1" : "0",
+          postStyle: postOptionsData.postStyleSelected,
+          //
         },
       });
     }

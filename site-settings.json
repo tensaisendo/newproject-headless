@@ -1,5 +1,5 @@
 {
-  "version": "2.2.1",
+  "version": "2.3.0",
   "mailpoet_api_key": "your_mailpoet_api_key",
   "mailpoet_list_id": "3",
   "subcription_widget": {
@@ -50,14 +50,27 @@
   },
   "site_socials": [
     {
-      "name": "instagram",
-      "url": "https://www.instagram.com/tensai.tcg",
-      "icon": "/images/socials/instagram.svg",
-      "description": "Follow us on Instagram"
+      "name": "facebook",
+      "url": "https://www.facebook.com/yourfacebookpage",
+      "icon": "/images/socials/facebook.svg",
+      "description": "Follow us on Facebook"
+    },
+    {
+      "name": "twitter",
+      "url": "https://twitter.com/yourtwitterpage",
+      "icon": "/images/socials/x-twitter.svg",
+      "description": "Follow us on Twitter"
+    },
+
+    {
+      "name": "github",
+      "url": "https://www.github.com/yourmediumpage",
+      "icon": "/images/socials/github.svg",
+      "description": "Follow us on Github"
     },
     {
       "name": "tiktok",
-      "url": "https://www.tiktok.com/tensai.tcg",
+      "url": "https://www.tiktok.com/yourtiktokpage",
       "icon": "/images/socials/tiktok.svg",
       "description": "Follow us on Tiktok"
     }

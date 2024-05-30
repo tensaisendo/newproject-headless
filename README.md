@@ -20,32 +20,4 @@ All external contributors to WP Engine products must have a signed Contributor L
 2. 📝 Sign the CLA emailed to you
 3. 📥 Receive copy of signed CLA
 
-❤️ Thank you for helping us fulfill our legal obligations in order to continue empowering builders through headless WordPress.# newproject-headless
-
-# Améliorations
-
-1. Mettre à jour FaustJs
-npm install @faustjs/core
-
-# Installer les dépendances
-npm install
-
-2. Mettre à jour Node JS & NPM
-# Mettre à jour npm
-npm install -g npm@latest
-
-# Désactiver la vérification SSL (optionnel)
-npm config set strict-ssl false
-
-# Configurer le registre npm
-npm config set registry https://registry.npmjs.org/
-
-# Effacer le cache npm
-npm cache clean --force
-
-# Définir la variable d'environnement
-set NODE_OPTIONS=--openssl-legacy-provider
-
-# Réinstaller les dépendances
-npm install
-
+❤️ Thank you for helping us fulfill our legal obligations in order to continue empowering builders through headless WordPress.

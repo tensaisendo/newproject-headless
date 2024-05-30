@@ -611,6 +611,7 @@ const PlayerContent: FC<PlayerContentProps> = ({
   return (
     <>
       <Transition
+        as={"div"}
         className="relative bg-white dark:bg-neutral-800 w-full flex flex-col px-2 sm:px-3 z-0 - nc-google-shadow"
         show={!!databaseId && !!ncmazAudioUrl}
         enter="transition-transform duration-150"

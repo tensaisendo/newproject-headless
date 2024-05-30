@@ -1,5 +1,13 @@
 export default {
+  "A list of all your posts. Let’s get you some views! 🚀":
+    "A list of all your posts. Let’s get you some views! 🚀",
   Posts: "Posts",
+  Post: "Post",
+  Likes: "Likes",
+  Views: "Views",
+  Saveds: "Saveds",
+  Comments: "Comments",
+  "Load more": "Load more",
   Published: "Published",
   Pending: "Pending",
   Scheduled: "Scheduled",
@@ -103,6 +111,10 @@ export default {
     "Add to discussion": "Add to discussion",
   },
   pageSubmission: {
+    "Choose the post style. Only applies to Standard format!":
+      "Choose the post style. Only applies to Standard format!",
+    "Post style": "Post style",
+    "Show right sidebar": "Show right sidebar",
     "Alt text (alternative text)": "Alt text (alternative text)",
     "Image URL": "Image URL",
     "Youtube URL": "Youtube URL",
