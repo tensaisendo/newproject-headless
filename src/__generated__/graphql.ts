@@ -752,13 +752,13 @@ export enum CommentNodeIdTypeEnum {
 
 /** The status of the comment object. */
 export enum CommentStatusEnum {
-  /** Comments with the Approved status */
+  /** Comments with the Approuvé status */
   Approve = 'APPROVE',
-  /** Comments with the Unapproved status */
+  /** Comments with the Désapprouvé status */
   Hold = 'HOLD',
-  /** Comments with the Spam status */
+  /** Comments with the Indésirable status */
   Spam = 'SPAM',
-  /** Comments with the Trash status */
+  /** Comments with the Corbeille status */
   Trash = 'TRASH'
 }
 
@@ -1131,56 +1131,6 @@ export type Connection = {
   nodes: Array<Node>;
   /** Information about pagination in a connection. */
   pageInfo: PageInfo;
-};
-
-/** A block used for editing the site */
-export type ContactForm7ContactFormSelector = EditorBlock & PageEditorBlock & PostEditorBlock & {
-  __typename?: 'ContactForm7ContactFormSelector';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the ContactForm7ContactFormSelector Block Type */
-  attributes?: Maybe<ContactForm7ContactFormSelectorAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the ContactForm7ContactFormSelector Block Type */
-export type ContactForm7ContactFormSelectorAttributes = {
-  __typename?: 'ContactForm7ContactFormSelectorAttributes';
-  /** The &quot;className&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;hash&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  hash?: Maybe<Scalars['String']['output']>;
-  /** The &quot;htmlClass&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  htmlClass?: Maybe<Scalars['String']['output']>;
-  /** The &quot;htmlId&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  htmlId?: Maybe<Scalars['String']['output']>;
-  /** The &quot;htmlName&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  htmlName?: Maybe<Scalars['String']['output']>;
-  /** The &quot;htmlTitle&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  htmlTitle?: Maybe<Scalars['String']['output']>;
-  /** The &quot;id&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  id?: Maybe<Scalars['Int']['output']>;
-  /** The &quot;lock&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;title&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
-  title?: Maybe<Scalars['String']['output']>;
 };
 
 /** Nodes used to manage content */
@@ -7611,9 +7561,9 @@ export type DeleteUserReactionPostPayload = {
 /** The discussion setting type */
 export type DiscussionSettings = {
   __typename?: 'DiscussionSettings';
-  /** Allow people to submit comments on new posts. */
+  /** Autoriser les gens à envoyer des commentaires sur les nouvelles publications. */
   defaultCommentStatus?: Maybe<Scalars['String']['output']>;
-  /** Allow link notifications from other blogs (pingbacks and trackbacks) on new articles. */
+  /** Autoriser les liens de notification d’autres blogs (pings et rétroliens) sur les nouveaux articles. */
   defaultPingStatus?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7818,23 +7768,23 @@ export type EnqueuedStylesheetConnectionPageInfo = {
 /** The general setting type */
 export type GeneralSettings = {
   __typename?: 'GeneralSettings';
-  /** A date format for all date strings. */
+  /** Un format de date commun pour tous les réglages de dates. */
   dateFormat?: Maybe<Scalars['String']['output']>;
-  /** Site tagline. */
+  /** Slogan du site. */
   description?: Maybe<Scalars['String']['output']>;
-  /** This address is used for admin purposes, like new user notification. */
+  /** Cette adresse est utilisée à des fins d’administration, comme les notifications de nouveaux comptes. */
   email?: Maybe<Scalars['String']['output']>;
-  /** WordPress locale code. */
+  /** Code local de l’installation WordPress. */
   language?: Maybe<Scalars['String']['output']>;
-  /** A day number of the week that the week should start on. */
+  /** Le numéro du jour de la semaine à laquelle la semaine devrait commencer. */
   startOfWeek?: Maybe<Scalars['Int']['output']>;
-  /** A time format for all time strings. */
+  /** Un format d’heure commun pour tous les réglages d’heures. */
   timeFormat?: Maybe<Scalars['String']['output']>;
-  /** A city in the same timezone as you. */
+  /** Une ville dans le même fuseau horaire que le vôtre. */
   timezone?: Maybe<Scalars['String']['output']>;
-  /** Site title. */
+  /** Titre du site. */
   title?: Maybe<Scalars['String']['output']>;
-  /** Site URL. */
+  /** URL du site. */
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -11330,7 +11280,7 @@ export enum PluginStatusEnum {
 }
 
 /** The post type */
-export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPostEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfNcPostMetaData & WithAcfNcmazAudioUrl & WithAcfNcmazGalleryImgs & WithAcfNcmazVideoUrl & WithAcfTestststststststst & {
+export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPostEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfNcPostMetaData & WithAcfNcmazAudioUrl & WithAcfNcmazGalleryImgs & WithAcfNcmazVideoUrl & {
   __typename?: 'Post';
   /** Connection between the NodeWithAuthor type and the User type */
   author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
@@ -11454,8 +11404,6 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** Connection between the Post type and the TermNode type */
   terms?: Maybe<PostToTermNodeConnection>;
-  /** Fields of the Testststststststst ACF Field Group */
-  testststststststst?: Maybe<Testststststststst>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']['output']>;
   /** URLs queued to be pinged. */
@@ -12681,13 +12629,13 @@ export type Previewable = {
 /** The reading setting type */
 export type ReadingSettings = {
   __typename?: 'ReadingSettings';
-  /** The ID of the page that should display the latest posts */
+  /** L’ID de la page qui affichera les derniers articles */
   pageForPosts?: Maybe<Scalars['Int']['output']>;
-  /** The ID of the page that should be displayed on the front page */
+  /** L’ID de la page qui doit être affiché sur la page d’accueil */
   pageOnFront?: Maybe<Scalars['Int']['output']>;
-  /** Blog pages show at most. */
+  /** Les pages de blog affichent au maximum. */
   postsPerPage?: Maybe<Scalars['Int']['output']>;
-  /** What to show on the front page */
+  /** Afficher quoi sur la page d’accueil */
   showOnFront?: Maybe<Scalars['String']['output']>;
 };
 
@@ -15722,15 +15670,29 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
 };
 
 /** The template assigned to the node */
-export type Template_Blank = ContentTemplate & {
-  __typename?: 'Template_Blank';
+export type Template_PageSansTitre = ContentTemplate & {
+  __typename?: 'Template_PageSansTitre';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
 
 /** The template assigned to the node */
-export type Template_BlogAlternative = ContentTemplate & {
-  __typename?: 'Template_BlogAlternative';
+export type Template_PageWithSidebar = ContentTemplate & {
+  __typename?: 'Template_PageWithSidebar';
+  /** The name of the template */
+  templateName?: Maybe<Scalars['String']['output']>;
+};
+
+/** The template assigned to the node */
+export type Template_PageWithWideImage = ContentTemplate & {
+  __typename?: 'Template_PageWithWideImage';
+  /** The name of the template */
+  templateName?: Maybe<Scalars['String']['output']>;
+};
+
+/** The template assigned to the node */
+export type Template_PublicationUniqueAvecColonneLatrale = ContentTemplate & {
+  __typename?: 'Template_PublicationUniqueAvecColonneLatrale';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
@@ -15925,29 +15887,6 @@ export enum TermObjectsConnectionOrderbyEnum {
   /** Order the connection by term order. */
   TermOrder = 'TERM_ORDER'
 }
-
-/** The &quot;Testststststststst&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type Testststststststst = AcfFieldGroup & AcfFieldGroupFields & Testststststststst_Fields & {
-  __typename?: 'Testststststststst';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Testststststststst&quot; Field Group */
-  ssssss?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;Testststststststst&quot; Field Group */
-export type Testststststststst_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Testststststststst&quot; Field Group */
-  ssssss?: Maybe<Scalars['String']['output']>;
-};
 
 /** A theme object */
 export type Theme = Node & {
@@ -16348,41 +16287,41 @@ export type UpdatePostPayload = {
 export type UpdateSettingsInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Allow people to submit comments on new posts. */
+  /** Autoriser les gens à envoyer des commentaires sur les nouvelles publications. */
   discussionSettingsDefaultCommentStatus?: InputMaybe<Scalars['String']['input']>;
-  /** Allow link notifications from other blogs (pingbacks and trackbacks) on new articles. */
+  /** Autoriser les liens de notification d’autres blogs (pings et rétroliens) sur les nouveaux articles. */
   discussionSettingsDefaultPingStatus?: InputMaybe<Scalars['String']['input']>;
-  /** A date format for all date strings. */
+  /** Un format de date commun pour tous les réglages de dates. */
   generalSettingsDateFormat?: InputMaybe<Scalars['String']['input']>;
-  /** Site tagline. */
+  /** Slogan du site. */
   generalSettingsDescription?: InputMaybe<Scalars['String']['input']>;
-  /** This address is used for admin purposes, like new user notification. */
+  /** Cette adresse est utilisée à des fins d’administration, comme les notifications de nouveaux comptes. */
   generalSettingsEmail?: InputMaybe<Scalars['String']['input']>;
-  /** WordPress locale code. */
+  /** Code local de l’installation WordPress. */
   generalSettingsLanguage?: InputMaybe<Scalars['String']['input']>;
-  /** A day number of the week that the week should start on. */
+  /** Le numéro du jour de la semaine à laquelle la semaine devrait commencer. */
   generalSettingsStartOfWeek?: InputMaybe<Scalars['Int']['input']>;
-  /** A time format for all time strings. */
+  /** Un format d’heure commun pour tous les réglages d’heures. */
   generalSettingsTimeFormat?: InputMaybe<Scalars['String']['input']>;
-  /** A city in the same timezone as you. */
+  /** Une ville dans le même fuseau horaire que le vôtre. */
   generalSettingsTimezone?: InputMaybe<Scalars['String']['input']>;
-  /** Site title. */
+  /** Titre du site. */
   generalSettingsTitle?: InputMaybe<Scalars['String']['input']>;
-  /** Site URL. */
+  /** URL du site. */
   generalSettingsUrl?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the page that should display the latest posts */
+  /** L’ID de la page qui affichera les derniers articles */
   readingSettingsPageForPosts?: InputMaybe<Scalars['Int']['input']>;
-  /** The ID of the page that should be displayed on the front page */
+  /** L’ID de la page qui doit être affiché sur la page d’accueil */
   readingSettingsPageOnFront?: InputMaybe<Scalars['Int']['input']>;
-  /** Blog pages show at most. */
+  /** Les pages de blog affichent au maximum. */
   readingSettingsPostsPerPage?: InputMaybe<Scalars['Int']['input']>;
-  /** What to show on the front page */
+  /** Afficher quoi sur la page d’accueil */
   readingSettingsShowOnFront?: InputMaybe<Scalars['String']['input']>;
-  /** Default post category. */
+  /** Catégorie d’article par défaut. */
   writingSettingsDefaultCategory?: InputMaybe<Scalars['Int']['input']>;
-  /** Default post format. */
+  /** Format d’article par défaut. */
   writingSettingsDefaultPostFormat?: InputMaybe<Scalars['String']['input']>;
-  /** Convert emoticons like :-) and :-P to graphics on display. */
+  /** Convertir les émoticônes, comme :-) et :-P, en images lors de l’affichage. */
   writingSettingsUseSmilies?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -16529,7 +16468,7 @@ export type UpdateUserReactionPostPayload = {
 };
 
 /** A User object */
-export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfNcUserMeta & WithAcfUserrrr & {
+export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfNcUserMeta & {
   __typename?: 'User';
   /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
   avatar?: Maybe<Avatar>;
@@ -16612,8 +16551,6 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   userReactionPosts?: Maybe<UserToUserReactionPostConnection>;
   /** Username for the user. This field is equivalent to WP_User-&gt;user_login. */
   username?: Maybe<Scalars['String']['output']>;
-  /** Fields of the Userrrr ACF Field Group */
-  userrrr?: Maybe<Userrrr>;
 };
 
 
@@ -16972,10 +16909,6 @@ export enum UserRoleEnum {
   Contributor = 'CONTRIBUTOR',
   /** User role with specific capabilities */
   Editor = 'EDITOR',
-  /** User role with specific capabilities */
-  SeoEditor = 'SEO_EDITOR',
-  /** User role with specific capabilities */
-  SeoManager = 'SEO_MANAGER',
   /** User role with specific capabilities */
   Subscriber = 'SUBSCRIBER'
 }
@@ -17583,29 +17516,6 @@ export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPage
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The &quot;Userrrr&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type Userrrr = AcfFieldGroup & AcfFieldGroupFields & Userrrr_Fields & {
-  __typename?: 'Userrrr';
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Userrrr&quot; Field Group */
-  esrerssresresrsers?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;Userrrr&quot; Field Group */
-export type Userrrr_Fields = {
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Userrrr&quot; Field Group */
-  esrerssresresrsers?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
 /** Field to order the connection by */
 export enum UsersConnectionOrderbyEnum {
   /** Order by display name */
@@ -17708,161 +17618,15 @@ export type WithAcfNcmazfaustMenu = {
   ncmazfaustMenu?: Maybe<NcmazfaustMenu>;
 };
 
-/** Provides access to fields of the &quot;Testststststststst&quot; ACF Field Group via the &quot;testststststststst&quot; field */
-export type WithAcfTestststststststst = {
-  /** Fields of the Testststststststst ACF Field Group */
-  testststststststst?: Maybe<Testststststststst>;
-};
-
-/** Provides access to fields of the &quot;Userrrr&quot; ACF Field Group via the &quot;userrrr&quot; field */
-export type WithAcfUserrrr = {
-  /** Fields of the Userrrr ACF Field Group */
-  userrrr?: Maybe<Userrrr>;
-};
-
 /** The writing setting type */
 export type WritingSettings = {
   __typename?: 'WritingSettings';
-  /** Default post category. */
+  /** Catégorie d’article par défaut. */
   defaultCategory?: Maybe<Scalars['Int']['output']>;
-  /** Default post format. */
+  /** Format d’article par défaut. */
   defaultPostFormat?: Maybe<Scalars['String']['output']>;
-  /** Convert emoticons like :-) and :-P to graphics on display. */
+  /** Convertir les émoticônes, comme :-) et :-P, en images lors de l’affichage. */
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
-};
-
-/** A block used for editing the site */
-export type YoastFaqBlock = EditorBlock & PageEditorBlock & PostEditorBlock & {
-  __typename?: 'YoastFaqBlock';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the YoastFaqBlock Block Type */
-  attributes?: Maybe<YoastFaqBlockAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the YoastFaqBlock Block Type */
-export type YoastFaqBlockAttributes = {
-  __typename?: 'YoastFaqBlockAttributes';
-  /** The &quot;additionalListCssClasses&quot; field on the &quot;YoastFaqBlockAttributes&quot; block or block attributes */
-  additionalListCssClasses?: Maybe<Scalars['String']['output']>;
-  /** The &quot;className&quot; field on the &quot;YoastFaqBlockAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;lock&quot; field on the &quot;YoastFaqBlockAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;YoastFaqBlockAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;questions&quot; field on the &quot;YoastFaqBlockAttributes&quot; block or block attributes */
-  questions?: Maybe<Scalars['BlockAttributesArray']['output']>;
-};
-
-/** A block used for editing the site */
-export type YoastHowToBlock = EditorBlock & PageEditorBlock & PostEditorBlock & {
-  __typename?: 'YoastHowToBlock';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the YoastHowToBlock Block Type */
-  attributes?: Maybe<YoastHowToBlockAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the YoastHowToBlock Block Type */
-export type YoastHowToBlockAttributes = {
-  __typename?: 'YoastHowToBlockAttributes';
-  /** The &quot;additionalListCssClasses&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  additionalListCssClasses?: Maybe<Scalars['String']['output']>;
-  /** The &quot;className&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  className?: Maybe<Scalars['String']['output']>;
-  /** The &quot;days&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  days?: Maybe<Scalars['String']['output']>;
-  /** The &quot;defaultDurationText&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  defaultDurationText?: Maybe<Scalars['String']['output']>;
-  /** The &quot;description&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  description?: Maybe<Scalars['String']['output']>;
-  /** The &quot;durationText&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  durationText?: Maybe<Scalars['String']['output']>;
-  /** The &quot;hasDuration&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  hasDuration?: Maybe<Scalars['Boolean']['output']>;
-  /** The &quot;hours&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  hours?: Maybe<Scalars['String']['output']>;
-  /** The &quot;jsonDescription&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  jsonDescription?: Maybe<Scalars['String']['output']>;
-  /** The &quot;lock&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;minutes&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  minutes?: Maybe<Scalars['String']['output']>;
-  /** The &quot;steps&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  steps?: Maybe<Scalars['BlockAttributesArray']['output']>;
-  /** The &quot;unorderedList&quot; field on the &quot;YoastHowToBlockAttributes&quot; block or block attributes */
-  unorderedList?: Maybe<Scalars['Boolean']['output']>;
-};
-
-/** A block used for editing the site */
-export type YoastSeoBreadcrumbs = EditorBlock & PageEditorBlock & PostEditorBlock & {
-  __typename?: 'YoastSeoBreadcrumbs';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']['output']>;
-  /** Attributes of the YoastSeoBreadcrumbs Block Type */
-  attributes?: Maybe<YoastSeoBreadcrumbsAttributes>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']['output']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean']['output'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']['output']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']['output']>;
-};
-
-/** Attributes of the YoastSeoBreadcrumbs Block Type */
-export type YoastSeoBreadcrumbsAttributes = {
-  __typename?: 'YoastSeoBreadcrumbsAttributes';
-  /** The &quot;className&quot; field on the &quot;YoastSeoBreadcrumbsAttributes&quot; block or block attributes */
-  className: Scalars['String']['output'];
-  /** The &quot;lock&quot; field on the &quot;YoastSeoBreadcrumbsAttributes&quot; block or block attributes */
-  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
-  /** The &quot;metadata&quot; field on the &quot;YoastSeoBreadcrumbsAttributes&quot; block or block attributes */
-  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
 };
 
 export type MyMutationUpdatePostToPublishOrPendingMutationVariables = Exact<{
@@ -18641,7 +18405,7 @@ export type GetPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, ncPageMeta?: { __typename?: 'NcPageMeta', isFullWithPage?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } } | null, editorBlocks?: Array<{ __typename: 'ContactForm7ContactFormSelector', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreArchives', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAudio', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAvatar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButton', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButtons', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCalendar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCategories', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCode', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | (
+export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, ncPageMeta?: { __typename?: 'NcPageMeta', isFullWithPage?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } } | null, editorBlocks?: Array<{ __typename: 'CoreArchives', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAudio', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAvatar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButton', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButtons', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCalendar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCategories', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCode', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | (
       { __typename: 'CoreColumn', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null }
       & { ' $fragmentRefs'?: { 'CoreColumnFragmentFragment': CoreColumnFragmentFragment } }
     ) | (
@@ -18659,7 +18423,7 @@ export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Pa
     ) | (
       { __typename: 'NcmazFaustBlockTerms', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null }
       & { ' $fragmentRefs'?: { 'NcmazFaustBlockTermsFragmentFragment': NcmazFaustBlockTermsFragmentFragment } }
-    ) | { __typename: 'YoastFaqBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'YoastHowToBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'YoastSeoBreadcrumbs', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | null> | null } | null, generalSettings?: (
+    ) | null> | null } | null, generalSettings?: (
     { __typename?: 'GeneralSettings' }
     & { ' $fragmentRefs'?: { 'NcgeneralSettingsFieldsFragmentFragment': NcgeneralSettingsFieldsFragmentFragment } }
   ) | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(

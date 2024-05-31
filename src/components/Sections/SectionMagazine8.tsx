@@ -12,14 +12,18 @@ const SectionMagazine8: FC<SectionMagazine8Props> = ({
   return (
     <div className={`nc-SectionMagazine8 relative ${className}`}>
       <div className={`grid grid-cols-1 sm:grid-cols-6 gap-6`}>
-        <Card16Podcast
-          className="sm:col-span-3 lg:col-span-2"
-          post={posts[0]}
-        />
-        <Card16Podcast
-          className="sm:col-span-3 lg:col-span-2"
-          post={posts[1]}
-        />
+        {posts[0] && (
+          <Card16Podcast
+            className="sm:col-span-3 lg:col-span-2"
+            post={posts[0]}
+          />
+        )}
+        {posts[1] && (
+          <Card16Podcast
+            className="sm:col-span-3 lg:col-span-2"
+            post={posts[1]}
+          />
+        )}
         <div className="flex flex-col space-y-6 sm:col-span-6 lg:col-span-2">
           {posts
             .filter((_, i) => i > 1 && i < 6)
@@ -31,7 +35,7 @@ const SectionMagazine8: FC<SectionMagazine8Props> = ({
         {posts
           .filter((_, i) => i >= 6)
           .map((p, j) => (
-            <div className="sm:col-span-3 lg:col-span-2">
+            <div key={p.databaseId} className="sm:col-span-3 lg:col-span-2">
               <Card17Podcast key={p.databaseId} post={p} />
             </div>
           ))}
