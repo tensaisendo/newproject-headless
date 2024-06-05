@@ -21,7 +21,7 @@
     "enable": true,
     "description": "Come get your cards!",
     "end_link": {
-      "url": "beacons.ai/tensai.tcg",
+      "url": "https://beacons.ai/tensai.tcg",
       "text": "Buy now  →",
       "new_tab": true
     }
