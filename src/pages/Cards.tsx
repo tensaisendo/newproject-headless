@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import Layout from "../components/Layout";
+import PageLayout from "../container/PageLayout";
 
 const GET_CARDS = gql`
   query getCards {
