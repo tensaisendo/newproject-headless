@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { SingleType1Props } from "./container/singles/single/single";
+import { SingleType1Props } from "../container/singles/single/single";
 import SingleHeader from "../container/singles/SingleHeader";
 import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
 import { NcmazFcImageHasDetailFieldsFragment } from "@/__generated__/graphql";
