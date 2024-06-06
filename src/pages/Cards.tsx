@@ -39,7 +39,7 @@ const Cards = () => {
   if (error) return <p>Error! {error.message}</p>;
 
   return (
-    <Layout>
+    <PageLayout>
       <h1>Card List</h1>
       <ul>
         {data.cards.nodes.map((card: any) => (
@@ -65,7 +65,7 @@ const Cards = () => {
           </li>
         ))}
       </ul>
-    </Layout>
+    </PageLayout>
   );
 };
 
