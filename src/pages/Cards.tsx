@@ -56,7 +56,7 @@ const Cards = () => {
             <p>Type: {card.cardsFields.type.join(", ")}</p>
             {card.cardsFields.image && (
               <img
-                src={card.cardsFields.image.node.mediaDetails.file}
+                src={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-content/uploads/${card.cardsFields.image.node.mediaDetails.file}`}
                 alt={card.cardsFields.image.node.slug}
                 height={card.cardsFields.image.node.mediaDetails.height}
                 width={card.cardsFields.image.node.mediaDetails.width}
