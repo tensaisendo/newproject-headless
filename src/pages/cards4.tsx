@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import SingleHeader4 from "../SingleHeader4";
-import { SingleType1Props } from "../single/single";
+import SingleHeader4 from "../container/singles/SingleHeader4";
+import { SingleType1Props } from "../container/singles/single/single";
 import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
 
 interface Props extends SingleType1Props {}

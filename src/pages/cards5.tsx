@@ -1,8 +1,8 @@
 import NcImage from "@/components/NcImage/NcImage";
 import React, { FC } from "react";
-import { SingleType1Props } from "../single/single";
+import { SingleType1Props } from "../container/singles/single/single";
 import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
-import SingleHeader from "../SingleHeader";
+import SingleHeader from "../container/singles/SingleHeader";
 
 interface Props extends SingleType1Props {}
 

@@ -49,8 +49,8 @@ const Cards = () => {
               <img
                 src={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-content/uploads/${card.cardsFields.image.node.mediaDetails.file}`}
                 alt={card.cardsFields.image.node.slug}
-                height={card.cardsFields.image.node.mediaDetails.height}
-                width={card.cardsFields.image.node.mediaDetails.width}
+                height="276"
+                width="385"
               />
             )}
           </li>

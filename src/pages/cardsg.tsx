@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
-import { SingleType1Props } from "../single/single";
-import SingleHeader from "../SingleHeader";
+import { SingleType1Props } from "./container/singles/single/single";
+import SingleHeader from "../container/singles/SingleHeader";
 import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
 import { NcmazFcImageHasDetailFieldsFragment } from "@/__generated__/graphql";
-import ListingImageGallery from "./ListingImageGallery";
+import ListingImageGallery from "../container/singles/single-gallery/ListingImageGallery";
 import MyImage from "@/components/MyImage";
 
 interface Props extends SingleType1Props {}

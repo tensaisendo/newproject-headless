@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import { SingleType1Props } from "../single/single";
-import SingleHeader from "../SingleHeader";
+import { SingleType1Props } from "../container/singles/single/single";
+import SingleHeader from "../container/singles/SingleHeader";
 import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
 import MyImage from "@/components/MyImage";
 
