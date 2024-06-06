@@ -20,7 +20,7 @@ export type Scalars = {
   BlockAttributesObject: { input: any; output: any; }
 };
 
-/** Connection between the NcmazfaustMenu type and the ContentNode type */
+/** Connection between the FeatureFields type and the ContentNode type */
 export type AcfContentNodeConnection = Connection & ContentNodeConnection & {
   __typename?: 'AcfContentNodeConnection';
   /** Edges for the AcfContentNodeConnection connection */
@@ -71,7 +71,7 @@ export type AcfFieldGroupFields = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection between the NcmazGalleryImgs type and the MediaItem type */
+/** Connection between the CardsFields type and the MediaItem type */
 export type AcfMediaItemConnectionEdge = Edge & MediaItemConnectionEdge & OneToOneConnection & {
   __typename?: 'AcfMediaItemConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
@@ -123,6 +123,265 @@ export enum AvatarRatingEnum {
 export type BlockWithSupportsAnchor = {
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
+};
+
+/** The card type */
+export type Card = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithCardEditorBlocks & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfCardsFields & {
+  __typename?: 'Card';
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  cardId: Scalars['Int']['output'];
+  /** Fields of the CardsFields ACF Field Group */
+  cardsFields?: Maybe<CardsFields>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String']['output'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']['output']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']['output']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']['output']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** List of Card editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<CardEditorBlock>>>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']['output']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the card object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
+  /** The globally unique identifier of the card object. */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']['output']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']['output']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** The password for the card object. */
+  password?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Card type and the card type */
+  preview?: Maybe<CardToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']['output']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The card type */
+export type CardContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+
+/** The card type */
+export type CardEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The card type */
+export type CardEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The card type */
+export type CardEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The card type */
+export type CardTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to card Nodes */
+export type CardConnection = {
+  /** A list of edges (relational context) between RootQuery and connected card Nodes */
+  edges: Array<CardConnectionEdge>;
+  /** A list of connected card Nodes */
+  nodes: Array<Card>;
+  /** Information about pagination in a connection. */
+  pageInfo: CardConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected card */
+export type CardConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected card Node */
+  node: Card;
+};
+
+/** Page Info on the connected CardConnectionEdge */
+export type CardConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** EditorBlock Interface for Card Block Type */
+export type CardEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']['output']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']['output']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean']['output'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']['output']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']['output']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']['output']>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum CardIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Connection between the Card type and the card type */
+export type CardToPreviewConnectionEdge = CardConnectionEdge & Edge & OneToOneConnection & {
+  __typename?: 'CardToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Card;
+};
+
+/** The &quot;CardsFields&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type CardsFields = AcfFieldGroup & AcfFieldGroupFields & CardsFields_Fields & {
+  __typename?: 'CardsFields';
+  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  attribute?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  cardTitle?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;checkbox&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  color?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  counter?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  effect?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  image?: Maybe<AcfMediaItemConnectionEdge>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  life?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  power?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  rarity?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  type?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+/** Interface representing fields of the ACF &quot;CardsFields&quot; Field Group */
+export type CardsFields_Fields = {
+  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  attribute?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  cardTitle?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;checkbox&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  color?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  counter?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  effect?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  image?: Maybe<AcfMediaItemConnectionEdge>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  life?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  power?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  rarity?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Field of the &quot;select&quot; Field Type added to the schema as part of the &quot;CardsFields&quot; Field Group */
+  type?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
 /** The category type */
@@ -752,13 +1011,13 @@ export enum CommentNodeIdTypeEnum {
 
 /** The status of the comment object. */
 export enum CommentStatusEnum {
-  /** Comments with the Approuvé status */
+  /** Comments with the Approved status */
   Approve = 'APPROVE',
-  /** Comments with the Désapprouvé status */
+  /** Comments with the Unapproved status */
   Hold = 'HOLD',
-  /** Comments with the Indésirable status */
+  /** Comments with the Spam status */
   Spam = 'SPAM',
-  /** Comments with the Corbeille status */
+  /** Comments with the Trash status */
   Trash = 'TRASH'
 }
 
@@ -1485,11 +1744,17 @@ export enum ContentTypeEnum {
   /** The Type of Content object */
   Attachment = 'ATTACHMENT',
   /** The Type of Content object */
+  Card = 'CARD',
+  /** The Type of Content object */
+  Feature = 'FEATURE',
+  /** The Type of Content object */
   GraphqlDocument = 'GRAPHQL_DOCUMENT',
   /** The Type of Content object */
   Page = 'PAGE',
   /** The Type of Content object */
   Post = 'POST',
+  /** The Type of Content object */
+  Set = 'SET',
   /** The Type of Content object */
   UserReactionPost = 'USER_REACTION_POST'
 }
@@ -1633,7 +1898,7 @@ export enum ContentTypesOfTagEnum {
 }
 
 /** A block used for editing the site */
-export type CoreArchives = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreArchives = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreArchives';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -1685,7 +1950,7 @@ export type CoreArchivesAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreAudio = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreAudio = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreAudio';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -1741,7 +2006,7 @@ export type CoreAudioAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreAvatar = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreAvatar = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreAvatar';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -1791,7 +2056,7 @@ export type CoreAvatarAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreBlock = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreBlock = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreBlock';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -1829,7 +2094,7 @@ export type CoreBlockAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreButton = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreButton = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreButton';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -1907,7 +2172,7 @@ export type CoreButtonAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreButtons = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreButtons = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreButtons';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -1959,7 +2224,7 @@ export type CoreButtonsAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreCalendar = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCalendar = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCalendar';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2011,7 +2276,7 @@ export type CoreCalendarAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCategories = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCategories = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCategories';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2065,7 +2330,7 @@ export type CoreCategoriesAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCode = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCode = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCode';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -2125,7 +2390,7 @@ export type CoreCodeAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreColumn = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreColumn = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreColumn';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -2189,7 +2454,7 @@ export type CoreColumnAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreColumns = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreColumns = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreColumns';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -2253,7 +2518,7 @@ export type CoreColumnsAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreCommentAuthorName = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentAuthorName = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentAuthorName';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2307,7 +2572,7 @@ export type CoreCommentAuthorNameAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentContent = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentContent = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentContent';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2357,7 +2622,7 @@ export type CoreCommentContentAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentDate = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentDate = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentDate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2409,7 +2674,7 @@ export type CoreCommentDateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentEditLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentEditLink = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentEditLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2459,7 +2724,7 @@ export type CoreCommentEditLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentReplyLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentReplyLink = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentReplyLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2507,7 +2772,7 @@ export type CoreCommentReplyLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentTemplate = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentTemplate = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentTemplate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2551,7 +2816,7 @@ export type CoreCommentTemplateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreComments = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreComments = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreComments';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2605,7 +2870,7 @@ export type CoreCommentsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPagination = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentsPagination = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentsPagination';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2659,7 +2924,7 @@ export type CoreCommentsPaginationAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPaginationNext = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentsPaginationNext = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentsPaginationNext';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2707,7 +2972,7 @@ export type CoreCommentsPaginationNextAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPaginationNumbers = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentsPaginationNumbers = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentsPaginationNumbers';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2753,7 +3018,7 @@ export type CoreCommentsPaginationNumbersAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPaginationPrevious = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentsPaginationPrevious = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentsPaginationPrevious';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2801,7 +3066,7 @@ export type CoreCommentsPaginationPreviousAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCommentsTitle = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCommentsTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -2861,7 +3126,7 @@ export type CoreCommentsTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCover = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreCover = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreCover';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -2955,7 +3220,7 @@ export type CoreCoverAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreDetails = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreDetails = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreDetails';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3013,7 +3278,7 @@ export type CoreDetailsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreEmbed = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreEmbed = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreEmbed';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3067,7 +3332,7 @@ export type CoreEmbedAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreFile = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreFile = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreFile';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -3135,7 +3400,7 @@ export type CoreFileAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreFootnotes = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreFootnotes = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreFootnotes';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3183,7 +3448,7 @@ export type CoreFootnotesAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreFreeform = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreFreeform = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreFreeform';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3219,7 +3484,7 @@ export type CoreFreeformAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreGallery = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreGallery = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreGallery';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -3310,7 +3575,7 @@ export type CoreGalleryAttributesImages = {
 };
 
 /** A block used for editing the site */
-export type CoreGroup = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreGroup = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreGroup';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -3372,7 +3637,7 @@ export type CoreGroupAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreHeading = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreHeading = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreHeading';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -3436,7 +3701,7 @@ export type CoreHeadingAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreHomeLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreHomeLink = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreHomeLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3480,7 +3745,7 @@ export type CoreHomeLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreHtml = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreHtml = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreHtml';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3516,7 +3781,7 @@ export type CoreHtmlAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreImage = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreImage = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreImage';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -3600,7 +3865,7 @@ export type CoreImageAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreLatestComments = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreLatestComments = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreLatestComments';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3652,7 +3917,7 @@ export type CoreLatestCommentsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreLatestPosts = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreLatestPosts = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreLatestPosts';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3738,7 +4003,7 @@ export type CoreLatestPostsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreLegacyWidget = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreLegacyWidget = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreLegacyWidget';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3778,7 +4043,7 @@ export type CoreLegacyWidgetAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreList = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreList = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreList';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -3844,7 +4109,7 @@ export type CoreListAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreListItem = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreListItem = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreListItem';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3890,7 +4155,7 @@ export type CoreListItemAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreLoginout = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreLoginout = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreLoginout';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -3936,7 +4201,7 @@ export type CoreLoginoutAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreMediaText = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreMediaText = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreMediaText';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -4026,7 +4291,7 @@ export type CoreMediaTextAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreMissing = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreMissing = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreMissing';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4066,7 +4331,7 @@ export type CoreMissingAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreMore = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreMore = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreMore';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4104,7 +4369,7 @@ export type CoreMoreAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNavigation = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreNavigation = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreNavigation';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4186,7 +4451,7 @@ export type CoreNavigationAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNavigationLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreNavigationLink = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreNavigationLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4248,7 +4513,7 @@ export type CoreNavigationLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNavigationSubmenu = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreNavigationSubmenu = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreNavigationSubmenu';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4304,7 +4569,7 @@ export type CoreNavigationSubmenuAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNextpage = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreNextpage = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreNextpage';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4338,7 +4603,7 @@ export type CoreNextpageAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePageList = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePageList = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePageList';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4384,7 +4649,7 @@ export type CorePageListAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePageListItem = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePageListItem = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePageListItem';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4430,7 +4695,7 @@ export type CorePageListItemAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreParagraph = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreParagraph = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreParagraph';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -4494,7 +4759,7 @@ export type CoreParagraphAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CorePattern = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePattern = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePattern';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4532,7 +4797,7 @@ export type CorePatternAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostAuthor = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostAuthor = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostAuthor';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4594,7 +4859,7 @@ export type CorePostAuthorAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostAuthorBiography = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostAuthorBiography = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostAuthorBiography';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4644,7 +4909,7 @@ export type CorePostAuthorBiographyAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostAuthorName = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostAuthorName = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostAuthorName';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4698,7 +4963,7 @@ export type CorePostAuthorNameAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostComments = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostComments = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostComments';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4748,7 +5013,7 @@ export type CorePostCommentsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostCommentsForm = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostCommentsForm = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostCommentsForm';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4796,7 +5061,7 @@ export type CorePostCommentsFormAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostContent = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostContent = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostContent';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4848,7 +5113,7 @@ export type CorePostContentAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostDate = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostDate = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostDate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4904,7 +5169,7 @@ export type CorePostDateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostExcerpt = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostExcerpt = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostExcerpt';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -4960,7 +5225,7 @@ export type CorePostExcerptAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostFeaturedImage = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostFeaturedImage = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostFeaturedImage';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5030,7 +5295,7 @@ export type CorePostFeaturedImageAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostNavigationLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostNavigationLink = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostNavigationLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5090,7 +5355,7 @@ export type CorePostNavigationLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostTemplate = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostTemplate = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostTemplate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5142,7 +5407,7 @@ export type CorePostTemplateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostTerms = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostTerms = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostTerms';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5200,7 +5465,7 @@ export type CorePostTermsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePostTitle = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePostTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5260,7 +5525,7 @@ export type CorePostTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePreformatted = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePreformatted = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePreformatted';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -5314,7 +5579,7 @@ export type CorePreformattedAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CorePullquote = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CorePullquote = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CorePullquote';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -5376,7 +5641,7 @@ export type CorePullquoteAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreQuery = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQuery = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQuery';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5426,7 +5691,7 @@ export type CoreQueryAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryNoResults = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQueryNoResults = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQueryNoResults';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5476,7 +5741,7 @@ export type CoreQueryNoResultsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPagination = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQueryPagination = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQueryPagination';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5532,7 +5797,7 @@ export type CoreQueryPaginationAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPaginationNext = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQueryPaginationNext = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQueryPaginationNext';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5580,7 +5845,7 @@ export type CoreQueryPaginationNextAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPaginationNumbers = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQueryPaginationNumbers = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQueryPaginationNumbers';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5628,7 +5893,7 @@ export type CoreQueryPaginationNumbersAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPaginationPrevious = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQueryPaginationPrevious = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQueryPaginationPrevious';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5676,7 +5941,7 @@ export type CoreQueryPaginationPreviousAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQueryTitle = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQueryTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5736,7 +6001,7 @@ export type CoreQueryTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQuote = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreQuote = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreQuote';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -5798,7 +6063,7 @@ export type CoreQuoteAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreReadMore = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreReadMore = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreReadMore';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5852,7 +6117,7 @@ export type CoreReadMoreAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreRss = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreRss = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreRss';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5906,7 +6171,7 @@ export type CoreRssAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSearch = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSearch = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSearch';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -5978,7 +6243,7 @@ export type CoreSearchAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSeparator = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSeparator = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSeparator';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -6030,7 +6295,7 @@ export type CoreSeparatorAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreShortcode = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreShortcode = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreShortcode';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6066,7 +6331,7 @@ export type CoreShortcodeAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSiteLogo = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSiteLogo = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSiteLogo';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6114,7 +6379,7 @@ export type CoreSiteLogoAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSiteTagline = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSiteTagline = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSiteTagline';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6166,7 +6431,7 @@ export type CoreSiteTaglineAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSiteTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSiteTitle = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSiteTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6224,7 +6489,7 @@ export type CoreSiteTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSocialLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSocialLink = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSocialLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6268,7 +6533,7 @@ export type CoreSocialLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSocialLinks = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSocialLinks = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSocialLinks';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -6336,7 +6601,7 @@ export type CoreSocialLinksAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreSpacer = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreSpacer = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreSpacer';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -6382,7 +6647,7 @@ export type CoreSpacerAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreTable = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreTable = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreTable';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -6520,7 +6785,7 @@ export type CoreTableAttributesHeadCells = {
 };
 
 /** A block used for editing the site */
-export type CoreTagCloud = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreTagCloud = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreTagCloud';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6572,7 +6837,7 @@ export type CoreTagCloudAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTemplatePart = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreTemplatePart = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreTemplatePart';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6618,7 +6883,7 @@ export type CoreTemplatePartAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTermDescription = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreTermDescription = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreTermDescription';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6668,7 +6933,7 @@ export type CoreTermDescriptionAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTextColumns = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreTextColumns = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreTextColumns';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6717,7 +6982,7 @@ export type CoreTextColumnsAttributesContent = {
 };
 
 /** A block used for editing the site */
-export type CoreVerse = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreVerse = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreVerse';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -6775,7 +7040,7 @@ export type CoreVerseAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreVideo = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreVideo = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreVideo';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -6841,7 +7106,7 @@ export type CoreVideoAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type CoreWidgetGroup = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type CoreWidgetGroup = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'CoreWidgetGroup';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -6876,6 +7141,35 @@ export type CoreWidgetGroupAttributes = {
   metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
   /** The &quot;title&quot; field on the &quot;CoreWidgetGroupAttributes&quot; block or block attributes */
   title?: Maybe<Scalars['String']['output']>;
+};
+
+/** Input for the createCard mutation. */
+export type CreateCardInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createCard mutation. */
+export type CreateCardPayload = {
+  __typename?: 'CreateCardPayload';
+  /** The Post object mutation type. */
+  card?: Maybe<Card>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
 };
 
 /** Input for the createCategory mutation. */
@@ -6938,6 +7232,35 @@ export type CreateCommentPayload = {
   comment?: Maybe<Comment>;
   /** Whether the mutation succeeded. If the comment is not approved, the server will not return the comment to a non authenticated user, but a success message can be returned if the create succeeded, and the client can optimistically add the comment to the client cache */
   success?: Maybe<Scalars['Boolean']['output']>;
+};
+
+/** Input for the createFeature mutation. */
+export type CreateFeatureInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createFeature mutation. */
+export type CreateFeaturePayload = {
+  __typename?: 'CreateFeaturePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  feature?: Maybe<Feature>;
 };
 
 /** Input for the createGraphqlDocumentGroup mutation. */
@@ -7173,6 +7496,35 @@ export type CreatePostPayload = {
   post?: Maybe<Post>;
 };
 
+/** Input for the createSet mutation. */
+export type CreateSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createSet mutation. */
+export type CreateSetPayload = {
+  __typename?: 'CreateSetPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  set?: Maybe<Set>;
+};
+
 /** Input for the createTag mutation. */
 export type CreateTagInput = {
   /** The slug that the post_tag will be an alias of */
@@ -7327,6 +7679,29 @@ export type DefaultTemplate = ContentTemplate & {
   templateName?: Maybe<Scalars['String']['output']>;
 };
 
+/** Input for the deleteCard mutation. */
+export type DeleteCardInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the card to delete */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The payload for the deleteCard mutation. */
+export type DeleteCardPayload = {
+  __typename?: 'DeleteCardPayload';
+  /** The object before it was deleted */
+  card?: Maybe<Card>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+};
+
 /** Input for the deleteCategory mutation. */
 export type DeleteCategoryInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -7365,6 +7740,29 @@ export type DeleteCommentPayload = {
   comment?: Maybe<Comment>;
   /** The deleted comment ID */
   deletedId?: Maybe<Scalars['ID']['output']>;
+};
+
+/** Input for the deleteFeature mutation. */
+export type DeleteFeatureInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the feature to delete */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The payload for the deleteFeature mutation. */
+export type DeleteFeaturePayload = {
+  __typename?: 'DeleteFeaturePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+  /** The object before it was deleted */
+  feature?: Maybe<Feature>;
 };
 
 /** Input for the deleteGraphqlDocumentGroup mutation. */
@@ -7495,6 +7893,29 @@ export type DeletePostPayload = {
   post?: Maybe<Post>;
 };
 
+/** Input for the deleteSet mutation. */
+export type DeleteSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the set to delete */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The payload for the deleteSet mutation. */
+export type DeleteSetPayload = {
+  __typename?: 'DeleteSetPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+  /** The object before it was deleted */
+  set?: Maybe<Set>;
+};
+
 /** Input for the deleteTag mutation. */
 export type DeleteTagInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -7561,9 +7982,9 @@ export type DeleteUserReactionPostPayload = {
 /** The discussion setting type */
 export type DiscussionSettings = {
   __typename?: 'DiscussionSettings';
-  /** Autoriser les gens à envoyer des commentaires sur les nouvelles publications. */
+  /** Allow people to submit comments on new posts. */
   defaultCommentStatus?: Maybe<Scalars['String']['output']>;
-  /** Autoriser les liens de notification d’autres blogs (pings et rétroliens) sur les nouveaux articles. */
+  /** Allow link notifications from other blogs (pingbacks and trackbacks) on new articles. */
   defaultPingStatus?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7765,26 +8186,267 @@ export type EnqueuedStylesheetConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+/** The feature type */
+export type Feature = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeatureEditorBlocks & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfFeatureFields & {
+  __typename?: 'Feature';
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String']['output'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']['output']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']['output']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']['output']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** List of Feature editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<FeatureEditorBlock>>>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Fields of the FeatureFields ACF Field Group */
+  featureFields?: Maybe<FeatureFields>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  featureId: Scalars['Int']['output'];
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']['output']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the feature object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
+  /** The globally unique identifier of the feature object. */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']['output']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']['output']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** The password for the feature object. */
+  password?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Feature type and the feature type */
+  preview?: Maybe<FeatureToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']['output']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The feature type */
+export type FeatureContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+
+/** The feature type */
+export type FeatureEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The feature type */
+export type FeatureEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The feature type */
+export type FeatureEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The feature type */
+export type FeatureTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to feature Nodes */
+export type FeatureConnection = {
+  /** A list of edges (relational context) between RootQuery and connected feature Nodes */
+  edges: Array<FeatureConnectionEdge>;
+  /** A list of connected feature Nodes */
+  nodes: Array<Feature>;
+  /** Information about pagination in a connection. */
+  pageInfo: FeatureConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected feature */
+export type FeatureConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected feature Node */
+  node: Feature;
+};
+
+/** Page Info on the connected FeatureConnectionEdge */
+export type FeatureConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** EditorBlock Interface for Feature Block Type */
+export type FeatureEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']['output']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']['output']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean']['output'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']['output']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']['output']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;FeatureFields&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type FeatureFields = AcfFieldGroup & AcfFieldGroupFields & FeatureFields_Fields & {
+  __typename?: 'FeatureFields';
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;FeatureFields&quot; Field Group */
+  featureList?: Maybe<AcfContentNodeConnection>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The &quot;FeatureFields&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type FeatureFieldsFeatureListArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Interface representing fields of the ACF &quot;FeatureFields&quot; Field Group */
+export type FeatureFields_Fields = {
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;FeatureFields&quot; Field Group */
+  featureList?: Maybe<AcfContentNodeConnection>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Interface representing fields of the ACF &quot;FeatureFields&quot; Field Group */
+export type FeatureFields_FieldsFeatureListArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum FeatureIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Connection between the Feature type and the feature type */
+export type FeatureToPreviewConnectionEdge = Edge & FeatureConnectionEdge & OneToOneConnection & {
+  __typename?: 'FeatureToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Feature;
+};
+
 /** The general setting type */
 export type GeneralSettings = {
   __typename?: 'GeneralSettings';
-  /** Un format de date commun pour tous les réglages de dates. */
+  /** A date format for all date strings. */
   dateFormat?: Maybe<Scalars['String']['output']>;
-  /** Slogan du site. */
+  /** Site tagline. */
   description?: Maybe<Scalars['String']['output']>;
-  /** Cette adresse est utilisée à des fins d’administration, comme les notifications de nouveaux comptes. */
+  /** This address is used for admin purposes, like new user notification. */
   email?: Maybe<Scalars['String']['output']>;
-  /** Code local de l’installation WordPress. */
+  /** WordPress locale code. */
   language?: Maybe<Scalars['String']['output']>;
-  /** Le numéro du jour de la semaine à laquelle la semaine devrait commencer. */
+  /** A day number of the week that the week should start on. */
   startOfWeek?: Maybe<Scalars['Int']['output']>;
-  /** Un format d’heure commun pour tous les réglages d’heures. */
+  /** A time format for all time strings. */
   timeFormat?: Maybe<Scalars['String']['output']>;
-  /** Une ville dans le même fuseau horaire que le vôtre. */
+  /** A city in the same timezone as you. */
   timezone?: Maybe<Scalars['String']['output']>;
-  /** Titre du site. */
+  /** Site title. */
   title?: Maybe<Scalars['String']['output']>;
-  /** URL du site. */
+  /** Site URL. */
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -8839,7 +9501,7 @@ export type HierarchicalTermNodeEnqueuedStylesheetsArgs = {
 };
 
 /** A block used for editing the site */
-export type MailpoetSubscriptionFormBlock = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type MailpoetSubscriptionFormBlock = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'MailpoetSubscriptionFormBlock';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -8875,7 +9537,7 @@ export type MailpoetSubscriptionFormBlockAttributes = {
 };
 
 /** A block used for editing the site */
-export type MailpoetSubscriptionFormBlockRender = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type MailpoetSubscriptionFormBlockRender = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'MailpoetSubscriptionFormBlockRender';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -9563,7 +10225,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
-export type MenuItemObjectUnion = Category | Page | Post | PostFormat | Tag | UserReactionPost;
+export type MenuItemObjectUnion = Card | Category | Feature | Page | Post | PostFormat | Set | Tag | UserReactionPost;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -10137,7 +10799,7 @@ export type NcmazFaustAddSubscriberToMailpoetPayload = {
 };
 
 /** A block used for editing the site */
-export type NcmazFaustBlockCta = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type NcmazFaustBlockCta = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'NcmazFaustBlockCta';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -10181,7 +10843,7 @@ export type NcmazFaustBlockCtaAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type NcmazFaustBlockGroup = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type NcmazFaustBlockGroup = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'NcmazFaustBlockGroup';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -10225,7 +10887,7 @@ export type NcmazFaustBlockGroupAttributes = {
 };
 
 /** A block used for editing the site */
-export type NcmazFaustBlockHeading = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type NcmazFaustBlockHeading = BlockWithSupportsAnchor & CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'NcmazFaustBlockHeading';
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
@@ -10269,7 +10931,7 @@ export type NcmazFaustBlockHeadingAttributes = BlockWithSupportsAnchor & {
 };
 
 /** A block used for editing the site */
-export type NcmazFaustBlockMagazine = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type NcmazFaustBlockMagazine = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'NcmazFaustBlockMagazine';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -10317,7 +10979,7 @@ export type NcmazFaustBlockMagazineAttributes = {
 };
 
 /** A block used for editing the site */
-export type NcmazFaustBlockTerms = EditorBlock & PageEditorBlock & PostEditorBlock & {
+export type NcmazFaustBlockTerms = CardEditorBlock & EditorBlock & FeatureEditorBlock & PageEditorBlock & PostEditorBlock & SetEditorBlock & {
   __typename?: 'NcmazFaustBlockTerms';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']['output']>;
@@ -10580,6 +11242,18 @@ export type NodeWithAuthorToUserConnectionEdge = Edge & OneToOneConnection & Use
   node: User;
 };
 
+/** Node that has Card content blocks associated with it */
+export type NodeWithCardEditorBlocks = {
+  /** List of Card editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<CardEditorBlock>>>;
+};
+
+
+/** Node that has Card content blocks associated with it */
+export type NodeWithCardEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** A node that can have comments associated with it */
 export type NodeWithComments = {
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
@@ -10628,6 +11302,18 @@ export type NodeWithExcerpt = {
 /** A node that can have an excerpt */
 export type NodeWithExcerptExcerptArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Node that has Feature content blocks associated with it */
+export type NodeWithFeatureEditorBlocks = {
+  /** List of Feature editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<FeatureEditorBlock>>>;
+};
+
+
+/** Node that has Feature content blocks associated with it */
+export type NodeWithFeatureEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** A node that can have a featured image set */
@@ -10700,6 +11386,18 @@ export type NodeWithRevisionsToContentNodeConnectionEdge = ContentNodeConnection
   cursor?: Maybe<Scalars['String']['output']>;
   /** The node of the connection, without the edges */
   node: ContentNode;
+};
+
+/** Node that has Set content blocks associated with it */
+export type NodeWithSetEditorBlocks = {
+  /** List of Set editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<SetEditorBlock>>>;
+};
+
+
+/** Node that has Set content blocks associated with it */
+export type NodeWithSetEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** A node that can have a template associated with it */
@@ -12629,13 +13327,13 @@ export type Previewable = {
 /** The reading setting type */
 export type ReadingSettings = {
   __typename?: 'ReadingSettings';
-  /** L’ID de la page qui affichera les derniers articles */
+  /** The ID of the page that should display the latest posts */
   pageForPosts?: Maybe<Scalars['Int']['output']>;
-  /** L’ID de la page qui doit être affiché sur la page d’accueil */
+  /** The ID of the page that should be displayed on the front page */
   pageOnFront?: Maybe<Scalars['Int']['output']>;
-  /** Les pages de blog affichent au maximum. */
+  /** Blog pages show at most. */
   postsPerPage?: Maybe<Scalars['Int']['output']>;
-  /** Afficher quoi sur la page d’accueil */
+  /** What to show on the front page */
   showOnFront?: Maybe<Scalars['String']['output']>;
 };
 
@@ -12737,10 +13435,14 @@ export type RestoreCommentPayload = {
 /** The root mutation */
 export type RootMutation = {
   __typename?: 'RootMutation';
+  /** The createCard mutation */
+  createCard?: Maybe<CreateCardPayload>;
   /** The createCategory mutation */
   createCategory?: Maybe<CreateCategoryPayload>;
   /** The createComment mutation */
   createComment?: Maybe<CreateCommentPayload>;
+  /** The createFeature mutation */
+  createFeature?: Maybe<CreateFeaturePayload>;
   /** The createGraphqlDocument mutation */
   createGraphqlDocument?: Maybe<CreateGraphqlDocumentPayload>;
   /** The createGraphqlDocumentGroup mutation */
@@ -12753,16 +13455,22 @@ export type RootMutation = {
   createPost?: Maybe<CreatePostPayload>;
   /** The createPostFormat mutation */
   createPostFormat?: Maybe<CreatePostFormatPayload>;
+  /** The createSet mutation */
+  createSet?: Maybe<CreateSetPayload>;
   /** The createTag mutation */
   createTag?: Maybe<CreateTagPayload>;
   /** The createUser mutation */
   createUser?: Maybe<CreateUserPayload>;
   /** The createUserReactionPost mutation */
   createUserReactionPost?: Maybe<CreateUserReactionPostPayload>;
+  /** The deleteCard mutation */
+  deleteCard?: Maybe<DeleteCardPayload>;
   /** The deleteCategory mutation */
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** The deleteComment mutation */
   deleteComment?: Maybe<DeleteCommentPayload>;
+  /** The deleteFeature mutation */
+  deleteFeature?: Maybe<DeleteFeaturePayload>;
   /** The deleteGraphqlDocument mutation */
   deleteGraphqlDocument?: Maybe<DeleteGraphqlDocumentPayload>;
   /** The deleteGraphqlDocumentGroup mutation */
@@ -12775,6 +13483,8 @@ export type RootMutation = {
   deletePost?: Maybe<DeletePostPayload>;
   /** The deletePostFormat mutation */
   deletePostFormat?: Maybe<DeletePostFormatPayload>;
+  /** The deleteSet mutation */
+  deleteSet?: Maybe<DeleteSetPayload>;
   /** The deleteTag mutation */
   deleteTag?: Maybe<DeleteTagPayload>;
   /** The deleteUser mutation */
@@ -12799,10 +13509,14 @@ export type RootMutation = {
   restoreComment?: Maybe<RestoreCommentPayload>;
   /** Send password reset email to user */
   sendPasswordResetEmail?: Maybe<SendPasswordResetEmailPayload>;
+  /** The updateCard mutation */
+  updateCard?: Maybe<UpdateCardPayload>;
   /** The updateCategory mutation */
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** The updateComment mutation */
   updateComment?: Maybe<UpdateCommentPayload>;
+  /** The updateFeature mutation */
+  updateFeature?: Maybe<UpdateFeaturePayload>;
   /** The updateGraphqlDocument mutation */
   updateGraphqlDocument?: Maybe<UpdateGraphqlDocumentPayload>;
   /** The updateGraphqlDocumentGroup mutation */
@@ -12815,6 +13529,8 @@ export type RootMutation = {
   updatePost?: Maybe<UpdatePostPayload>;
   /** The updatePostFormat mutation */
   updatePostFormat?: Maybe<UpdatePostFormatPayload>;
+  /** The updateSet mutation */
+  updateSet?: Maybe<UpdateSetPayload>;
   /** The updateSettings mutation */
   updateSettings?: Maybe<UpdateSettingsPayload>;
   /** The updateTag mutation */
@@ -12827,6 +13543,12 @@ export type RootMutation = {
 
 
 /** The root mutation */
+export type RootMutationCreateCardArgs = {
+  input: CreateCardInput;
+};
+
+
+/** The root mutation */
 export type RootMutationCreateCategoryArgs = {
   input: CreateCategoryInput;
 };
@@ -12835,6 +13557,12 @@ export type RootMutationCreateCategoryArgs = {
 /** The root mutation */
 export type RootMutationCreateCommentArgs = {
   input: CreateCommentInput;
+};
+
+
+/** The root mutation */
+export type RootMutationCreateFeatureArgs = {
+  input: CreateFeatureInput;
 };
 
 
@@ -12875,6 +13603,12 @@ export type RootMutationCreatePostFormatArgs = {
 
 
 /** The root mutation */
+export type RootMutationCreateSetArgs = {
+  input: CreateSetInput;
+};
+
+
+/** The root mutation */
 export type RootMutationCreateTagArgs = {
   input: CreateTagInput;
 };
@@ -12893,6 +13627,12 @@ export type RootMutationCreateUserReactionPostArgs = {
 
 
 /** The root mutation */
+export type RootMutationDeleteCardArgs = {
+  input: DeleteCardInput;
+};
+
+
+/** The root mutation */
 export type RootMutationDeleteCategoryArgs = {
   input: DeleteCategoryInput;
 };
@@ -12901,6 +13641,12 @@ export type RootMutationDeleteCategoryArgs = {
 /** The root mutation */
 export type RootMutationDeleteCommentArgs = {
   input: DeleteCommentInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeleteFeatureArgs = {
+  input: DeleteFeatureInput;
 };
 
 
@@ -12937,6 +13683,12 @@ export type RootMutationDeletePostArgs = {
 /** The root mutation */
 export type RootMutationDeletePostFormatArgs = {
   input: DeletePostFormatInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeleteSetArgs = {
+  input: DeleteSetInput;
 };
 
 
@@ -13013,6 +13765,12 @@ export type RootMutationSendPasswordResetEmailArgs = {
 
 
 /** The root mutation */
+export type RootMutationUpdateCardArgs = {
+  input: UpdateCardInput;
+};
+
+
+/** The root mutation */
 export type RootMutationUpdateCategoryArgs = {
   input: UpdateCategoryInput;
 };
@@ -13021,6 +13779,12 @@ export type RootMutationUpdateCategoryArgs = {
 /** The root mutation */
 export type RootMutationUpdateCommentArgs = {
   input: UpdateCommentInput;
+};
+
+
+/** The root mutation */
+export type RootMutationUpdateFeatureArgs = {
+  input: UpdateFeatureInput;
 };
 
 
@@ -13061,6 +13825,12 @@ export type RootMutationUpdatePostFormatArgs = {
 
 
 /** The root mutation */
+export type RootMutationUpdateSetArgs = {
+  input: UpdateSetInput;
+};
+
+
+/** The root mutation */
 export type RootMutationUpdateSettingsArgs = {
   input: UpdateSettingsInput;
 };
@@ -13088,6 +13858,15 @@ export type RootQuery = {
   __typename?: 'RootQuery';
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
+  /** An object of the card Type.  */
+  card?: Maybe<Card>;
+  /**
+   * A card object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  cardBy?: Maybe<Card>;
+  /** Connection between the RootQuery type and the card type */
+  cards?: Maybe<RootQueryToCardConnection>;
   /** Connection between the RootQuery type and the category type */
   categories?: Maybe<RootQueryToCategoryConnection>;
   /** A 0bject */
@@ -13106,6 +13885,15 @@ export type RootQuery = {
   contentTypes?: Maybe<RootQueryToContentTypeConnection>;
   /** Fields of the &#039;DiscussionSettings&#039; settings group */
   discussionSettings?: Maybe<DiscussionSettings>;
+  /** An object of the feature Type.  */
+  feature?: Maybe<Feature>;
+  /**
+   * A feature object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  featureBy?: Maybe<Feature>;
+  /** Connection between the RootQuery type and the feature type */
+  features?: Maybe<RootQueryToFeatureConnection>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
   /** Returns the stylesheet resulting of merging core, theme, and user data. */
@@ -13178,6 +13966,15 @@ export type RootQuery = {
   registeredStylesheets?: Maybe<RootQueryToEnqueuedStylesheetConnection>;
   /** Connection between the RootQuery type and the ContentNode type */
   revisions?: Maybe<RootQueryToRevisionsConnection>;
+  /** An object of the set Type.  */
+  set?: Maybe<Set>;
+  /**
+   * A set object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  setBy?: Maybe<Set>;
+  /** Connection between the RootQuery type and the set type */
+  sets?: Maybe<RootQueryToSetConnection>;
   /** The logo set in the customizer */
   siteLogo?: Maybe<MediaItem>;
   /** A 0bject */
@@ -13217,6 +14014,33 @@ export type RootQuery = {
   viewer?: Maybe<User>;
   /** Fields of the &#039;WritingSettings&#039; settings group */
   writingSettings?: Maybe<WritingSettings>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryCardArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<CardIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryCardByArgs = {
+  cardId?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryCardsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToCardConnectionWhereArgs>;
 };
 
 
@@ -13286,6 +14110,33 @@ export type RootQueryContentTypesArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryFeatureArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<FeatureIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryFeatureByArgs = {
+  featureId?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryFeaturesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToFeatureConnectionWhereArgs>;
 };
 
 
@@ -13527,6 +14378,33 @@ export type RootQueryRevisionsArgs = {
 
 
 /** The root entry point into the Graph */
+export type RootQuerySetArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<SetIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQuerySetByArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  setId?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQuerySetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToSetConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
 export type RootQueryTagArgs = {
   id: Scalars['ID']['input'];
   idType?: InputMaybe<TagIdType>;
@@ -13648,6 +14526,77 @@ export type RootQueryUsersArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToUserConnectionWhereArgs>;
+};
+
+/** Connection between the RootQuery type and the card type */
+export type RootQueryToCardConnection = CardConnection & Connection & {
+  __typename?: 'RootQueryToCardConnection';
+  /** Edges for the RootQueryToCardConnection connection */
+  edges: Array<RootQueryToCardConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Card>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToCardConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToCardConnectionEdge = CardConnectionEdge & Edge & {
+  __typename?: 'RootQueryToCardConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Card;
+};
+
+/** Page Info on the &quot;RootQueryToCardConnection&quot; */
+export type RootQueryToCardConnectionPageInfo = CardConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToCardConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToCardConnection connection */
+export type RootQueryToCardConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Connection between the RootQuery type and the category type */
@@ -13994,6 +14943,77 @@ export type RootQueryToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheet
   hasPreviousPage: Scalars['Boolean']['output'];
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the RootQuery type and the feature type */
+export type RootQueryToFeatureConnection = Connection & FeatureConnection & {
+  __typename?: 'RootQueryToFeatureConnection';
+  /** Edges for the RootQueryToFeatureConnection connection */
+  edges: Array<RootQueryToFeatureConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Feature>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToFeatureConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToFeatureConnectionEdge = Edge & FeatureConnectionEdge & {
+  __typename?: 'RootQueryToFeatureConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Feature;
+};
+
+/** Page Info on the &quot;RootQueryToFeatureConnection&quot; */
+export type RootQueryToFeatureConnectionPageInfo = FeatureConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToFeatureConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToFeatureConnection connection */
+export type RootQueryToFeatureConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Connection between the RootQuery type and the graphqlDocument type */
@@ -14692,6 +15712,77 @@ export type RootQueryToRevisionsConnectionWhereArgs = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** Connection between the RootQuery type and the set type */
+export type RootQueryToSetConnection = Connection & SetConnection & {
+  __typename?: 'RootQueryToSetConnection';
+  /** Edges for the RootQueryToSetConnection connection */
+  edges: Array<RootQueryToSetConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Set>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToSetConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToSetConnectionEdge = Edge & SetConnectionEdge & {
+  __typename?: 'RootQueryToSetConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Set;
+};
+
+/** Page Info on the &quot;RootQueryToSetConnection&quot; */
+export type RootQueryToSetConnectionPageInfo = PageInfo & SetConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToSetConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToSetConnection connection */
+export type RootQueryToSetConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** Connection between the RootQuery type and the tag type */
 export type RootQueryToTagConnection = Connection & TagConnection & {
   __typename?: 'RootQueryToTagConnection';
@@ -15125,6 +16216,247 @@ export type SendPasswordResetEmailPayload = {
    * @deprecated This field will be removed in a future version of WPGraphQL
    */
   user?: Maybe<User>;
+};
+
+/** The set type */
+export type Set = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithSetEditorBlocks & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSetChamps & {
+  __typename?: 'Set';
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String']['output'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']['output']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']['output']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']['output']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** List of Set editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<SetEditorBlock>>>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']['output']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the set object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
+  /** The globally unique identifier of the set object. */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']['output']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']['output']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** The password for the set object. */
+  password?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Set type and the set type */
+  preview?: Maybe<SetToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** Fields of the SetChamps ACF Field Group */
+  setChamps?: Maybe<SetChamps>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  setId: Scalars['Int']['output'];
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']['output']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The set type */
+export type SetContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+
+/** The set type */
+export type SetEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The set type */
+export type SetEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The set type */
+export type SetEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The set type */
+export type SetTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The &quot;SetChamps&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type SetChamps = AcfFieldGroup & AcfFieldGroupFields & SetChamps_Fields & {
+  __typename?: 'SetChamps';
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;SetChamps&quot; Field Group */
+  setCards?: Maybe<AcfContentNodeConnection>;
+};
+
+
+/** The &quot;SetChamps&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type SetChampsSetCardsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Interface representing fields of the ACF &quot;SetChamps&quot; Field Group */
+export type SetChamps_Fields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;relationship&quot; Field Type added to the schema as part of the &quot;SetChamps&quot; Field Group */
+  setCards?: Maybe<AcfContentNodeConnection>;
+};
+
+
+/** Interface representing fields of the ACF &quot;SetChamps&quot; Field Group */
+export type SetChamps_FieldsSetCardsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Connection to set Nodes */
+export type SetConnection = {
+  /** A list of edges (relational context) between RootQuery and connected set Nodes */
+  edges: Array<SetConnectionEdge>;
+  /** A list of connected set Nodes */
+  nodes: Array<Set>;
+  /** Information about pagination in a connection. */
+  pageInfo: SetConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected set */
+export type SetConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected set Node */
+  node: Set;
+};
+
+/** Page Info on the connected SetConnectionEdge */
+export type SetConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** EditorBlock Interface for Set Block Type */
+export type SetEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']['output']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']['output']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean']['output'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']['output']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']['output']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']['output']>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum SetIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Connection between the Set type and the set type */
+export type SetToPreviewConnectionEdge = Edge & OneToOneConnection & SetConnectionEdge & {
+  __typename?: 'SetToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Set;
 };
 
 /** All of the registered settings */
@@ -15670,8 +17002,8 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
 };
 
 /** The template assigned to the node */
-export type Template_PageSansTitre = ContentTemplate & {
-  __typename?: 'Template_PageSansTitre';
+export type Template_PageNoTitle = ContentTemplate & {
+  __typename?: 'Template_PageNoTitle';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
@@ -15691,8 +17023,8 @@ export type Template_PageWithWideImage = ContentTemplate & {
 };
 
 /** The template assigned to the node */
-export type Template_PublicationUniqueAvecColonneLatrale = ContentTemplate & {
-  __typename?: 'Template_PublicationUniqueAvecColonneLatrale';
+export type Template_SingleWithSidebar = ContentTemplate & {
+  __typename?: 'Template_SingleWithSidebar';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
@@ -15966,6 +17298,39 @@ export type UniformResourceIdentifiable = {
   uri?: Maybe<Scalars['String']['output']>;
 };
 
+/** Input for the updateCard mutation. */
+export type UpdateCardInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the card object */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateCard mutation. */
+export type UpdateCardPayload = {
+  __typename?: 'UpdateCardPayload';
+  /** The Post object mutation type. */
+  card?: Maybe<Card>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+};
+
 /** Input for the updateCategory mutation. */
 export type UpdateCategoryInput = {
   /** The slug that the category will be an alias of */
@@ -16030,6 +17395,39 @@ export type UpdateCommentPayload = {
   comment?: Maybe<Comment>;
   /** Whether the mutation succeeded. If the comment is not approved, the server will not return the comment to a non authenticated user, but a success message can be returned if the create succeeded, and the client can optimistically add the comment to the client cache */
   success?: Maybe<Scalars['Boolean']['output']>;
+};
+
+/** Input for the updateFeature mutation. */
+export type UpdateFeatureInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the feature object */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateFeature mutation. */
+export type UpdateFeaturePayload = {
+  __typename?: 'UpdateFeaturePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  feature?: Maybe<Feature>;
 };
 
 /** Input for the updateGraphqlDocumentGroup mutation. */
@@ -16283,45 +17681,78 @@ export type UpdatePostPayload = {
   post?: Maybe<Post>;
 };
 
+/** Input for the updateSet mutation. */
+export type UpdateSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the set object */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateSet mutation. */
+export type UpdateSetPayload = {
+  __typename?: 'UpdateSetPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  set?: Maybe<Set>;
+};
+
 /** Input for the updateSettings mutation. */
 export type UpdateSettingsInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Autoriser les gens à envoyer des commentaires sur les nouvelles publications. */
+  /** Allow people to submit comments on new posts. */
   discussionSettingsDefaultCommentStatus?: InputMaybe<Scalars['String']['input']>;
-  /** Autoriser les liens de notification d’autres blogs (pings et rétroliens) sur les nouveaux articles. */
+  /** Allow link notifications from other blogs (pingbacks and trackbacks) on new articles. */
   discussionSettingsDefaultPingStatus?: InputMaybe<Scalars['String']['input']>;
-  /** Un format de date commun pour tous les réglages de dates. */
+  /** A date format for all date strings. */
   generalSettingsDateFormat?: InputMaybe<Scalars['String']['input']>;
-  /** Slogan du site. */
+  /** Site tagline. */
   generalSettingsDescription?: InputMaybe<Scalars['String']['input']>;
-  /** Cette adresse est utilisée à des fins d’administration, comme les notifications de nouveaux comptes. */
+  /** This address is used for admin purposes, like new user notification. */
   generalSettingsEmail?: InputMaybe<Scalars['String']['input']>;
-  /** Code local de l’installation WordPress. */
+  /** WordPress locale code. */
   generalSettingsLanguage?: InputMaybe<Scalars['String']['input']>;
-  /** Le numéro du jour de la semaine à laquelle la semaine devrait commencer. */
+  /** A day number of the week that the week should start on. */
   generalSettingsStartOfWeek?: InputMaybe<Scalars['Int']['input']>;
-  /** Un format d’heure commun pour tous les réglages d’heures. */
+  /** A time format for all time strings. */
   generalSettingsTimeFormat?: InputMaybe<Scalars['String']['input']>;
-  /** Une ville dans le même fuseau horaire que le vôtre. */
+  /** A city in the same timezone as you. */
   generalSettingsTimezone?: InputMaybe<Scalars['String']['input']>;
-  /** Titre du site. */
+  /** Site title. */
   generalSettingsTitle?: InputMaybe<Scalars['String']['input']>;
-  /** URL du site. */
+  /** Site URL. */
   generalSettingsUrl?: InputMaybe<Scalars['String']['input']>;
-  /** L’ID de la page qui affichera les derniers articles */
+  /** The ID of the page that should display the latest posts */
   readingSettingsPageForPosts?: InputMaybe<Scalars['Int']['input']>;
-  /** L’ID de la page qui doit être affiché sur la page d’accueil */
+  /** The ID of the page that should be displayed on the front page */
   readingSettingsPageOnFront?: InputMaybe<Scalars['Int']['input']>;
-  /** Les pages de blog affichent au maximum. */
+  /** Blog pages show at most. */
   readingSettingsPostsPerPage?: InputMaybe<Scalars['Int']['input']>;
-  /** Afficher quoi sur la page d’accueil */
+  /** What to show on the front page */
   readingSettingsShowOnFront?: InputMaybe<Scalars['String']['input']>;
-  /** Catégorie d’article par défaut. */
+  /** Default post category. */
   writingSettingsDefaultCategory?: InputMaybe<Scalars['Int']['input']>;
-  /** Format d’article par défaut. */
+  /** Default post format. */
   writingSettingsDefaultPostFormat?: InputMaybe<Scalars['String']['input']>;
-  /** Convertir les émoticônes, comme :-) et :-P, en images lors de l’affichage. */
+  /** Convert emoticons like :-) and :-P to graphics on display. */
   writingSettingsUseSmilies?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -17570,6 +19001,18 @@ export type WpPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+/** Provides access to fields of the &quot;CardsFields&quot; ACF Field Group via the &quot;cardsFields&quot; field */
+export type WithAcfCardsFields = {
+  /** Fields of the CardsFields ACF Field Group */
+  cardsFields?: Maybe<CardsFields>;
+};
+
+/** Provides access to fields of the &quot;FeatureFields&quot; ACF Field Group via the &quot;featureFields&quot; field */
+export type WithAcfFeatureFields = {
+  /** Fields of the FeatureFields ACF Field Group */
+  featureFields?: Maybe<FeatureFields>;
+};
+
 /** Provides access to fields of the &quot;NcPageMeta&quot; ACF Field Group via the &quot;ncPageMeta&quot; field */
 export type WithAcfNcPageMeta = {
   /** Fields of the NcPageMeta ACF Field Group */
@@ -17618,14 +19061,20 @@ export type WithAcfNcmazfaustMenu = {
   ncmazfaustMenu?: Maybe<NcmazfaustMenu>;
 };
 
+/** Provides access to fields of the &quot;SetChamps&quot; ACF Field Group via the &quot;setChamps&quot; field */
+export type WithAcfSetChamps = {
+  /** Fields of the SetChamps ACF Field Group */
+  setChamps?: Maybe<SetChamps>;
+};
+
 /** The writing setting type */
 export type WritingSettings = {
   __typename?: 'WritingSettings';
-  /** Catégorie d’article par défaut. */
+  /** Default post category. */
   defaultCategory?: Maybe<Scalars['Int']['output']>;
-  /** Format d’article par défaut. */
+  /** Default post format. */
   defaultPostFormat?: Maybe<Scalars['String']['output']>;
-  /** Convertir les émoticônes, comme :-) et :-P, en images lors de l’affichage. */
+  /** Convert emoticons like :-) and :-P to graphics on display. */
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
@@ -17779,13 +19228,13 @@ export type NcmazFcUserFullFieldsFragment = { __typename?: 'User', id: string, d
         & { ' $fragmentRefs'?: { 'NcmazFcImageFieldsFragment': NcmazFcImageFieldsFragment } }
       ) } | null } | null } & { ' $fragmentName'?: 'NcmazFcUserFullFieldsFragment' };
 
-export type NcPrimaryMenuFieldsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, databaseId: number, ncmazfaustMenu?: { __typename: 'NcmazfaustMenu', isMegaMenu?: boolean | null, numberOfMenuColumns?: number | null, posts?: { __typename?: 'AcfContentNodeConnection', nodes: Array<{ __typename?: 'GraphqlDocument', id: string } | { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename: 'Post', databaseId: number, title?: string | null, uri?: string | null, modified?: string | null, date?: string | null, excerpt?: string | null, id: string, categories?: { __typename?: 'PostToCategoryConnection', nodes: Array<(
+export type NcPrimaryMenuFieldsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, databaseId: number, ncmazfaustMenu?: { __typename: 'NcmazfaustMenu', isMegaMenu?: boolean | null, numberOfMenuColumns?: number | null, posts?: { __typename?: 'AcfContentNodeConnection', nodes: Array<{ __typename?: 'Card', id: string } | { __typename?: 'Feature', id: string } | { __typename?: 'GraphqlDocument', id: string } | { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename: 'Post', databaseId: number, title?: string | null, uri?: string | null, modified?: string | null, date?: string | null, excerpt?: string | null, id: string, categories?: { __typename?: 'PostToCategoryConnection', nodes: Array<(
             { __typename?: 'Category' }
             & { ' $fragmentRefs'?: { 'NcmazFcCategoryCardFieldsNotImageFragment': NcmazFcCategoryCardFieldsNotImageFragment } }
           )> } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: (
             { __typename?: 'MediaItem' }
             & { ' $fragmentRefs'?: { 'NcmazFcImageFieldsFragment': NcmazFcImageFieldsFragment } }
-          ) } | null, postFormats?: { __typename?: 'PostToPostFormatConnection', nodes: Array<{ __typename?: 'PostFormat', name?: string | null, slug?: string | null }> } | null } | { __typename?: 'UserReactionPost', id: string }> } | null } | null } & { ' $fragmentName'?: 'NcPrimaryMenuFieldsFragmentFragment' };
+          ) } | null, postFormats?: { __typename?: 'PostToPostFormatConnection', nodes: Array<{ __typename?: 'PostFormat', name?: string | null, slug?: string | null }> } | null } | { __typename?: 'Set', id: string } | { __typename?: 'UserReactionPost', id: string }> } | null } | null } & { ' $fragmentName'?: 'NcPrimaryMenuFieldsFragmentFragment' };
 
 export type NcFooterMenuFieldsFragmentFragment = { __typename?: 'MenuItem', databaseId: number, uri?: string | null, label?: string | null, parentId?: string | null, id: string } & { ' $fragmentName'?: 'NcFooterMenuFieldsFragmentFragment' };
 
@@ -18054,6 +19503,11 @@ export type QueryGetPostsByUserReactQuery = { __typename?: 'RootQuery', posts?: 
       { __typename?: 'Post' }
       & { ' $fragmentRefs'?: { 'NcmazFcPostCardFieldsFragment': NcmazFcPostCardFieldsFragment } }
     )>, pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', endCursor?: string | null, hasNextPage: boolean } } | null };
+
+export type GetCardsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCardsQuery = { __typename?: 'RootQuery', cards?: { __typename?: 'RootQueryToCardConnection', nodes: Array<{ __typename?: 'Card', title?: string | null, slug?: string | null, cardsFields?: { __typename?: 'CardsFields', cardTitle?: string | null, color?: Array<string | null> | null, counter?: string | null, effect?: string | null, life?: number | null, power?: string | null, rarity?: Array<string | null> | null, type?: Array<string | null> | null, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', slug?: string | null, mediaDetails?: { __typename?: 'MediaDetails', file?: string | null, height?: number | null, width?: number | null } | null } } | null } | null }> } | null };
 
 export type PageAuthorBookmarksGetDataQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -18349,13 +19803,13 @@ export type PageArchiveGetArchiveQueryVariables = Exact<{
 }>;
 
 
-export type PageArchiveGetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', uri?: string | null, id: string } | { __typename?: 'Comment', uri?: string | null, id: string } | { __typename?: 'ContentType', uri?: string | null, id: string } | { __typename?: 'GraphqlDocument', uri?: string | null, id: string } | { __typename?: 'GraphqlDocumentGroup', uri?: string | null, id: string } | { __typename?: 'MediaItem', uri?: string | null, id: string } | { __typename?: 'Page', uri?: string | null, id: string } | { __typename?: 'Post', uri?: string | null, id: string } | (
+export type PageArchiveGetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Card', uri?: string | null, id: string } | { __typename?: 'Category', uri?: string | null, id: string } | { __typename?: 'Comment', uri?: string | null, id: string } | { __typename?: 'ContentType', uri?: string | null, id: string } | { __typename?: 'Feature', uri?: string | null, id: string } | { __typename?: 'GraphqlDocument', uri?: string | null, id: string } | { __typename?: 'GraphqlDocumentGroup', uri?: string | null, id: string } | { __typename?: 'MediaItem', uri?: string | null, id: string } | { __typename?: 'Page', uri?: string | null, id: string } | { __typename?: 'Post', uri?: string | null, id: string } | (
     { __typename?: 'PostFormat', uri?: string | null, id: string, posts?: { __typename?: 'PostFormatToPostConnection', nodes: Array<(
         { __typename?: 'Post' }
         & { ' $fragmentRefs'?: { 'NcmazFcPostCardFieldsFragment': NcmazFcPostCardFieldsFragment } }
       )>, pageInfo: { __typename?: 'PostFormatToPostConnectionPageInfo', endCursor?: string | null, hasNextPage: boolean } } | null }
     & { ' $fragmentRefs'?: { 'NcmazFcPostFormatFullFieldsFragmentFragment': NcmazFcPostFormatFullFieldsFragmentFragment } }
-  ) | { __typename?: 'Tag', uri?: string | null, id: string } | { __typename?: 'User', uri?: string | null, id: string } | { __typename?: 'UserReactionPost', uri?: string | null, id: string } | null, categories?: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<(
+  ) | { __typename?: 'Set', uri?: string | null, id: string } | { __typename?: 'Tag', uri?: string | null, id: string } | { __typename?: 'User', uri?: string | null, id: string } | { __typename?: 'UserReactionPost', uri?: string | null, id: string } | null, categories?: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<(
       { __typename?: 'Category' }
       & { ' $fragmentRefs'?: { 'NcmazFcCategoryFullFieldsFragmentFragment': NcmazFcCategoryFullFieldsFragmentFragment } }
     )> } | null, generalSettings?: (
@@ -18536,6 +19990,7 @@ export const QueryGet10CategoriesDocument = {"kind":"Document","definitions":[{"
 export const QueryGetCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QueryGetCategories"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"20"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}}]} as unknown as DocumentNode<QueryGetCategoriesQuery, QueryGetCategoriesQueryVariables>;
 export const QueryGetTagsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QueryGetTags"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"","block":false}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"20"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tags"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcTagShortFieldsFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcTagShortFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tag"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]} as unknown as DocumentNode<QueryGetTagsQuery, QueryGetTagsQueryVariables>;
 export const QueryGetPostsByUserReactDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QueryGetPostsByUserReact"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"20"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"inUserAndReaction"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"inUserAndReaction"},"value":{"kind":"Variable","name":{"kind":"Name","value":"inUserAndReaction"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcPostCardFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcUserShortForPostCardFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"ncUserMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcPostMetaFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NcPostMetaData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"viewsCount"}},{"kind":"Field","name":{"kind":"Name","value":"readingTime"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcPostCardFieldsNOTNcmazGalleryImgs"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"modified"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"commentStatus"}},{"kind":"Field","name":{"kind":"Name","value":"commentCount"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcUserShortForPostCardFragment"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"postFormats"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ncmazVideoUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"videoUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ncmazAudioUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"audioUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ncPostMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcPostMetaFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcPostCardFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcPostCardFieldsNOTNcmazGalleryImgs"}},{"kind":"Field","name":{"kind":"Name","value":"ncmazGalleryImgs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image3"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image4"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image5"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image6"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image7"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image8"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}}]} as unknown as DocumentNode<QueryGetPostsByUserReactQuery, QueryGetPostsByUserReactQueryVariables>;
+export const GetCardsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCards"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cards"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"cardsFields"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cardTitle"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"counter"}},{"kind":"Field","name":{"kind":"Name","value":"effect"}},{"kind":"Field","name":{"kind":"Name","value":"life"}},{"kind":"Field","name":{"kind":"Name","value":"power"}},{"kind":"Field","name":{"kind":"Name","value":"rarity"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mediaDetails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"file"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCardsQuery, GetCardsQueryVariables>;
 export const PageAuthorBookmarksGetDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PageAuthorBookmarksGetData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"headerLocation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"MenuLocationEnum"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"footerLocation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"MenuLocationEnum"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"SLUG"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcUserFullFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"orderby"},"value":{"kind":"EnumValue","value":"COUNT"}},{"kind":"ObjectField","name":{"kind":"Name","value":"order"},"value":{"kind":"EnumValue","value":"DESC"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcgeneralSettingsFieldsFragment"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"Variable","name":{"kind":"Name","value":"headerLocation"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"80"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcPrimaryMenuFieldsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footerMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"Variable","name":{"kind":"Name","value":"footerLocation"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcFooterMenuFieldsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcUserFullFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"ncUserMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"buymeacoffeUrl"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"facebookUrl"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"instagramUrl"}},{"kind":"Field","name":{"kind":"Name","value":"linkedinUrl"}},{"kind":"Field","name":{"kind":"Name","value":"mediumUrl"}},{"kind":"Field","name":{"kind":"Name","value":"ncBio"}},{"kind":"Field","name":{"kind":"Name","value":"pinterestUrl"}},{"kind":"Field","name":{"kind":"Name","value":"twitchUrl"}},{"kind":"Field","name":{"kind":"Name","value":"twitterUrl"}},{"kind":"Field","name":{"kind":"Name","value":"vimeoUrl"}},{"kind":"Field","name":{"kind":"Name","value":"websiteUrl"}},{"kind":"Field","name":{"kind":"Name","value":"youtubeUrl"}},{"kind":"Field","name":{"kind":"Name","value":"tiktokUrl"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"backgroundImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcgeneralSettingsFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"GeneralSettings"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcPrimaryMenuFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"ncmazfaustMenu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"isMegaMenu"}},{"kind":"Field","name":{"kind":"Name","value":"numberOfMenuColumns"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"modified"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"postFormats"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcFooterMenuFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]} as unknown as DocumentNode<PageAuthorBookmarksGetDataQuery, PageAuthorBookmarksGetDataQueryVariables>;
 export const PageAuthorFavoritesGetDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PageAuthorFavoritesGetData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"headerLocation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"MenuLocationEnum"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"footerLocation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"MenuLocationEnum"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"SLUG"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcUserFullFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"orderby"},"value":{"kind":"EnumValue","value":"COUNT"}},{"kind":"ObjectField","name":{"kind":"Name","value":"order"},"value":{"kind":"EnumValue","value":"DESC"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcgeneralSettingsFieldsFragment"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"Variable","name":{"kind":"Name","value":"headerLocation"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"80"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcPrimaryMenuFieldsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footerMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"Variable","name":{"kind":"Name","value":"footerLocation"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcFooterMenuFieldsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcUserFullFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"ncUserMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"buymeacoffeUrl"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"facebookUrl"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"instagramUrl"}},{"kind":"Field","name":{"kind":"Name","value":"linkedinUrl"}},{"kind":"Field","name":{"kind":"Name","value":"mediumUrl"}},{"kind":"Field","name":{"kind":"Name","value":"ncBio"}},{"kind":"Field","name":{"kind":"Name","value":"pinterestUrl"}},{"kind":"Field","name":{"kind":"Name","value":"twitchUrl"}},{"kind":"Field","name":{"kind":"Name","value":"twitterUrl"}},{"kind":"Field","name":{"kind":"Name","value":"vimeoUrl"}},{"kind":"Field","name":{"kind":"Name","value":"websiteUrl"}},{"kind":"Field","name":{"kind":"Name","value":"youtubeUrl"}},{"kind":"Field","name":{"kind":"Name","value":"tiktokUrl"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"backgroundImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcgeneralSettingsFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"GeneralSettings"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcPrimaryMenuFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"ncmazfaustMenu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"isMegaMenu"}},{"kind":"Field","name":{"kind":"Name","value":"numberOfMenuColumns"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"modified"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"postFormats"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcFooterMenuFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]} as unknown as DocumentNode<PageAuthorFavoritesGetDataQuery, PageAuthorFavoritesGetDataQueryVariables>;
 export const GetAuthorWithPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAuthorWithPosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"headerLocation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"MenuLocationEnum"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"footerLocation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"MenuLocationEnum"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"SLUG"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcUserFullFields"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"orderby"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"field"},"value":{"kind":"EnumValue","value":"DATE"}},{"kind":"ObjectField","name":{"kind":"Name","value":"order"},"value":{"kind":"EnumValue","value":"DESC"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcPostCardFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"orderby"},"value":{"kind":"EnumValue","value":"COUNT"}},{"kind":"ObjectField","name":{"kind":"Name","value":"order"},"value":{"kind":"EnumValue","value":"DESC"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcgeneralSettingsFieldsFragment"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"Variable","name":{"kind":"Name","value":"headerLocation"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"80"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcPrimaryMenuFieldsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footerMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"Variable","name":{"kind":"Name","value":"footerLocation"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcFooterMenuFieldsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcUserShortForPostCardFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"ncUserMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcPostMetaFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NcPostMetaData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"viewsCount"}},{"kind":"Field","name":{"kind":"Name","value":"readingTime"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcPostCardFieldsNOTNcmazGalleryImgs"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"modified"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"commentStatus"}},{"kind":"Field","name":{"kind":"Name","value":"commentCount"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcUserShortForPostCardFragment"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"postFormats"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"ncmazVideoUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"videoUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ncmazAudioUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"audioUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ncPostMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcPostMetaFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcUserFullFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"ncUserMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"buymeacoffeUrl"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"facebookUrl"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"instagramUrl"}},{"kind":"Field","name":{"kind":"Name","value":"linkedinUrl"}},{"kind":"Field","name":{"kind":"Name","value":"mediumUrl"}},{"kind":"Field","name":{"kind":"Name","value":"ncBio"}},{"kind":"Field","name":{"kind":"Name","value":"pinterestUrl"}},{"kind":"Field","name":{"kind":"Name","value":"twitchUrl"}},{"kind":"Field","name":{"kind":"Name","value":"twitterUrl"}},{"kind":"Field","name":{"kind":"Name","value":"vimeoUrl"}},{"kind":"Field","name":{"kind":"Name","value":"websiteUrl"}},{"kind":"Field","name":{"kind":"Name","value":"youtubeUrl"}},{"kind":"Field","name":{"kind":"Name","value":"tiktokUrl"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"backgroundImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcPostCardFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcPostCardFieldsNOTNcmazGalleryImgs"}},{"kind":"Field","name":{"kind":"Name","value":"ncmazGalleryImgs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image3"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image4"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image5"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image6"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image7"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"image8"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcmazFcCategoryFullFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"ncTaxonomyMeta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcgeneralSettingsFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"GeneralSettings"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcPrimaryMenuFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"ncmazfaustMenu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"isMegaMenu"}},{"kind":"Field","name":{"kind":"Name","value":"numberOfMenuColumns"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"modified"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcCategoryCardFieldsNotImage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"NcmazFcImageFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"postFormats"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"NcFooterMenuFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"databaseId"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]} as unknown as DocumentNode<GetAuthorWithPostsQuery, GetAuthorWithPostsQueryVariables>;
