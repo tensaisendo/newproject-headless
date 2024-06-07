@@ -32,7 +32,7 @@ interface Props {
 
 const GridCards: FC<Props> = ({
   className = "",
-  posts: currentCards,
+  cards: currentCards,
   loading,
   onClickLoadmore,
   showLoadmore,
