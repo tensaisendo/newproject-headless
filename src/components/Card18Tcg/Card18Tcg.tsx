@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
 import Link from "next/link";
+import CardFeaturedMedia from "@/components/CardFeaturedMedia/CardFeaturedMedia";
+
 
 interface Card18TcgProps {
   card: {
@@ -44,14 +46,11 @@ const Card18Tcg: FC<Card18TcgProps> = ({
       onMouseLeave={() => setIsHover(false)}
     >
       <div className={`block flex-shrink-0 relative w-full rounded-t-3xl overflow-hidden z-10 ${ratio}`}>
-        {card.cardsFields.image && (
-          <img
-            src={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-content/uploads/${card.cardsFields.image.node.mediaDetails.file}`}
-            alt={card.cardsFields.image.node.slug}
-            height={card.cardsFields.image.node.mediaDetails.height}
-            width={card.cardsFields.image.node.mediaDetails.width}
-          />
-        )}
+
+        <div>
+          <CardFeaturedMedia card={card} isHover={isHover} />
+        </div>
+
       </div>
       <Link href={`/cards/${card.slug}`} className="absolute inset-0"></Link>
       <div className="flex-1 rounded-b-3xl py-4 px-3.5 flex flex-col space-y-3 border border-neutral-100 dark:border-neutral-800 border-t-0">
