@@ -46,7 +46,7 @@ const Card18Tcg: FC<Card18TcgProps> = ({
       <div className={`block flex-shrink-0 relative w-full rounded-t-3xl overflow-hidden z-10 ${ratio}`}>
         {card.cardsFields.image && (
           <img
-            src={card.cardsFields.image.node.mediaDetails.file}
+            src={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-content/uploads/${card.cardsFields.image.node.mediaDetails.file}`}
             alt={card.cardsFields.image.node.slug}
             height={card.cardsFields.image.node.mediaDetails.height}
             width={card.cardsFields.image.node.mediaDetails.width}
@@ -58,7 +58,6 @@ const Card18Tcg: FC<Card18TcgProps> = ({
         <h3 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100">
           {card.title}
         </h3>
-        <p>Card Title: {card.cardsFields.cardTitle}</p>
       </div>
     </div>
   );
