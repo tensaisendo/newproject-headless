@@ -1,29 +1,11 @@
 import React, { FC } from "react";
+import Card18Tcg from "./Card18Tcg";
+import Card18TcgSkeleton from "./Card18TcgSkeleton";
 import Empty from "./Empty";
-import Card18TcgSkeleton from "./Card18Tcg/Card18TcgSkeleton";
-import Card18Tcg from "./Card18Tcg/Card18Tcg";
 import ButtonPrimary from "./Button/ButtonPrimary";
-import getTrans from "@/utils/getTrans";
-
-interface Card {
-  title: string;
-  slug: string;
-  cardsFields: {
-    image?: {
-      node: {
-        mediaDetails: {
-          file: string;
-          height: number;
-          width: number;
-        };
-        slug: string;
-      };
-    };
-  };
-}
 
 interface Props {
-  cards: Card[] | null;
+  cards: any[] | null;
   className?: string;
   loading?: boolean;
   showLoadmore?: boolean;
@@ -39,7 +21,6 @@ const GridCards: FC<Props> = ({
 }) => {
   return (
     <div className={className}>
-      {/* LOOP ITEMS */}
       {!currentCards?.length && !loading ? (
         <Empty />
       ) : (
@@ -52,11 +33,10 @@ const GridCards: FC<Props> = ({
         </div>
       )}
 
-      {/* PAGINATION */}
       {showLoadmore ? (
         <div className="mt-12 lg:mt-14 flex justify-center">
           <ButtonPrimary loading={loading} onClick={onClickLoadmore}>
-            {getTrans()["Show me more"]}
+            {"Show me more"}
           </ButtonPrimary>
         </div>
       ) : null}
