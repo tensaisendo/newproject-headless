@@ -31,10 +31,13 @@ const Card18TcgSkeleton: FC<Card18TcgSkeletonProps> = ({
         <h3 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100">
           <Skeleton />
         </h3>
-        <Skeleton width="80%" />
-        <Skeleton width="50%" />
-        <Skeleton width="70%" />
-        <Skeleton width="30%" />
+        <div className="flex flex-col space-y-1">
+          <Skeleton width="80%" />
+          <Skeleton width="40%" />
+          <Skeleton width="50%" />
+          <Skeleton width="70%" />
+          <Skeleton width="30%" />
+        </div>
       </div>
     </div>
   );

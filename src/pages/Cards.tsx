@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import PageLayout from "../container/PageLayout";
 
-const GET_CARDS = gql`
-  query getCards {
+const GET_CARDSS = gql`
+  query getCardss {
     cards {
       nodes {
         title
@@ -33,7 +33,7 @@ const GET_CARDS = gql`
 `;
 
 const Cards = () => {
-  const { loading, error, data } = useQuery(GET_CARDS);
+  const { loading, error, data } = useQuery(GET_CARDSS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
