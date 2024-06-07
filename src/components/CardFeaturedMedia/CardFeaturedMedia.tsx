@@ -1,7 +1,4 @@
 import React, { FC } from "react";
-import GallerySlider from "./GallerySlider";
-import MediaVideo from "./MediaVideo";
-import MediaAudio from "./MediaAudio";
 import { CardDataFragmentType } from "@/data/types";
 import MyImage from "../MyImage";
 
@@ -19,16 +16,6 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
   const { title, image, type } = card;
 
   const renderContent = () => {
-    // VIDEO
-    if (type === "video" && isHover) {
-      return <MediaVideo isHover videoUrl={image?.node?.mediaDetails.file || ""} />;
-    }
-
-    // AUDIO
-    if (type === "audio" && image?.node?.mediaDetails.file) {
-      return <MediaAudio card={card} />;
-    }
-
     // IMAGE
     return (
       <MyImage
@@ -42,7 +29,7 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
   };
 
   return (
-    <div className={`nc-CardFeaturedMedia relative ${className}`}>
+    <div className={`nc-PostFeaturedMedia relative ${className}`}>
       {renderContent()}
     </div>
   );

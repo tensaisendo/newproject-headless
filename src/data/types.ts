@@ -11,6 +11,7 @@ export interface CustomLink {
 
 //  ##########  PostDataType ######## //
 export type PostDataFragmentType = NcmazFcPostFullFieldsFragment;
+export type CardDataFragmentType = NcmazFcPostCardFieldsFragment;
 
 export type TwMainColor =
   | "pink"
