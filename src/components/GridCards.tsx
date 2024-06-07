@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import Card18Tcg from "./Card18Tcg";
-import Card18TcgSkeleton from "./Card18TcgSkeleton";
+import Card18Tcg from "./Card18Tcg/Card18Tcg";
+import Card18TcgSkeleton from "./Card18Tcg/Card18TcgSkeleton";
 import Empty from "./Empty";
 import ButtonPrimary from "./Button/ButtonPrimary";
 
