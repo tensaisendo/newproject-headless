@@ -1,175 +1,105 @@
-import React, { FC, useState } from "react";
-import { SingleType1Props } from "../container/singles/single/single";
-import SingleHeader from "../container/singles/SingleHeader";
-import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
-import { NcmazFcImageHasDetailFieldsFragment } from "@/__generated__/graphql";
-import ListingImageGallery from "../container/singles/single-gallery/ListingImageGallery";
-import MyImage from "@/components/MyImage";
+import ArchiveFilterListBox from "@/components/ArchiveFilterListBox/ArchiveFilterListBox";
+import { TPostCard } from "@/components/Card2/Card2";
+import { TCategoryCardFull } from "@/components/CardCategory1/CardCategory1";
+import GridPostsArchive from "@/components/GridPostsArchive";
+import { FILTERS_OPTIONS } from "@/contains/contants";
+import { NC_SITE_SETTINGS } from "@/contains/site-settings";
+import { PostDataFragmentType } from "@/data/types";
+import useGetPostsNcmazMetaByIds from "@/hooks/useGetPostsNcmazMetaByIds";
+import useHandleGetPostsArchivePage from "@/hooks/useHandleGetPostsArchivePage";
+import dynamic from "next/dynamic";
+import { FC } from "react";
 
-interface Props extends SingleType1Props {}
+const DynamicModalCategories = dynamic(
+  () => import("@/components/ModalCategories")
+);
+const DynamicModalTags = dynamic(() => import("@/components/ModalTags"));
+const DynamicSectionTrendingTopic = dynamic(
+  () => import("@/components/SectionTrendingTopic")
+);
+const DynamicSectionSubscribe2 = dynamic(
+  () => import("@/components/SectionSubscribe2/SectionSubscribe2")
+);
 
-const SingleTypeGallery: FC<Props> = ({ post }) => {
+interface IArchiveLayoutProps {
+  children: React.ReactNode;
+  name?: string | null;
+  initPosts?: PostDataFragmentType[] | null;
+  initPostsPageInfo?: {
+    endCursor?: string | null | undefined;
+    hasNextPage: boolean;
+  } | null;
+  tagDatabaseId?: number | null;
+  categoryDatabaseId?: number | null;
+  taxonomyType: "tag" | "category" | "postFormat";
+  top10Categories: TCategoryCardFull[] | null;
+}
+
+const ArchiveLayout: FC<IArchiveLayoutProps> = ({
+  children,
+  name,
+  initPosts: posts,
+  initPostsPageInfo,
+  tagDatabaseId,
+  categoryDatabaseId,
+  taxonomyType,
+  top10Categories,
+}) => {
+  // START ----------
+  //
+  const {} = useGetPostsNcmazMetaByIds({
+    posts: (posts || []) as TPostCard[],
+  });
   //
 
-  const [currentImageIndex, setcurrentImageIndex] = useState(-1);
-
-  const { title, ncmazGalleryImgs, postFormats } = getPostDataFromPostFragment(
-    post || {}
-  );
-  let IMAGES_GALLERY =
-    ncmazGalleryImgs.filter((item) => !!item?.sourceUrl) || [];
-  //
-
-  const handleCloseModalImageGallery = () => {
-    setcurrentImageIndex(-1);
-  };
-
-  const handleOpenModalImageGallery = (index: number) => {
-    setcurrentImageIndex(index);
-  };
-
-  const renderImageItem = ({
-    index,
-    item,
-  }: {
-    item?: NcmazFcImageHasDetailFieldsFragment | null;
-    index: number;
-  }) => {
-    return (
-      <div
-        className="absolute inset-0 rounded-xl z-10 cursor-pointer"
-        onClick={() => handleOpenModalImageGallery(index)}
-      >
-        <MyImage
-          alt={item?.altText || ""}
-          priority
-          className="object-cover w-full h-full rounded-xl"
-          fill
-          src={item?.sourceUrl || ""}
-          sizes="(max-width: 320px) 50vw, (max-width: 1280px) 50vw, 750px"
-          enableDefaultPlaceholder
-        />
-        <div className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity"></div>
-      </div>
-    );
-  };
+  const {
+    currentPosts,
+    handleChangeFilterPosts,
+    handleClickShowMore,
+    hasNextPage,
+    loading,
+  } = useHandleGetPostsArchivePage({
+    initPosts: posts,
+    initPostsPageInfo,
+    tagDatabaseId,
+    categoryDatabaseId,
+  });
 
   return (
-    <>
-      <div className={`pt-8 lg:pt-16`}>
-        {/* SINGLE HEADER */}
-        <header className="container rounded-xl">
-          <SingleHeader hiddenDesc post={post} />
-          <div className="my-10 overflow-hidden">
-            {IMAGES_GALLERY[0] && postFormats === "gallery" && (
-              <div className="relative min-h-[240px] sm:min-h-[300px] max-h-[60vh]">
-                <div className="relative h-0 w-full pt-[50%]">
-                  <div className="absolute inset-0 w-full h-full">
-                    <div className="min-h-[240px] sm:min-h-[300px] max-h-[60vh] h-full w-full relative overflow-hidden">
-                      {/* list images */}
-                      <div className="relative grid grid-cols-4 gap-2 w-full h-full">
-                        {/* large image */}
-                        <div
-                          className={`relative ${
-                            IMAGES_GALLERY[1] ? "col-span-2" : "col-span-4"
-                          }`}
-                        >
-                          {renderImageItem({
-                            item: IMAGES_GALLERY[0],
-                            index: 0,
-                          })}
-                        </div>
+    <div className="">
+      <div className={`ncmazfc-page-category`}>
+        {/* HEADER */}
+        {children}
+        {/* ====================== END HEADER ====================== */}
 
-                        {/* list */}
-                        {IMAGES_GALLERY[1] && (
-                          <div
-                            className={`flex gap-2  ${
-                              IMAGES_GALLERY[3]
-                                ? "flex-col col-span-2 sm:col-span-1"
-                                : "flex-col sm:flex-row col-span-2"
-                            }`}
-                          >
-                            {[IMAGES_GALLERY[1], IMAGES_GALLERY[2]].map(
-                              (item, index) =>
-                                item ? (
-                                  <div
-                                    key={
-                                      index + "__ncmazfaust_" + item?.databaseId
-                                    }
-                                    className={`relative flex-1`}
-                                  >
-                                    {renderImageItem({
-                                      item,
-                                      index: index + 1,
-                                    })}
-                                  </div>
-                                ) : null
-                            )}
-                          </div>
-                        )}
-
-                        {IMAGES_GALLERY[3] && (
-                          <div className="hidden sm:flex flex-col gap-2">
-                            {[IMAGES_GALLERY[3], IMAGES_GALLERY[4]].map(
-                              (item, index) =>
-                                item ? (
-                                  <div
-                                    key={
-                                      index + "__ncmazfaust_" + item?.databaseId
-                                    }
-                                    className={`relative flex-1`}
-                                  >
-                                    {renderImageItem({
-                                      item,
-                                      index: index + 3,
-                                    })}
-                                  </div>
-                                ) : null
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* show more btn */}
-                      <div
-                        className="absolute flex items-center justify-center start-3 xl:start-auto xl:end-3 bottom-3 p-3 sm:px-4 sm:py-2 rounded-full bg-neutral-100 text-neutral-500 cursor-pointer hover:bg-neutral-200 z-10"
-                        onClick={() => handleOpenModalImageGallery(0)}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                          />
-                        </svg>
-                        <span className="hidden sm:block ms-2 text-neutral-800 text-xs md:text-sm font-medium">
-                          Show all photos
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div className="container pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
+          <div>
+            <div className="flex flex-col md:justify-between md:flex-row">
+              <div className="flex space-x-2.5 rtl:space-x-reverse">
+                <DynamicModalCategories />
+                <DynamicModalTags />
               </div>
-            )}
-          </div>
-        </header>
+              <div className="block my-4 border-b w-full border-neutral-300 dark:border-neutral-500 md:hidden" />
+              <div className="flex justify-end">
+                <ArchiveFilterListBox
+                  onChange={handleChangeFilterPosts}
+                  lists={FILTERS_OPTIONS}
+                />
+              </div>
+            </div>
 
-        <ListingImageGallery
-          isShowModal={currentImageIndex > -1}
-          onClose={handleCloseModalImageGallery}
-          images={IMAGES_GALLERY as NcmazFcImageHasDetailFieldsFragment[]}
-          defaultImageIdx={currentImageIndex}
-        />
+            <GridPostsArchive
+              posts={currentPosts}
+              loading={loading}
+              showLoadmore={hasNextPage}
+              onClickLoadmore={handleClickShowMore}
+            />
+          </div>
+          
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default SingleTypeGallery;
+export default ArchiveLayout;
