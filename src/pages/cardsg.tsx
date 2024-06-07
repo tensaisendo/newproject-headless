@@ -1,69 +1,55 @@
 import ArchiveFilterListBox from "@/components/ArchiveFilterListBox/ArchiveFilterListBox";
-import { TPostCard } from "@/components/Card2/Card2";
-import { TCategoryCardFull } from "@/components/CardCategory1/CardCategory1";
-import GridPostsArchive from "@/components/GridPostsArchive";
 import { FILTERS_OPTIONS } from "@/contains/contants";
 import { NC_SITE_SETTINGS } from "@/contains/site-settings";
-import { PostDataFragmentType } from "@/data/types";
-import useGetPostsNcmazMetaByIds from "@/hooks/useGetPostsNcmazMetaByIds";
-import useHandleGetPostsArchivePage from "@/hooks/useHandleGetPostsArchivePage";
+import { gql, useQuery } from '@apollo/client';
 import dynamic from "next/dynamic";
 import { FC } from "react";
+import GridCards from "@/components/GridCards";
 
 const DynamicModalCategories = dynamic(
   () => import("@/components/ModalCategories")
 );
 const DynamicModalTags = dynamic(() => import("@/components/ModalTags"));
-const DynamicSectionTrendingTopic = dynamic(
-  () => import("@/components/SectionTrendingTopic")
-);
-const DynamicSectionSubscribe2 = dynamic(
-  () => import("@/components/SectionSubscribe2/SectionSubscribe2")
-);
 
-interface IArchiveLayoutProps {
+const GET_CARDS = gql`
+  query getCards {
+    cards {
+      nodes {
+        title
+        slug
+        cardsFields {
+          image {
+            node {
+              mediaDetails {
+                file
+                height
+                width
+              }
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+interface ICardsLayoutProps {
   children: React.ReactNode;
   name?: string | null;
-  initPosts?: PostDataFragmentType[] | null;
-  initPostsPageInfo?: {
-    endCursor?: string | null | undefined;
-    hasNextPage: boolean;
-  } | null;
-  tagDatabaseId?: number | null;
-  categoryDatabaseId?: number | null;
-  taxonomyType: "tag" | "category" | "postFormat";
-  top10Categories: TCategoryCardFull[] | null;
 }
 
-const ArchiveLayout: FC<IArchiveLayoutProps> = ({
-  children,
-  name,
-  initPosts: posts,
-  initPostsPageInfo,
-  tagDatabaseId,
-  categoryDatabaseId,
-  taxonomyType,
-  top10Categories,
-}) => {
+const CardsLayout: FC<ICardsLayoutProps> = ({ children, name}) => {
   // START ----------
   //
-  const {} = useGetPostsNcmazMetaByIds({
-    posts: (posts || []) as TPostCard[],
-  });
+  const { loading, error, data } = useQuery(GET_CARDS);
+  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error! {error.message}</p>
+  
   //
 
-  const {
-    currentPosts,
-    handleChangeFilterPosts,
-    handleClickShowMore,
-    hasNextPage,
-    loading,
-  } = useHandleGetPostsArchivePage({
-    initPosts: posts,
-    initPostsPageInfo,
-    tagDatabaseId,
-    categoryDatabaseId,
-  });
+  const cards = data.cards.nodes;
 
   return (
     <div className="">
@@ -82,17 +68,17 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
               <div className="block my-4 border-b w-full border-neutral-300 dark:border-neutral-500 md:hidden" />
               <div className="flex justify-end">
                 <ArchiveFilterListBox
-                  onChange={handleChangeFilterPosts}
+                  onChange={() => {}}
                   lists={FILTERS_OPTIONS}
                 />
               </div>
             </div>
 
-            <GridPostsArchive
-              posts={currentPosts}
+            <GridCards
+              cards={cards}
               loading={loading}
-              showLoadmore={hasNextPage}
-              onClickLoadmore={handleClickShowMore}
+              showLoadmore={false}
+              onClickLoadmore={() => {}}
             />
           </div>
           
@@ -102,4 +88,4 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
   );
 };
 
-export default ArchiveLayout;
+export default CardsLayout;
