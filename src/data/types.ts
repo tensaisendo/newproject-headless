@@ -1,4 +1,6 @@
 import { NcmazFcPostFullFieldsFragment } from "@/__generated__/graphql";
+import { NcmazFcPostCardFieldsFragment } from "@/__generated__/graphql";
+
 
 //  ######  CustomLink  ######## //
 export type Route = string;
