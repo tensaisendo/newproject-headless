@@ -21,7 +21,7 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
     
       return (
         <MyImage
-          alt={title || "Card Image"}
+          alt={card.title || "Card Image"} // Accès à title à partir de card
           fill
           className="object-cover"
           src={card.cardsFields.image.node?.mediaDetails?.file || ""}
