@@ -52,7 +52,9 @@ const Card18Tcg: FC<Card18TcgProps> = ({
         </div>
 
       </div>
+
       <Link href={`/cards/${card.slug}`} className="absolute inset-0"></Link>
+      
       <div className="flex-1 rounded-b-3xl py-4 px-3.5 flex flex-col space-y-3 border border-neutral-100 dark:border-neutral-800 border-t-0">
         <h3 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100">
           {card.title}

@@ -1,21 +1,23 @@
-import { gql, useQuery } from "@apollo/client";
-import PageLayout from "../container/PageLayout";
+import ArchiveFilterListBox from "@/components/ArchiveFilterListBox/ArchiveFilterListBox";
+import { FILTERS_OPTIONS } from "@/contains/contants";
+import { NC_SITE_SETTINGS } from "@/contains/site-settings";
+import { gql, useQuery } from '@apollo/client';
+import dynamic from "next/dynamic";
+import { FC } from "react";
+import GridCards from "@/components/GridCards";
 
-const GET_CARDSS = gql`
-  query getCardss {
+const DynamicModalCategories = dynamic(
+  () => import("@/components/ModalCategories")
+);
+const DynamicModalTags = dynamic(() => import("@/components/ModalTags"));
+
+const GET_CARDS = gql`
+  query getCards {
     cards {
       nodes {
         title
         slug
         cardsFields {
-          cardTitle
-          color
-          counter
-          effect
-          life
-          power
-          rarity
-          type
           image {
             node {
               mediaDetails {
@@ -32,32 +34,58 @@ const GET_CARDSS = gql`
   }
 `;
 
-const Cards = () => {
-  const { loading, error, data } = useQuery(GET_CARDSS);
+interface ICardsLayoutProps {
+  children: React.ReactNode;
+  name?: string | null;
+}
 
+const CardsLayout: FC<ICardsLayoutProps> = ({ children, name}) => {
+  // START ----------
+  //
+  const { loading, error, data } = useQuery(GET_CARDS);
+  
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error! {error.message}</p>;
+  if (error) return <p>Error! {error.message}</p>
+  
+  //
+
+  const cards = data.cards.nodes;
 
   return (
-    <PageLayout>
-      <h1>Card List</h1>
-      <ul>
-        {data.cards.nodes.map((card: any) => (
-          <li key={card.slug}>
-            <h2>{card.title}</h2>          
-            {card.cardsFields.image && (
-              <img
-                src={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-content/uploads/${card.cardsFields.image.node.mediaDetails.file}`}
-                alt={card.cardsFields.image.node.slug}
-                height="276"
-                width="385"
-              />
-            )}
-          </li>
-        ))}
-      </ul>
-    </PageLayout>
+    <div className="">
+      <div className={`ncmazfc-page-category`}>
+        {/* HEADER */}
+        {children}
+        {/* ====================== END HEADER ====================== */}
+
+        <div className="container pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
+          <div>
+            <div className="flex flex-col md:justify-between md:flex-row">
+              <div className="flex space-x-2.5 rtl:space-x-reverse">
+                <DynamicModalCategories />
+                <DynamicModalTags />
+              </div>
+              <div className="block my-4 border-b w-full border-neutral-300 dark:border-neutral-500 md:hidden" />
+              <div className="flex justify-end">
+                <ArchiveFilterListBox
+                  onChange={() => {}}
+                  lists={FILTERS_OPTIONS}
+                />
+              </div>
+            </div>
+
+            <GridCards
+              cards={cards}
+              loading={loading}
+              showLoadmore={false}
+              onClickLoadmore={() => {}}
+            />
+          </div>
+          
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Cards;
+export default CardsLayout;
