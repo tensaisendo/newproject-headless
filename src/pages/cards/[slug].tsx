@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import client from '@/lib/apolloClient';
 import { CardDataFragmentType } from '@/data/types';
 
