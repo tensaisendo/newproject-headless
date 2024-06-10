@@ -1,5 +1,5 @@
 import { NcmazFcPostFullFieldsFragment } from "@/__generated__/graphql";
-import { GetCardssQuery } from "@/__generated__/graphql";
+import { GetCardsQuery } from "@/__generated__/graphql";
 
 
 //  ######  CustomLink  ######## //
