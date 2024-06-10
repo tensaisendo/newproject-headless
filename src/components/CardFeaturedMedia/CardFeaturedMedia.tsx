@@ -13,7 +13,6 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
   card,
   isHover = false,
 }) => {
-  const { title, image, type } = card;
 
   const renderContent = () => {
     // IMAGE

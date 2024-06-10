@@ -15,6 +15,7 @@ export interface CustomLink {
 export type PostDataFragmentType = NcmazFcPostFullFieldsFragment;
 export type CardDataFragmentType = NonNullable<GetCardsQuery['cards']>['nodes'][0];
 
+
 export type TwMainColor =
   | "pink"
   | "green"
