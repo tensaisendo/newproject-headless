@@ -1,9 +1,9 @@
 // lib/apolloClient.ts
 
-import { ApolloClient, InMemoryCache, HttpLink, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink, NormalizedCacheObject } from '@apollo/client';
 import { useMemo } from 'react';
 
-let apolloClient: ApolloClient<any>;
+let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 function createApolloClient() {
   return new ApolloClient({
@@ -15,7 +15,7 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(initialState = null) {
+export function initializeApollo(initialState: NormalizedCacheObject | null = null) {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   // Si votre page a des données initiales à injecter dans le cache

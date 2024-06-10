@@ -1,7 +1,9 @@
+// pages/cards/[slug].tsx
+
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { gql, useQuery } from '@apollo/client';
-import client from '@/lib/apolloClient';
+import { gql } from '@apollo/client';
+import { initializeApollo } from '@/lib/apolloClient'; // Utiliser l'importation nommée
 import { CardDataFragmentType } from '@/data/types';
 
 const GET_CARD_BY_SLUG = gql`
@@ -53,6 +55,8 @@ const CardPage: React.FC<CardPageProps> = ({ card }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const client = initializeApollo();
+
   const { data } = await client.query({
     query: gql`
       query GetAllCards {
@@ -62,7 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
           }
         }
       }
-    `
+    `,
   });
 
   const paths = data.cards.nodes.map((card: { slug: string }) => ({
@@ -73,6 +77,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const client = initializeApollo();
   const { slug } = params as { slug: string };
 
   const { data } = await client.query({
