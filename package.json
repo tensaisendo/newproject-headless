@@ -42,6 +42,7 @@
     "@wordpress/style-engine": "^1.29.0",
     "autoprefixer": "^10.4.16",
     "clsx": "^2.1.1",
+    "faust": "^1.0.7",
     "framer-motion": "^10.16.5",
     "graphql": "^16.8.1",
     "lodash": "^4.17.21",
