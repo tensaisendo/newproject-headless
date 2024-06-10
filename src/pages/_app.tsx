@@ -13,6 +13,8 @@ import { Toaster } from "react-hot-toast";
 import NextNProgress from "nextjs-progressbar";
 import themeJson from "../../theme.json";
 import { GoogleAnalytics } from "nextjs-google-analytics";
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '@/lib/apolloClient';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,10 +24,15 @@ const poppins = Poppins({
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const apolloClient = useApollo(pageProps.initialApolloState);
 
   return (
     <>
       <GoogleAnalytics trackPageViews />
+
+      <ApolloProvider client={apolloClient}>
+        <Component {...pageProps} />
+      </ApolloProvider>
 
       <FaustProvider pageProps={pageProps}>
         <WordPressBlocksProvider
