@@ -19150,38 +19150,6 @@ export type NcmazFcPostFullFieldsFragment = { __typename: 'Post', uri?: string |
         & { ' $fragmentRefs'?: { 'NcmazFcImageHasDetailFieldsFragment': NcmazFcImageHasDetailFieldsFragment } }
       ) } | null } | null } & { ' $fragmentName'?: 'NcmazFcPostFullFieldsFragment' };
 
-export type NcmazFcCardFullFieldsFragment = { 
-        __typename: 'Card',
-        uri?: string | null,
-        modified?: string | null,
-        date?: string | null,
-        status?: string | null,
-        title?: string | null,
-        databaseId: number,
-        slug: string,
-        cardsFields: {
-          cardTitle: string;
-          color: string[];
-          counter: number;
-          effect: string;
-          life: number;
-          power: number;
-          rarity: string[];
-          type: string[];
-          image?: {
-            node: {
-              mediaDetails: {
-                file: string;
-                height: number;
-                width: number;
-              };
-              slug: string;
-            };
-          };
-        },
-      };
-      
-
 export type NcmazFcPostCardFieldsFragment = (
   { __typename?: 'Post', ncmazGalleryImgs?: { __typename?: 'NcmazGalleryImgs', image1?: { __typename?: 'AcfMediaItemConnectionEdge', node: (
         { __typename?: 'MediaItem' }
