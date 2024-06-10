@@ -1,5 +1,5 @@
 import { NcmazFcPostFullFieldsFragment } from "@/__generated__/graphql";
-import { NcmazFcPostCardFieldsFragment } from "@/__generated__/graphql";
+import { NcmazFcCardFullFieldsFragment } from "@/__generated__/graphql";
 
 
 //  ######  CustomLink  ######## //
@@ -13,7 +13,7 @@ export interface CustomLink {
 
 //  ##########  PostDataType ######## //
 export type PostDataFragmentType = NcmazFcPostFullFieldsFragment;
-export type CardDataFragmentType = NcmazFcPostCardFieldsFragment;
+export type CardDataFragmentType = NcmazFcCardFullFieldsFragment;
 
 export type TwMainColor =
   | "pink"
