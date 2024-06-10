@@ -13,7 +13,7 @@ export interface CustomLink {
 
 //  ##########  PostDataType ######## //
 export type PostDataFragmentType = NcmazFcPostFullFieldsFragment;
-export type CardDataFragmentType = GetCardsQuery['cards']['nodes'][0];
+export type CardDataFragmentType = NonNullable<GetCardsQuery['cards']>['nodes'][0];
 
 export type TwMainColor =
   | "pink"
