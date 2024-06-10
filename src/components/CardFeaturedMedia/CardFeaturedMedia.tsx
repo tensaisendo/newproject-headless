@@ -24,7 +24,7 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
           alt={card.title || "Card Image"} // Accès à title à partir de card
           fill
           className="object-cover"
-          src={card.cardsFields.image.node?.mediaDetails?.file || ""}
+          src={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-content/uploads/${card.cardsFields.image.node?.mediaDetails?.file}` || ""}
           sizes="(max-width: 600px) 480px, 800px"
         />
       );
