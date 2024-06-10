@@ -17,15 +17,24 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
 
   const renderContent = () => {
     // IMAGE
-    return (
-      <MyImage
-        alt={title || "Card Image"}
-        fill
-        className="object-cover"
-        src={image?.node?.mediaDetails.file || ""}
-        sizes="(max-width: 600px) 480px, 800px"
-      />
-    );
+    // Vérifiez si card.cardsFields.image est défini avant d'accéder à la propriété image.node
+    if (card.cardsFields && card.cardsFields.image) {
+    
+      return (
+        <MyImage
+          alt={title || "Card Image"}
+          fill
+          className="object-cover"
+          src={card.cardsFields.image.node?.mediaDetails?.file || ""}
+          sizes="(max-width: 600px) 480px, 800px"
+        />
+      );
+
+    } else {
+      // Gérer le cas où l'image est null ou undefined
+      return <div>Aucune image disponible</div>;
+    }
+    
   };
 
   return (
