@@ -40,6 +40,7 @@
     "@tiptap/react": "^2.3.1",
     "@tiptap/starter-kit": "^2.3.1",
     "@wordpress/style-engine": "^1.29.0",
+    "apollo": "^2.34.0",
     "autoprefixer": "^10.4.16",
     "clsx": "^2.1.1",
     "faust": "^1.0.7",
