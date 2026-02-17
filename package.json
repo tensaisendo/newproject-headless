@@ -4,6 +4,8 @@
   "version": "2.3.1",
   "scripts": {
     "dev": "npm run generate && concurrently \"faust dev\" \"npm run watch-codegen\"",
+    "dev:local": "faust dev --skip-health-checks",
+    "dev:next": "next dev",
     "build": "faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",

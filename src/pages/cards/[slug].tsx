@@ -3,7 +3,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { gql } from '@apollo/client';
-import { initializeApollo } from '@/lib/apolloClient'; // Utiliser l'importation nommée
+import { initializeApollo, addApolloState } from '@/lib/apolloClient';
 import { CardDataFragmentType } from '@/data/types';
 
 const GET_CARD_BY_SLUG = gql`
@@ -89,12 +89,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return { notFound: true };
   }
 
-  return {
+  return addApolloState(client, {
     props: {
       card: data.cardBy,
     },
-    revalidate: 10, // seconds to revalidate
-  };
+    revalidate: 10,
+  });
 };
 
 export default CardPage;

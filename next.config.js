@@ -1,3 +1,4 @@
+const path = require("path");
 const { withFaust, getWpHostname } = require("@faustwp/core");
 
 /**
@@ -7,7 +8,14 @@ module.exports = withFaust({
   trailingSlash: true,
   experimental: {
     typedRoutes: false,
-    appDir: false,
+  },
+  webpack: (config) => {
+    // reselect.mjs (v5) peut être tronqué : utiliser le build legacy-esm complet (exporte weakMapMemoize)
+    config.resolve.alias.reselect = path.resolve(
+      __dirname,
+      "node_modules/reselect/dist/reselect.legacy-esm.js"
+    );
+    return config;
   },
   images: {
     remotePatterns: [

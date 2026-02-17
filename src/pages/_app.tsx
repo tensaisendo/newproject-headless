@@ -29,39 +29,36 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GoogleAnalytics trackPageViews />
-
       <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
+        <FaustProvider pageProps={pageProps}>
+          <WordPressBlocksProvider
+            config={{
+              blocks,
+              theme: fromThemeJson(themeJson),
+            }}
+          >
+            <SiteWrapperProvider {...pageProps}>
+              <style jsx global>{`
+                html {
+                  font-family: ${poppins.style.fontFamily};
+                }
+              `}</style>
+              <NextNProgress color="#818cf8" />
+              <Component {...pageProps} key={router.asPath} />
+              <Toaster
+                position="bottom-left"
+                toastOptions={{
+                  style: {
+                    fontSize: "14px",
+                    borderRadius: "0.75rem",
+                  },
+                }}
+                containerClassName="text-sm"
+              />
+            </SiteWrapperProvider>
+          </WordPressBlocksProvider>
+        </FaustProvider>
       </ApolloProvider>
-
-      <FaustProvider pageProps={pageProps}>
-        <WordPressBlocksProvider
-          config={{
-            blocks,
-            theme: fromThemeJson(themeJson),
-          }}
-        >
-          <SiteWrapperProvider {...pageProps}>
-            <style jsx global>{`
-              html {
-                font-family: ${poppins.style.fontFamily};
-              }
-            `}</style>
-            <NextNProgress color="#818cf8" />
-            <Component {...pageProps} key={router.asPath} />
-            <Toaster
-              position="bottom-left"
-              toastOptions={{
-                style: {
-                  fontSize: "14px",
-                  borderRadius: "0.75rem",
-                },
-              }}
-              containerClassName="text-sm"
-            />
-          </SiteWrapperProvider>
-        </WordPressBlocksProvider>
-      </FaustProvider>
     </>
   );
 }
