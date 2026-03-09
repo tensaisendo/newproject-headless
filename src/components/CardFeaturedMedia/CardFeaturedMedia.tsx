@@ -15,6 +15,12 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
 }) => {
 
   const renderContent = () => {
+    const imageUrl = card.cardsFields?.image?.node?.sourceUrl;
+
+    if (!imageUrl) {
+      return <div>Aucune image disponible</div>;
+    }
+    
     // IMAGE
     // Vérifiez si card.cardsFields.image est défini avant d'accéder à la propriété image.node
     if (card.cardsFields && card.cardsFields.image) {
@@ -23,8 +29,8 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
         <MyImage
           alt={card.title || "Card Image"} // Accès à title à partir de card
           fill
-          className="object-cover"
-          src={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-content/uploads/${card.cardsFields.image.node?.mediaDetails?.file || ""}`}
+          className="object-contain object-center"
+          src={imageUrl}
           sizes="(max-width: 600px) 480px, 800px"
         />
       );

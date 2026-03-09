@@ -30,12 +30,14 @@ interface Card18TcgProps {
   };
   className?: string;
   ratio?: string;
+  showTitle?: boolean;
 }
 
 const Card18Tcg: FC<Card18TcgProps> = ({
   className = "h-full",
   card,
   ratio = "aspect-w-4 aspect-h-3",
+  showTitle = true,
 }) => {
   const [isHover, setIsHover] = useState(false);
 
@@ -46,20 +48,19 @@ const Card18Tcg: FC<Card18TcgProps> = ({
       onMouseLeave={() => setIsHover(false)}
     >
       <div className={`block flex-shrink-0 relative w-full rounded-t-3xl overflow-hidden z-10 ${ratio}`}>
-
         <div>
           <CardFeaturedMedia card={card} isHover={isHover} />
         </div>
-
       </div>
 
       <Link href={`/cards/${card.slug}`} className="absolute inset-0"></Link>
       
-      <div className="flex-1 rounded-b-3xl py-4 px-3.5 flex flex-col space-y-3 border border-neutral-100 dark:border-neutral-800 border-t-0">
-        <h3 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100">
-          {card.title}
-        </h3>
-      </div>
+      {showTitle && (
+        <div className="flex-1 rounded-b-3xl py-4 px-3.5 flex flex-col space-y-3 border border-neutral-100 dark:border-neutral-800 border-t-0">
+          <h3 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100">
+            {card.title}
+          </h3>
+      </div>)}
     </div>
   );
 };

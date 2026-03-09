@@ -12,7 +12,8 @@
     "codegen": "graphql-codegen",
     "watch-codegen": "graphql-codegen -w",
     "wc": "graphql-codegen -w",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "import:cards": "node scripts/importCards.js"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
@@ -45,14 +46,19 @@
     "apollo": "^2.34.0",
     "autoprefixer": "^10.4.16",
     "clsx": "^2.1.1",
+    "cross-fetch": "^4.1.0",
+    "dotenv": "^17.3.1",
     "faust": "^1.0.7",
+    "form-data": "^4.0.5",
     "framer-motion": "^10.16.5",
     "graphql": "^16.8.1",
+    "graphql-request": "^7.4.0",
     "lodash": "^4.17.21",
     "next": "^14.2.3",
     "next-seo": "^6.4.0",
     "nextjs-google-analytics": "^2.3.3",
     "nextjs-progressbar": "^0.0.16",
+    "node-fetch": "^2.7.0",
     "postcss": "^8.4.31",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -79,6 +85,7 @@
     "concurrently": "^8.2.2",
     "eslint": "8.54.0",
     "eslint-config-next": "14.0.3",
+    "ts-node": "^10.9.2",
     "typescript": "5.3.2"
   }
 }

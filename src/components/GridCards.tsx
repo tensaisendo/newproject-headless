@@ -28,7 +28,7 @@ const GridCards: FC<Props> = ({
           {!currentCards?.length && loading
             ? [1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => <Card18TcgSkeleton key={i} />)
             : (currentCards || []).map((card) => (
-                <Card18Tcg key={card.slug} card={card} />
+              <Card18Tcg key={card.slug} card={card} showTitle={false} />
               ))}
         </div>
       )}

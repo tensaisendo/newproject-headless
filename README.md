@@ -27,7 +27,7 @@ Aucune ligne de commande n’est nécessaire pour le back-office : tout se fait 
 
 ---
 
-## 2. Base de données
+## 2. Base de données Local
 
 La base de données WordPress est gérée par **Local** :
 
@@ -83,6 +83,24 @@ NEXT_PUBLIC_URL=http://localhost:3000
 
 Sans ce fichier (ou avec une mauvaise URL / clé), le front ne pourra pas communiquer correctement avec le back-office.
 
+### Fichier d’environnement production
+
+Le fichier **`.env.`** à la racine de `newproject-headless` doit contenir au minimum :
+
+```env
+# URL du WordPress (sans slash final) — celle donnée par Local
+NEXT_PUBLIC_WORDPRESS_URL=https://cms.mytcghub.com/
+
+# Clé trouvée dans WordPress : Réglages → Headless (plugin FaustWP)
+FAUST_SECRET_KEY=votre-cle-secrete
+
+# URL du front en local
+NEXT_PUBLIC_URL=https://newproject-headless.vercel.app/
+```
+
+Sans ce fichier (ou avec une mauvaise URL / clé), le front ne pourra pas communiquer correctement avec le back-office.
+
+
 ---
 
 ## 4. Ordre de lancement recommandé
@@ -119,12 +137,28 @@ Le **back-office** et la **base de données** ne nécessitent **pas** de ligne d
 
 ---
 
+## 8. Script d'import
+
+- Ajouter les cartes dans /images
+- Installer `npm install dotenv`
+- Penser dans le script importCards.js 
+`Local: require("dotenv").config({ path: ".env.local" });`
+`Production: require("dotenv").config({ path: ".env" });`
+- Installer `npm install cross-fetch`
+- Installer `npm install form-data`
+- Ajouter `"import:cards": "node scripts/importCards.js"`dans package.json
+- **.env.local** ignoré dans git
+- Créer un **Application Password** pour le compte `admin`
+- Ajouter dans .env: 
+`WORDPRESS_URL=`
+`WP_USER=`
+`WP_APP_PASSWORD=`
+- Activer dans Wordpress ACF les **APIs en REST**
+
+---
+
 ## Pour aller plus loin
 
 - [Faust.js](https://faustjs.org)
 - [WPGraphQL](https://www.wpgraphql.com)
 - [WP Engine Atlas](https://wpengine.com/atlas/)
-
-### Contributor License Agreement
-
-Les contributeurs externes aux produits WP Engine doivent avoir signé le [CLA](https://wpeng.in/cla/) avant que leurs contributions soient acceptées.

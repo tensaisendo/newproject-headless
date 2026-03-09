@@ -1,0 +1,87 @@
+[
+    {
+        "slug": "op01-001_p1",
+        "title": "OP01-001_p1",
+        "cardsFields": {
+          "cardTitle": "Roronoa Zoro",
+          "life": 5,
+          "attribute": "Slash",
+          "power": "5000",
+          "counter": null,
+          "effect": "[DON!!x1] [Your Turn] All of your characters gain +1000 power",
+          "price": "0"
+        },
+        "taxonomies": {
+          "rarities": ["Leader"],
+          "colors": ["Red"],
+          "typesOfCard": ["Leader"],
+          "features": [],
+          "sets": ["OP01"]
+        },
+        "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-001_p1.png"
+    },
+    {
+        "slug": "op01-002_p1",
+        "title": "OP01-002_p1",
+        "cardsFields": {
+          "cardTitle": "Trafalgar Law",
+          "life": 4,
+          "attribute": "Slash",
+          "power": "5000",
+          "counter": null,
+          "effect": "[Activate:Main] [Oncer Per Turn] 2 (You may rest the specified number of DON!! cards in your cost area.): If you have 5 Characters, return 1 of your Characters to the owner's hand. Then, play up to 1 Character with a cost of 5 or less from your hand that is a different color than the returned Character.",
+          "price": "0"
+        },
+        "taxonomies": {
+          "rarities": ["Leader"],
+          "colors": ["Red","Green"],
+          "typesOfCard": ["Leader"],
+          "features": [],
+          "sets": ["OP01"]
+        },
+        "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-002_p1.png"
+    },
+    {
+        "slug": "op01-003_p1",
+        "title": "OP01-003_p1",
+        "cardsFields": {
+          "cardTitle": "Monkey.D.Luffy",
+          "life": 4,
+          "attribute": "Strike",
+          "power": "5000",
+          "counter": null,
+          "effect": "[Activate:Main] [Once Per Turn] 4 (You may rest the specified number of DON!! cards in your cost area.): Set up to 1 of your {Supernovas} or {Straw Hat Crew} type Character cards with a cost of 5 or less as active. It gains +1000 power during this turn.",
+          "price": "0"
+        },
+        "taxonomies": {
+          "rarities": ["Leader"],
+          "colors": ["Red","Green"],
+          "typesOfCard": ["Leader"],
+          "features": [],
+          "sets": ["OP01"]
+        },
+        "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-003_p1.png"
+    },
+    {
+        "slug": "op01-005",
+        "title": "OP01-005",
+        "cardsFields": {
+          "cardTitle": "Uta",
+          "life": 4,
+          "attribute": "Special",
+          "power": "4000",
+          "counter": null,
+          "effect": "[On Play] Add up to 1 red Character card other than [Uta] with a cost of 3 or less from your trash to your hand.",
+          "price": "0"
+        },
+        "taxonomies": {
+          "rarities": ["R"],
+          "colors": ["Red"],
+          "typesOfCard": ["Character"],
+          "features": [],
+          "sets": ["OP01"]
+        },
+        "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-005.png"
+    }
+
+  ]

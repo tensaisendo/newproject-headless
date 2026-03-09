@@ -20,11 +20,8 @@ const GET_CARDS = gql`
         cardsFields {
           image {
             node {
-              mediaDetails {
-                file
-                height
-                width
-              }
+              sourceUrl
+              mediaDetails { file height width }
               slug
             }
           }

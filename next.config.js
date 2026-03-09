@@ -19,13 +19,20 @@ module.exports = withFaust({
   },
   images: {
     remotePatterns: [
+      // local dev
+      {
+        protocol: "http",
+      hostname: "mytchhub.local", // 👈 autoriser ce hostname
+      port: "",                    // vide si tu veux inclure toutes les images sur le port 80 par défaut
+      pathname: "/**",
+      },
       {
         protocol: "http",
         hostname: "localhost",
         port: "",
         pathname: "/**",
       },
-      {
+      { // WordPress prod
         protocol: "https",
         hostname: getWpHostname(),
         port: "",
