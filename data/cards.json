@@ -1,5 +1,26 @@
 [
-    {
+  {
+    "slug": "op01-001",
+    "title": "OP01-001",
+    "cardsFields": {
+      "cardTitle": "Roronoa Zoro",
+      "life": 5,
+      "attribute": "Slash",
+      "power": "5000",
+      "counter": null,
+      "effect": "[DON!!x1] [Your Turn] All of your characters gain +1000 power",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["Leader"],
+      "colors": ["Red"],
+      "typesOfCard": ["Leader"],
+      "features": ["Supernovas", "Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2024/06/OP01-001.png"
+  },
+  {
         "slug": "op01-001_p1",
         "title": "OP01-001_p1",
         "cardsFields": {
@@ -15,73 +36,534 @@
           "rarities": ["Leader"],
           "colors": ["Red"],
           "typesOfCard": ["Leader"],
-          "features": [],
-          "sets": ["OP01"]
+          "features": ["Supernovas", "Straw Hat Crew"],
+          "sets": ["Romance Dawn"]
         },
         "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-001_p1.png"
+  },
+  {
+    "slug": "op01-002",
+    "title": "OP01-002",
+    "cardsFields": {
+      "cardTitle": "Trafalgar Law",
+      "life": 4,
+      "attribute": "Slash",
+      "power": "5000",
+      "counter": null,
+      "effect": "[Activate:Main] [Oncer Per Turn] 2 (You may rest the specified number of DON!! cards in your cost area.): If you have 5 Characters, return 1 of your Characters to the owner's hand. Then, play up to 1 Character with a cost of 5 or less from your hand that is a different color than the returned Character.",
+      "price": "0"
     },
-    {
-        "slug": "op01-002_p1",
-        "title": "OP01-002_p1",
-        "cardsFields": {
-          "cardTitle": "Trafalgar Law",
-          "life": 4,
-          "attribute": "Slash",
-          "power": "5000",
-          "counter": null,
-          "effect": "[Activate:Main] [Oncer Per Turn] 2 (You may rest the specified number of DON!! cards in your cost area.): If you have 5 Characters, return 1 of your Characters to the owner's hand. Then, play up to 1 Character with a cost of 5 or less from your hand that is a different color than the returned Character.",
-          "price": "0"
-        },
-        "taxonomies": {
-          "rarities": ["Leader"],
-          "colors": ["Red","Green"],
-          "typesOfCard": ["Leader"],
-          "features": [],
-          "sets": ["OP01"]
-        },
-        "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-002_p1.png"
+    "taxonomies": {
+      "rarities": ["Leader"],
+      "colors": ["Red","Green"],
+      "typesOfCard": ["Leader"],
+      "features": ["Supernovas", "Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
     },
-    {
-        "slug": "op01-003_p1",
-        "title": "OP01-003_p1",
-        "cardsFields": {
-          "cardTitle": "Monkey.D.Luffy",
-          "life": 4,
-          "attribute": "Strike",
-          "power": "5000",
-          "counter": null,
-          "effect": "[Activate:Main] [Once Per Turn] 4 (You may rest the specified number of DON!! cards in your cost area.): Set up to 1 of your {Supernovas} or {Straw Hat Crew} type Character cards with a cost of 5 or less as active. It gains +1000 power during this turn.",
-          "price": "0"
-        },
-        "taxonomies": {
-          "rarities": ["Leader"],
-          "colors": ["Red","Green"],
-          "typesOfCard": ["Leader"],
-          "features": [],
-          "sets": ["OP01"]
-        },
-        "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-003_p1.png"
+    "image": "http://mytchhub.local/wp-content/uploads/2024/06/OP01-002.png"
+  },
+  {
+      "slug": "op01-002_p1",
+      "title": "OP01-002_p1",
+      "cardsFields": {
+        "cardTitle": "Trafalgar Law",
+        "life": 4,
+        "attribute": "Slash",
+        "power": "5000",
+        "counter": null,
+        "effect": "[Activate:Main] [Oncer Per Turn] 2 (You may rest the specified number of DON!! cards in your cost area.): If you have 5 Characters, return 1 of your Characters to the owner's hand. Then, play up to 1 Character with a cost of 5 or less from your hand that is a different color than the returned Character.",
+        "price": "0"
+      },
+      "taxonomies": {
+        "rarities": ["Leader"],
+        "colors": ["Red","Green"],
+        "typesOfCard": ["Leader"],
+        "features": ["Supernovas", "Straw Hat Crew"],
+        "sets": ["Romance Dawn"]
+      },
+      "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-002_p1.png"
+  },
+  {
+    "slug": "op01-003",
+    "title": "OP01-003",
+    "cardsFields": {
+      "cardTitle": "Monkey.D.Luffy",
+      "life": 4,
+      "attribute": "Strike",
+      "power": "5000",
+      "counter": null,
+      "effect": "[Activate:Main] [Once Per Turn] 4 (You may rest the specified number of DON!! cards in your cost area.): Set up to 1 of your {Supernovas} or {Straw Hat Crew} type Character cards with a cost of 5 or less as active. It gains +1000 power during this turn.",
+      "price": "0"
     },
-    {
-        "slug": "op01-005",
-        "title": "OP01-005",
-        "cardsFields": {
-          "cardTitle": "Uta",
-          "life": 4,
-          "attribute": "Special",
-          "power": "4000",
-          "counter": null,
-          "effect": "[On Play] Add up to 1 red Character card other than [Uta] with a cost of 3 or less from your trash to your hand.",
-          "price": "0"
-        },
-        "taxonomies": {
-          "rarities": ["R"],
-          "colors": ["Red"],
-          "typesOfCard": ["Character"],
-          "features": [],
-          "sets": ["OP01"]
-        },
-        "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-005.png"
-    }
-
-  ]
+    "taxonomies": {
+      "rarities": ["Leader"],
+      "colors": ["Red","Green"],
+      "typesOfCard": ["Leader"],
+      "features": ["Supernovas", "Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2024/06/OP01-003.png"
+  },
+  {
+      "slug": "op01-003_p1",
+      "title": "OP01-003_p1",
+      "cardsFields": {
+        "cardTitle": "Monkey.D.Luffy",
+        "life": 4,
+        "attribute": "Strike",
+        "power": "5000",
+        "counter": null,
+        "effect": "[Activate:Main] [Once Per Turn] 4 (You may rest the specified number of DON!! cards in your cost area.): Set up to 1 of your {Supernovas} or {Straw Hat Crew} type Character cards with a cost of 5 or less as active. It gains +1000 power during this turn.",
+        "price": "0"
+      },
+      "taxonomies": {
+        "rarities": ["Leader"],
+        "colors": ["Red","Green"],
+        "typesOfCard": ["Leader"],
+        "features": ["Supernovas", "Straw Hat Crew"],
+        "sets": ["Romance Dawn"]
+      },
+      "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-003_p1.png"
+  },
+  {
+    "slug": "op01-004",
+    "title": "OP01-004",
+    "cardsFields": {
+      "cardTitle": "Usopp",
+      "life": 2,
+      "attribute": "Ranged",
+      "power": "3000",
+      "counter": "2000",
+      "effect": "[Don!!x1][Your Turn][Once Per Turn] Draw 1 card when your opponent activates an Event.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["R"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2024/06/OP01-004.png"
+  },
+  {
+      "slug": "op01-005",
+      "title": "OP01-005",
+      "cardsFields": {
+        "cardTitle": "Uta",
+        "life": 4,
+        "attribute": "Special",
+        "power": "4000",
+        "counter": null,
+        "effect": "[On Play] Add up to 1 red Character card other than [Uta] with a cost of 3 or less from your trash to your hand.",
+        "price": "0"
+      },
+      "taxonomies": {
+        "rarities": ["R"],
+        "colors": ["Red"],
+        "typesOfCard": ["Character"],
+        "features": ["FILM"],
+        "sets": ["Romance Dawn"]
+      },
+      "image": "http://mytchhub.local/wp-content/uploads/2026/02/OP01-005.png"
+  },
+  {
+    "slug": "op01-006",
+    "title": "OP01-006",
+    "cardsFields": {
+      "cardTitle": "Otama",
+      "life": 1,
+      "attribute": "Special",
+      "power": "0",
+      "counter": "2000",
+      "effect": "[On Play] Give up to 1 of your opponent's Characters -2000 power during this turn.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["UC"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Land of Wano"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-006.png"
+  },
+  {
+    "slug": "op01-007",
+    "title": "OP01-007",
+    "cardsFields": {
+      "cardTitle": "Caribou",
+      "life": 3,
+      "attribute": "Special",
+      "power": "0",
+      "counter": "1000",
+      "effect": "[On K.O.] K.O up to 1 of your opponent's Characters with 4000 power or less.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Supernovas", "Caribou Pirates"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-007.png"
+  },
+  {
+    "slug": "op01-008",
+    "title": "OP01-008",
+    "cardsFields": {
+      "cardTitle": "Cavendish",
+      "life": 4,
+      "attribute": "Slash",
+      "power": "5000",
+      "counter": null,
+      "effect": "[On Play] You may add 1 card from your Life area to your hand: This Character gains Rush during this turn. (This card can attack on the turn in which it is played).",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Supernovas", "Beautiful Pirates"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-008.png"
+  },
+  {
+    "slug": "op01-008_p1",
+    "title": "OP01-008_p1",
+    "cardsFields": {
+      "cardTitle": "Cavendish",
+      "life": 4,
+      "attribute": "Slash",
+      "power": "5000",
+      "counter": null,
+      "effect": "[On Play] You may add 1 card from your Life area to your hand: This Character gains Rush during this turn. (This card can attack on the turn in which it is played).",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Supernovas", "Beautiful Pirates"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-008_p1.png"
+  },
+  {
+    "slug": "op01-009",
+    "title": "OP01-009",
+    "cardsFields": {
+      "cardTitle": "Carrot",
+      "life": 2,
+      "attribute": "Strike",
+      "power": "3000",
+      "counter": "1000",
+      "effect": "[Trigger] Play this card.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Minks"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-009.png"
+  },
+  {
+    "slug": "op01-010",
+    "title": "OP01-010",
+    "cardsFields": {
+      "cardTitle": "Komachiyo",
+      "life": 1,
+      "attribute": "Strike",
+      "power": "3000",
+      "counter": "1000",
+      "effect": "",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Animal", "Land of Wano"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-010.png"
+  },
+  {
+    "slug": "op01-011",
+    "title": "OP01-011",
+    "cardsFields": {
+      "cardTitle": "Gordon",
+      "life": 2,
+      "attribute": "Wisdom",
+      "power": "3000",
+      "counter": "2000",
+      "effect": "[On Play] You may place 1 card from your hand at the bottom of your deck: Draw 1 card.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["UC"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["FILM"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-011.png"
+  },
+  {
+    "slug": "op01-012",
+    "title": "OP01-012",
+    "cardsFields": {
+      "cardTitle": "Sai",
+      "life": 2,
+      "attribute": "Slash",
+      "power": "4000",
+      "counter": "1000",
+      "effect": "",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Happosui Army"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-012.png"
+  },
+  {
+    "slug": "op01-013",
+    "title": "OP01-013",
+    "cardsFields": {
+      "cardTitle": "Sanji",
+      "life": 2,
+      "attribute": "Strike",
+      "power": "3000",
+      "counter": "2000",
+      "effect": "[Activate:Main] [Once Per Turn] You may add 1 card from your Life area to your hand: This Character gains +2000 power during this turn. Then, give this Character up to 2 rested DON!! cards.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["R"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-013.png"
+  },
+  {
+    "slug": "op01-013_p1",
+    "title": "OP01-013_p1",
+    "cardsFields": {
+      "cardTitle": "Sanji",
+      "life": 2,
+      "attribute": "Strike",
+      "power": "3000",
+      "counter": "2000",
+      "effect": "[Activate:Main] [Once Per Turn] You may add 1 card from your Life area to your hand: This Character gains +2000 power during this turn. Then, give this Character up to 2 rested DON!! cards.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["R"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-013_p1.png"
+  },
+  {
+    "slug": "op01-014",
+    "title": "OP01-014",
+    "cardsFields": {
+      "cardTitle": "Jinbe",
+      "life": 4,
+      "attribute": "Strike",
+      "power": "5000",
+      "counter": null,
+      "effect": "[Blocker] (After your opponent declares an attack, you may rest this card to make it the new target of the attack.) [DON!!x1] [On Block] Play up to 1 red Character card with a cost of 2 or less from your hand.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["UC"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Fish-Man", "Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-014.png"
+  },
+  {
+    "slug": "op01-015",
+    "title": "OP01-015",
+    "cardsFields": {
+      "cardTitle": "Tony Tony.Chopper",
+      "life": 3,
+      "attribute": "Wisdom",
+      "power": "4000",
+      "counter": "1000",
+      "effect": "[DON!!x1] [When Attacking] You may trash 1 card from your hand: Add up to 1 {Straw Hat Crew} type Character card other than [Tony Tony.Chopper] with a cost of 4 or less from your trash to your hand.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["UC"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Animal", "Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-015.png"
+  },
+  {
+    "slug": "op01-016",
+    "title": "OP01-016",
+    "cardsFields": {
+      "cardTitle": "Nami",
+      "life": 1,
+      "attribute": "Special",
+      "power": "2000",
+      "counter": "1000",
+      "effect": "[On Play] Look at 5 cards from the top of your deck; reveal up to 1 {Straw Hat Crew} type card other than [Nami] and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["R"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-016.png"
+  },
+  {
+    "slug": "op01-016_p1",
+    "title": "OP01-016_p1",
+    "cardsFields": {
+      "cardTitle": "Nami",
+      "life": 1,
+      "attribute": "Special",
+      "power": "2000",
+      "counter": "1000",
+      "effect": "[On Play] Look at 5 cards from the top of your deck; reveal up to 1 {Straw Hat Crew} type card other than [Nami] and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["R"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-016_p1.png"
+  },
+  {
+    "slug": "op01-017",
+    "title": "OP01-017",
+    "cardsFields": {
+      "cardTitle": "Nico Robin",
+      "life": 3,
+      "attribute": "Strike",
+      "power": "4000",
+      "counter": "1000",
+      "effect": "[DON!!x1] [When Attacking] K.O. up to 1 of your opponent's Characters with 3000 power or less.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["R"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Straw Hat Crew"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-017.png"
+  },
+  {
+    "slug": "op01-018",
+    "title": "OP01-018",
+    "cardsFields": {
+      "cardTitle": "Hajrudin",
+      "life": 4,
+      "attribute": "Strike",
+      "power": "6000",
+      "counter": "1000",
+      "effect": "",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["R"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Giant", "New Giant Pirates"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-018.png"
+  },
+  {
+    "slug": "op01-019",
+    "title": "OP01-019",
+    "cardsFields": {
+      "cardTitle": "Bartolomeo",
+      "life": 2,
+      "attribute": "Special",
+      "power": "2000",
+      "counter": "1000",
+      "effect": "[Blocker] (After your opponent declares an attack, you may rest this card to make it the new target of the attack.) [DON!!x2] [Opponent's Turn] This Character gains +3000 power.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Supernovas", "Barto Club"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-019.png"
+  },
+  {
+    "slug": "op01-020",
+    "title": "OP01-020",
+    "cardsFields": {
+      "cardTitle": "Hyogoro",
+      "life": 2,
+      "attribute": "Strike",
+      "power": "3000",
+      "counter": "1000",
+      "effect": "[Activate:Main] You may rest this Character: Up to 1 of your Leader or Character cards gain +2000 power during this turn.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Land of Wano"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-020.png"
+  },
+  {
+    "slug": "op01-021",
+    "title": "OP01-021",
+    "cardsFields": {
+      "cardTitle": "Hyogoro",
+      "life": 2,
+      "attribute": "Strike",
+      "power": "3000",
+      "counter": "1000",
+      "effect": "[Activate:Main] You may rest this Character: Up to 1 of your Leader or Character cards gain +2000 power during this turn.",
+      "price": "0"
+    },
+    "taxonomies": {
+      "rarities": ["C"],
+      "colors": ["Red"],
+      "typesOfCard": ["Character"],
+      "features": ["Land of Wano"],
+      "sets": ["Romance Dawn"]
+    },
+    "image": "http://mytchhub.local/wp-content/uploads/2026/03/OP01-021.png"
+  }
+]
