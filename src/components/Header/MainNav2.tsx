@@ -44,7 +44,6 @@ const MainNav2: FC<MainNav2Props> = ({ menuItems, description, title }) => {
             <SwitchDarkMode className="self-center" />
             <AvatarDropdown className="self-center" />
           </div>
-          console.log("MenuItems : " + menuItems);
         </div>
       </div>
     </div>
