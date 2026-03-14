@@ -35,7 +35,6 @@ const MainNav2: FC<MainNav2Props> = ({ menuItems, description, title }) => {
 
           <div className="flex-1 flex justify-end">
             <Navigation
-              maxItemsToShow={3}
               menuItems={menuItems}
               variation="nav2"
               className="hidden lg:flex"
@@ -45,6 +44,7 @@ const MainNav2: FC<MainNav2Props> = ({ menuItems, description, title }) => {
             <SwitchDarkMode className="self-center" />
             <AvatarDropdown className="self-center" />
           </div>
+          console.log("MenuItems : " + menuItems);
         </div>
       </div>
     </div>

@@ -26,10 +26,6 @@ const Navigation: FC<Props> = ({
     childrenKey: "children",
   });
 
-  if (maxItemsToShow) {
-    menus = menus.slice(0, maxItemsToShow);
-  }
-
   return (
     <ul className={`nc-Navigation items-center ${className}`}>
       {menus.map((item, i) =>
