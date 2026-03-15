@@ -1,25 +1,25 @@
-"use client";
-
 import React, { FC } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 interface ModalTaxonomyProps {
+  title: string;
   isOpen: boolean;
   onClose: () => void;
   items: string[];
   onSelect: (value: string) => void;
-  title: string;
 }
 
-const ModalTaxonomy: FC<ModalTaxonomyProps> = ({ isOpen, onClose, items, onSelect, title }) => {
+const ModalTaxonomy: FC<ModalTaxonomyProps> = ({ title, isOpen, onClose, items, onSelect }) => {
   return (
     <Transition show={isOpen} as={React.Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
         <Transition.Child
           as={React.Fragment}
-          enter="ease-out duration-300" enterFrom="opacity-0"
+          enter="transition ease-out duration-200"
+          enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="ease-in duration-200" leaveFrom="opacity-100"
+          leave="transition ease-in duration-150"
+          leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black/30" />
@@ -28,30 +28,25 @@ const ModalTaxonomy: FC<ModalTaxonomyProps> = ({ isOpen, onClose, items, onSelec
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <Transition.Child
             as={React.Fragment}
-            enter="ease-out duration-300" enterFrom="opacity-0 scale-95"
+            enter="transition ease-out duration-200"
+            enterFrom="opacity-0 scale-95"
             enterTo="opacity-100 scale-100"
-            leave="ease-in duration-200" leaveFrom="opacity-100 scale-100"
+            leave="transition ease-in duration-150"
+            leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="bg-white dark:bg-neutral-900 rounded-xl max-w-sm w-full p-6 space-y-4">
-              <Dialog.Title className="text-lg font-semibold">{title}</Dialog.Title>
-              <ul className="space-y-2 max-h-64 overflow-auto">
-                {items.map((item, i) => (
-                  <li key={i}>
-                    <button
-                      className="w-full text-left px-3 py-2 rounded hover:bg-primary-50 dark:hover:bg-neutral-800"
-                      onClick={() => {
-                        onSelect(item);
-                        onClose();
-                      }}
-                    >
-                      {item}
-                    </button>
-                  </li>
+            <Dialog.Panel className="bg-white dark:bg-neutral-900 rounded-lg shadow-lg w-full max-w-sm p-4">
+              <Dialog.Title className="text-lg font-semibold mb-4">{title}</Dialog.Title>
+              <div className="flex flex-col gap-2 max-h-96 overflow-auto">
+                {items.map((item, idx) => (
+                  <button
+                    key={idx}
+                    className="py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-neutral-700 text-left"
+                    onClick={() => { onSelect(item); onClose(); }}
+                  >
+                    {item}
+                  </button>
                 ))}
-              </ul>
-              <div className="flex justify-end">
-                <button className="px-4 py-2 text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200" onClick={onClose}>Close</button>
               </div>
             </Dialog.Panel>
           </Transition.Child>
