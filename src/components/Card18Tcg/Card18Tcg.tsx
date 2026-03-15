@@ -20,7 +20,7 @@ interface Card18TcgProps {
           sourceUrl: string;
         };
       };
-      attribute?: string;
+      attribute?: (string | null)[];
       counter: string;
       effect?: string;
       life: number;
