@@ -1,150 +1,153 @@
-"use client";
-
 import React, { useState, useMemo } from "react";
 import { gql, useQuery } from "@apollo/client";
 import GridCards from "@/components/GridCards";
-import ArchiveFilterListBox from "@/components/ArchiveFilterListBox/ArchiveFilterListBox";
 import ModalTaxonomy from "@/components/ModalTaxonomy/ModalTaxonomy";
-import { FILTERS_OPTIONS } from "@/contains/contants";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import Button from "@/components/Button/Button";
 
 const GET_CARDS = gql`
-  query getCards($first: Int = 10, $after: String) {
-    cards(first: $first, after: $after) {
-      nodes {
-        title
-        slug
-        cardsFields {
-          price
-          image {
-            node { sourceUrl mediaDetails { file height width } }
-          }
+query getCards($first: Int = 10, $after: String) {
+  cards(first: $first, after: $after) {
+    nodes {
+      title
+      slug
+      cardsFields {
+        price
+        image {
+          node { sourceUrl mediaDetails { height width file } }
         }
-        rarities { nodes { name slug } }
-        colors { nodes { name slug } }
-        features { nodes { name } }
-        sets { nodes { name } }
       }
-      pageInfo { endCursor hasNextPage }
+      rarities { nodes { name slug } }
+      colors { nodes { name slug } }
+      features { nodes { name slug } }
+      sets { nodes { name slug } }
     }
+    pageInfo { endCursor hasNextPage }
   }
+}
 `;
 
+const PRICE_OPTIONS = [
+  { name: "Low → High", value: "asc" },
+  { name: "High → Low", value: "desc" }
+];
+
 const CardsPage = () => {
-  const { loading, error, data, fetchMore } = useQuery(GET_CARDS, { variables: { first: 10 } });
+  const { data, loading, fetchMore } = useQuery(GET_CARDS);
+
   const cards = data?.cards?.nodes || [];
+  const pageInfo = data?.cards?.pageInfo;
 
-  // Filtres
-  const [selectedRarity, setSelectedRarity] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
-  const [selectedSet, setSelectedSet] = useState<string | null>(null);
-  const [priceOrder, setPriceOrder] = useState<"ASC" | "DESC" | null>(null);
+  // Taxonomy Filters
+  const [selectedRarity, setSelectedRarity] = useState<string[]>([]);
+  const [selectedColor, setSelectedColor] = useState<string[]>([]);
+  const [selectedFeature, setSelectedFeature] = useState<string[]>([]);
+  const [selectedSet, setSelectedSet] = useState<string[]>([]);
 
-  // Modals
-  const [rarityModalOpen, setRarityModalOpen] = useState(false);
-  const [colorModalOpen, setColorModalOpen] = useState(false);
-  const [featureModalOpen, setFeatureModalOpen] = useState(false);
-  const [setModalOpen, setSetModalOpen] = useState(false);
+  const [rarityOpen, setRarityOpen] = useState(false);
+  const [colorOpen, setColorOpen] = useState(false);
+  const [featureOpen, setFeatureOpen] = useState(false);
+  const [setOpen, setSetOpen] = useState(false);
 
-  // Valeurs uniques pour les modals
-  const allRarities = useMemo(() => Array.from(new Set(cards.flatMap(c => c.rarities?.nodes.map(r => r.name) || []))), [cards]);
-  const allColors = useMemo(() => Array.from(new Set(cards.flatMap(c => c.colors?.nodes.map(c => c.name) || []))), [cards]);
-  const allFeatures = useMemo(() => Array.from(new Set(cards.flatMap(c => c.features?.nodes.map(f => f.name) || []))), [cards]);
-  const allSets = useMemo(() => Array.from(new Set(cards.flatMap(c => c.sets?.nodes.map(s => s.name) || []))), [cards]);
-
-  // Filtrage côté client
-  const filteredCards = useMemo(() => {
-    return cards
-      .filter(c => !selectedRarity || c.rarities?.nodes.some(r => r.name === selectedRarity))
-      .filter(c => !selectedColor || c.colors?.nodes.some(col => col.name === selectedColor))
-      .filter(c => !selectedFeature || c.features?.nodes.some(f => f.name === selectedFeature))
-      .filter(c => !selectedSet || c.sets?.nodes.some(s => s.name === selectedSet))
-      .sort((a, b) => {
-        if (!priceOrder) return 0;
-        return priceOrder === "ASC"
-          ? Number(a.cardsFields.price) - Number(b.cardsFields.price)
-          : Number(b.cardsFields.price) - Number(a.cardsFields.price);
-      });
-  }, [cards, selectedRarity, selectedColor, selectedFeature, selectedSet, priceOrder]);
-
-  if (loading && !cards.length) return <p>Loading...</p>;
-  if (error) return <p>Error! {error.message}</p>;
+  // Price Filter
+  const [selectedPrice, setSelectedPrice] = useState(PRICE_OPTIONS[0]);
 
   const handleLoadMore = () => {
-    if (!data.cards.pageInfo.hasNextPage) return;
-    fetchMore({ variables: { after: data.cards.pageInfo.endCursor } });
+    if (!pageInfo?.hasNextPage) return;
+
+    fetchMore({
+      variables: { after: pageInfo.endCursor },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          cards: {
+            __typename: prev.cards.__typename,
+            nodes: [...prev.cards.nodes, ...fetchMoreResult.cards.nodes],
+            pageInfo: fetchMoreResult.cards.pageInfo
+          }
+        };
+      }
+    });
   };
+
+  // Filter cards
+  const filteredCards = useMemo(() => {
+    let filtered = cards.filter(card => {
+      const rarityOk = !selectedRarity.length || card.rarities?.nodes?.some(r => selectedRarity.includes(r.slug));
+      const colorOk = !selectedColor.length || card.colors?.nodes?.some(c => selectedColor.includes(c.slug));
+      const featureOk = !selectedFeature.length || card.features?.nodes?.some(f => selectedFeature.includes(f.slug));
+      const setOk = !selectedSet.length || card.sets?.nodes?.some(s => selectedSet.includes(s.slug));
+      return rarityOk && colorOk && featureOk && setOk;
+    });
+
+    // Sort by price if selected
+    filtered.sort((a, b) => {
+      const priceA = a.cardsFields?.price || 0;
+      const priceB = b.cardsFields?.price || 0;
+      return selectedPrice.value === "asc" ? priceA - priceB : priceB - priceA;
+    });
+
+    return filtered;
+  }, [cards, selectedRarity, selectedColor, selectedFeature, selectedSet, selectedPrice]);
+
+  // Unique items for modals
+  const allRarities = [...new Map(cards.flatMap(c => c.rarities?.nodes || []).map(r => [r.slug, r])).values()];
+  const allColors = [...new Map(cards.flatMap(c => c.colors?.nodes || []).map(r => [r.slug, r])).values()];
+  const allFeatures = [...new Map(cards.flatMap(c => c.features?.nodes || []).map(r => [r.slug, r])).values()];
+  const allSets = [...new Map(cards.flatMap(c => c.sets?.nodes || []).map(r => [r.slug, r])).values()];
 
   return (
     <div className="container pt-10 pb-16">
-      {/* TRI / Price */}
-      <div className="flex space-x-2 mb-4">
-        <ArchiveFilterListBox
-          lists={[
-            { name: "Price Low → High", value: "ASC" },
-            { name: "Price High → Low", value: "DESC" },
-          ]}
-          defaultValue={priceOrder ? { name: `Price ${priceOrder}`, value: priceOrder } : undefined}
-          onChange={val => setPriceOrder(val.value as "ASC" | "DESC")}
-        />
-        {priceOrder && (
-          <Button onClick={() => setPriceOrder(null)}>Reset Price</Button>
-        )}
+
+      {/* Top Filters */}
+      <div className="flex flex-wrap gap-3 mb-6">
+
+        {/* Price Listbox */}
+        <Listbox value={selectedPrice} onChange={setSelectedPrice}>
+          <div className="relative">
+            <Listbox.Button className="px-4 py-2 border rounded">
+              {selectedPrice.name}
+              <ChevronDownIcon className="w-4 h-4 inline ms-2" />
+            </Listbox.Button>
+            <Transition as={React.Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
+              <Listbox.Options className="absolute mt-1 w-40 bg-white dark:bg-neutral-900 border rounded shadow-lg z-50">
+                {PRICE_OPTIONS.map((option) => (
+                  <Listbox.Option key={option.value} value={option}>
+                    {({ selected }) => (
+                      <div className={`px-4 py-2 cursor-pointer ${selected ? "bg-primary-100 dark:bg-primary-700 font-semibold" : "hover:bg-neutral-100 dark:hover:bg-neutral-700"}`}>
+                        {option.name}
+                      </div>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        </Listbox>
+
+        {/* Taxonomy Buttons */}
+        <Button onClick={() => setRarityOpen(true)}>Rarity</Button>
+        <Button onClick={() => setColorOpen(true)}>Color</Button>
+        <Button onClick={() => setFeatureOpen(true)}>Feature</Button>
+        <Button onClick={() => setSetOpen(true)}>Set</Button>
+
       </div>
 
-      {/* Taxonomies */}
-      <div className="flex space-x-2 mb-6">
-        <Button onClick={() => selectedRarity ? setSelectedRarity(null) : setRarityModalOpen(true)}>
-          {selectedRarity || "Rarity"} {selectedRarity ? "(Reset)" : ""}
-        </Button>
-        <Button onClick={() => selectedColor ? setSelectedColor(null) : setColorModalOpen(true)}>
-          {selectedColor || "Color"} {selectedColor ? "(Reset)" : ""}
-        </Button>
-        <Button onClick={() => selectedFeature ? setSelectedFeature(null) : setFeatureModalOpen(true)}>
-          {selectedFeature || "Feature"} {selectedFeature ? "(Reset)" : ""}
-        </Button>
-        <Button onClick={() => selectedSet ? setSelectedSet(null) : setSetModalOpen(true)}>
-          {selectedSet || "Set"} {selectedSet ? "(Reset)" : ""}
-        </Button>
-      </div>
-
+      {/* Grid */}
       <GridCards
         cards={filteredCards}
         loading={loading}
-        showLoadmore={!!data.cards.pageInfo.hasNextPage}
+        showLoadmore={!!pageInfo?.hasNextPage}
         onClickLoadmore={handleLoadMore}
       />
 
       {/* Modals */}
-      <ModalTaxonomy
-        title="Rarity"
-        isOpen={rarityModalOpen}
-        onClose={() => setRarityModalOpen(false)}
-        items={allRarities}
-        onSelect={setSelectedRarity}
-      />
-      <ModalTaxonomy
-        title="Color"
-        isOpen={colorModalOpen}
-        onClose={() => setColorModalOpen(false)}
-        items={allColors}
-        onSelect={setSelectedColor}
-      />
-      <ModalTaxonomy
-        title="Feature"
-        isOpen={featureModalOpen}
-        onClose={() => setFeatureModalOpen(false)}
-        items={allFeatures}
-        onSelect={setSelectedFeature}
-      />
-      <ModalTaxonomy
-        title="Set"
-        isOpen={setModalOpen}
-        onClose={() => setSetModalOpen(false)}
-        items={allSets}
-        onSelect={setSelectedSet}
-      />
+      <ModalTaxonomy title="Rarity" isOpen={rarityOpen} onClose={() => setRarityOpen(false)} items={allRarities} selected={selectedRarity} onSelect={setSelectedRarity} />
+      <ModalTaxonomy title="Color" isOpen={colorOpen} onClose={() => setColorOpen(false)} items={allColors} selected={selectedColor} onSelect={setSelectedColor} />
+      <ModalTaxonomy title="Feature" isOpen={featureOpen} onClose={() => setFeatureOpen(false)} items={allFeatures} selected={selectedFeature} onSelect={setSelectedFeature} />
+      <ModalTaxonomy title="Set" isOpen={setOpen} onClose={() => setOpen(false)} items={allSets} selected={selectedSet} onSelect={setSelectedSet} />
+
     </div>
   );
 };
