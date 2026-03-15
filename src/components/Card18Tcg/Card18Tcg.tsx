@@ -9,13 +9,6 @@ interface Card18TcgProps {
     slug: string;
     cardsFields: {
       cardTitle: string;
-      color: string[];
-      counter: number;
-      effect: string;
-      life: number;
-      power: number;
-      rarity: string[];
-      type: string[];
       image?: {
         node: {
           mediaDetails: {
@@ -24,9 +17,21 @@ interface Card18TcgProps {
             width: number;
           };
           slug: string;
+          sourceUrl: string;
         };
       };
+      attribute?: string;
+      counter: string;
+      effect?: string;
+      life: number;
+      power?: string;
+      price: string;
     };
+    colors?: { nodes: { name: string; slug: string }[] };
+    features?: { nodes: { name: string }[] };
+    rarities?: { nodes: { name: string; slug: string }[] };
+    sets?: { nodes: { name: string }[] };
+    typesOfCard?: { nodes: { name: string; slug: string }[] };
   };
   className?: string;
   ratio?: string;

@@ -1,7 +1,6 @@
 import ArchiveFilterListBox from "@/components/ArchiveFilterListBox/ArchiveFilterListBox";
 import { FILTERS_OPTIONS } from "@/contains/contants";
-import { NC_SITE_SETTINGS } from "@/contains/site-settings";
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { FC } from "react";
 import GridCards from "@/components/GridCards";
@@ -12,8 +11,8 @@ const DynamicModalCategories = dynamic(
 const DynamicModalTags = dynamic(() => import("@/components/ModalTags"));
 
 const GET_CARDS = gql`
-  query getCards {
-    cards {
+  query getCards($first: Int = 10, $after: String) {
+    cards(first: $first, after: $after) {
       nodes {
         title
         slug
@@ -32,34 +31,15 @@ const GET_CARDS = gql`
           power
           price
         }
-        colors {
-          nodes {
-            name
-            slug
-          }
-        }
-        features {
-          nodes {
-            name
-          }
-        }
-        rarities {
-          nodes {
-            name
-            slug
-          }
-        }
-        sets {
-            nodes {
-              name
-            }
-        }
-        typesOfCard {
-          nodes {
-            name
-            slug
-          }
-        }
+        colors { nodes { name slug } }
+        features { nodes { name } }
+        rarities { nodes { name slug } }
+        sets { nodes { name } }
+        typesOfCard { nodes { name slug } }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
       }
     }
   }
@@ -70,24 +50,38 @@ interface ICardsLayoutProps {
   name?: string | null;
 }
 
-const CardsLayout: FC<ICardsLayoutProps> = ({ children, name}) => {
-  // START ----------
-  //
-  const { loading, error, data } = useQuery(GET_CARDS);
-  
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error! {error.message}</p>
-  
-  //
+const CardsLayout: FC<ICardsLayoutProps> = ({ children }) => {
+  const { loading, error, data, fetchMore } = useQuery(GET_CARDS, {
+    variables: { first: 10 }, // 10 cartes par page
+  });
+
+  if (loading && !data) return <p>Loading...</p>;
+  if (error) return <p>Error! {error.message}</p>;
 
   const cards = data.cards.nodes;
 
+  const handleLoadMore = () => {
+    if (!data.cards.pageInfo.hasNextPage) return;
+
+    fetchMore({
+      variables: { after: data.cards.pageInfo.endCursor },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          cards: {
+            __typename: prev.cards.__typename,
+            nodes: [...prev.cards.nodes, ...fetchMoreResult.cards.nodes],
+            pageInfo: fetchMoreResult.cards.pageInfo,
+          },
+        };
+      },
+    });
+  };
+
   return (
     <div className="">
-      <div className={`ncmazfc-page-category`}>
-        {/* HEADER */}
+      <div className="ncmazfc-page-category">
         {children}
-        {/* ====================== END HEADER ====================== */}
 
         <div className="container pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
           <div>
@@ -108,11 +102,10 @@ const CardsLayout: FC<ICardsLayoutProps> = ({ children, name}) => {
             <GridCards
               cards={cards}
               loading={loading}
-              showLoadmore={false}
-              onClickLoadmore={() => {}}
+              showLoadmore={!!data.cards.pageInfo.hasNextPage}
+              onClickLoadmore={handleLoadMore}
             />
           </div>
-          
         </div>
       </div>
     </div>
