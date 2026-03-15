@@ -1,14 +1,9 @@
-import ArchiveFilterListBox from "@/components/ArchiveFilterListBox/ArchiveFilterListBox";
-import { FILTERS_OPTIONS } from "@/contains/contants";
+import React, { useState, useMemo } from "react";
 import { gql, useQuery } from "@apollo/client";
-import dynamic from "next/dynamic";
-import { FC } from "react";
+import ArchiveFilterListBox from "@/components/ArchiveFilterListBox/ArchiveFilterListBox";
 import GridCards from "@/components/GridCards";
-
-const DynamicModalCategories = dynamic(
-  () => import("@/components/ModalCategories")
-);
-const DynamicModalTags = dynamic(() => import("@/components/ModalTags"));
+import { FILTERS_OPTIONS } from "@/contains/contants";
+import ModalRarity from "@/components/ModalTaxonomy/ModalTaxonomy";
 
 const GET_CARDS = gql`
   query getCards($first: Int = 10, $after: String) {
@@ -18,11 +13,7 @@ const GET_CARDS = gql`
         slug
         cardsFields {
           image {
-            node {
-              sourceUrl
-              mediaDetails { file height width }
-              slug
-            }
+            node { sourceUrl mediaDetails { file height width } slug }
           }
           attribute
           counter
@@ -37,79 +28,60 @@ const GET_CARDS = gql`
         sets { nodes { name } }
         typesOfCard { nodes { name slug } }
       }
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
+      pageInfo { endCursor hasNextPage }
     }
   }
 `;
 
-interface ICardsLayoutProps {
-  children: React.ReactNode;
-  name?: string | null;
-}
+const CardsPage = () => {
+  const { loading, error, data } = useQuery(GET_CARDS, { variables: { first: 50 } });
 
-const CardsLayout: FC<ICardsLayoutProps> = ({ children }) => {
-  const { loading, error, data, fetchMore } = useQuery(GET_CARDS, {
-    variables: { first: 10 }, // 10 cartes par page
-  });
+  const [selectedFilter, setSelectedFilter] = useState(FILTERS_OPTIONS[0]);
+  const [isRarityModalOpen, setRarityModalOpen] = useState(false);
+  const [selectedRarity, setSelectedRarity] = useState<string | null>(null);
 
-  if (loading && !data) return <p>Loading...</p>;
+  // ✅ Hooks toujours appelés au même niveau
+  const cards = data?.cards?.nodes || [];
+
+  const allRarities = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          cards.flatMap(c => c.rarities?.nodes?.map(r => r.name || "")).filter(Boolean)
+        )
+      ),
+    [cards]
+  );
+
+  const filteredCards = useMemo(() => {
+    if (!selectedRarity) return cards;
+    return cards.filter(c => c.rarities?.nodes?.some(r => r.name === selectedRarity));
+  }, [cards, selectedRarity]);
+
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
 
-  const cards = data.cards.nodes;
-
-  const handleLoadMore = () => {
-    if (!data.cards.pageInfo.hasNextPage) return;
-
-    fetchMore({
-      variables: { after: data.cards.pageInfo.endCursor },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          cards: {
-            __typename: prev.cards.__typename,
-            nodes: [...prev.cards.nodes, ...fetchMoreResult.cards.nodes],
-            pageInfo: fetchMoreResult.cards.pageInfo,
-          },
-        };
-      },
-    });
-  };
-
   return (
-    <div className="">
-      <div className="ncmazfc-page-category">
-        {children}
-
-        <div className="container pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
-          <div>
-            <div className="flex flex-col md:justify-between md:flex-row">
-              <div className="flex space-x-2.5 rtl:space-x-reverse">
-                <DynamicModalCategories />
-                <DynamicModalTags />
-              </div>
-              <div className="block my-4 border-b w-full border-neutral-300 dark:border-neutral-500 md:hidden" />
-              <div className="flex justify-end">
-                <ArchiveFilterListBox
-                  onChange={() => {}}
-                  lists={FILTERS_OPTIONS}
-                />
-              </div>
-            </div>
-
-            <GridCards
-              cards={cards}
-              loading={loading}
-              showLoadmore={!!data.cards.pageInfo.hasNextPage}
-              onClickLoadmore={handleLoadMore}
-            />
-          </div>
-        </div>
+    <div className="container pt-10 pb-16">
+      <div className="flex justify-between items-center mb-6">
+        <ArchiveFilterListBox
+          lists={FILTERS_OPTIONS}
+          defaultValue={selectedFilter}
+          onChange={setSelectedFilter}
+          onOpenRarityModal={() => setRarityModalOpen(true)}
+        />
       </div>
+
+      <GridCards cards={filteredCards} loading={loading} showLoadmore={false} />
+
+      <ModalRarity
+        isOpen={isRarityModalOpen}
+        onClose={() => setRarityModalOpen(false)}
+        rarities={allRarities}
+        onSelect={setSelectedRarity}
+      />
     </div>
   );
 };
 
-export default CardsLayout;
+export default CardsPage;

@@ -46,27 +46,63 @@ const Card18Tcg: FC<Card18TcgProps> = ({
 }) => {
   const [isHover, setIsHover] = useState(false);
 
+  const price =
+    card.cardsFields?.price && Number(card.cardsFields.price) > 0
+      ? card.cardsFields.price
+      : null;
+
+  const rarity = card.rarities?.nodes?.[0]?.name || null;
+
+
   return (
-    <div
-      className={`nc-Card11 relative flex flex-col group rounded-3xl overflow-hidden bg-white dark:bg-neutral-900 ${className}`}
+    <Link
+      href={`/cards/${card.slug}`}
+      className={`group nc-Card11 relative flex flex-col rounded-3xl overflow-hidden bg-white dark:bg-neutral-900 transform transition-all duration-300 hover:scale-105 ${className}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-      <div className={`block flex-shrink-0 relative w-full rounded-t-3xl overflow-hidden z-10 ${ratio}`}>
-        <div>
-          <CardFeaturedMedia card={card} isHover={isHover} />
-        </div>
+      <div className="relative w-full rounded-t-3xl overflow-hidden">
+        {/* Image en arrière-plan */}
+        {card.cardsFields.image?.node?.sourceUrl ? (
+          <img
+            src={card.cardsFields.image.node.sourceUrl}
+            alt={card.cardsFields.cardTitle}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+            Image manquante
+          </div>
+        )}
+
+        {/* Badge rareté */}
+        {rarity && (
+          <span className="absolute top-2 left-2 z-10 bg-yellow-400/70 text-black text-xs font-bold px-2 py-0.5 rounded-full shadow-md">
+            {rarity}
+          </span>
+        )}
+
+        {/* Badge prix */}
+        {price ? (
+          <span className="absolute bottom-2 right-2 z-10 bg-green-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-md">
+            {price} €
+          </span>
+        ) : (
+          <span className="absolute bottom-2 right-2 z-10 bg-gray-300/80 text-black text-xs font-bold px-2 py-0.5 rounded-full shadow-md">
+            N/A
+          </span>
+        )}
       </div>
 
-      <Link href={`/cards/${card.slug}`} className="absolute inset-0"></Link>
-      
+      {/* Titre */}
       {showTitle && (
-        <div className="flex-1 rounded-b-3xl py-4 px-3.5 flex flex-col space-y-3 border border-neutral-100 dark:border-neutral-800 border-t-0">
+        <div className="flex-1 rounded-b-3xl py-4 px-3.5 flex flex-col space-y-3 border border-neutral-100 dark:border-neutral-800 border-t-0 bg-white dark:bg-neutral-900">
           <h3 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100">
             {card.title}
           </h3>
-      </div>)}
-    </div>
+        </div>
+      )}
+    </Link>
   );
 };
 
