@@ -1,0 +1,328 @@
+{
+  "color": [
+    {
+      "name": "Black",
+      "slug": "black"
+    },
+    {
+      "name": "Blue",
+      "slug": "blue"
+    },
+    {
+      "name": "Green",
+      "slug": "green"
+    },
+    {
+      "name": "Purple",
+      "slug": "purple"
+    },
+    {
+      "name": "Red",
+      "slug": "red"
+    },
+    {
+      "name": "Yellow",
+      "slug": "yellow"
+    }
+  ],
+  "rarity": [
+    {
+      "name": "Alternative Art",
+      "slug": "aa"
+    },
+    {
+      "name": "C",
+      "slug": "c"
+    },
+    {
+      "name": "Leader",
+      "slug": "leader"
+    },
+    {
+      "name": "Manga Rare",
+      "slug": "manga-rare"
+    },
+    {
+      "name": "Neo Navy",
+      "slug": "neo-navy"
+    },
+    {
+      "name": "P",
+      "slug": "p"
+    },
+    {
+      "name": "R",
+      "slug": "r"
+    },
+    {
+      "name": "SEC",
+      "slug": "sec"
+    },
+    {
+      "name": "SP",
+      "slug": "sp"
+    },
+    {
+      "name": "SR",
+      "slug": "sr"
+    },
+    {
+      "name": "UC",
+      "slug": "uc"
+    }
+  ],
+  "feature": [
+    {
+      "name": "Alabasta",
+      "slug": "alabasta"
+    },
+    {
+      "name": "Animal",
+      "slug": "animal"
+    },
+    {
+      "name": "Animal Kingdom Pirates",
+      "slug": "animal-kingdom-pirates"
+    },
+    {
+      "name": "Arlong Pirates",
+      "slug": "arlong-pirates"
+    },
+    {
+      "name": "Baroque Works",
+      "slug": "baroque-works"
+    },
+    {
+      "name": "Barto Club",
+      "slug": "barto-club"
+    },
+    {
+      "name": "Beautiful Pirates",
+      "slug": "beautiful-pirates"
+    },
+    {
+      "name": "Big Mom Pirates",
+      "slug": "big-mom-pirates"
+    },
+    {
+      "name": "Black Cat Pirates",
+      "slug": "black-cat-pirates"
+    },
+    {
+      "name": "Buggy Pirates",
+      "slug": "buggy-pirates"
+    },
+    {
+      "name": "Caribou Pirates",
+      "slug": "caribou-pirates"
+    },
+    {
+      "name": "CP0",
+      "slug": "cp0"
+    },
+    {
+      "name": "CP9",
+      "slug": "cp9"
+    },
+    {
+      "name": "Donquixote Pirates",
+      "slug": "donquixote-pirates"
+    },
+    {
+      "name": "Drake Pirates",
+      "slug": "drake-pirates"
+    },
+    {
+      "name": "Dressrosa",
+      "slug": "dressrosa"
+    },
+    {
+      "name": "East Blue",
+      "slug": "east-blue"
+    },
+    {
+      "name": "FILM",
+      "slug": "film"
+    },
+    {
+      "name": "Firetank Pirates",
+      "slug": "firetank-pirates"
+    },
+    {
+      "name": "Fish-Man",
+      "slug": "fish-man"
+    },
+    {
+      "name": "Former Navy",
+      "slug": "former-navy"
+    },
+    {
+      "name": "Galley-La Company",
+      "slug": "galley-la-company"
+    },
+    {
+      "name": "Giant",
+      "slug": "giant"
+    },
+    {
+      "name": "Happosui Army",
+      "slug": "happosui-army"
+    },
+    {
+      "name": "Heart Pirates",
+      "slug": "heart-pirates"
+    },
+    {
+      "name": "Impel Down",
+      "slug": "impel-down"
+    },
+    {
+      "name": "Jailer Beast",
+      "slug": "jailer-beast"
+    },
+    {
+      "name": "Kid Pirates",
+      "slug": "kid-pirates"
+    },
+    {
+      "name": "Kouzuki Clan",
+      "slug": "kouzuki-clan"
+    },
+    {
+      "name": "Krieg Pirates",
+      "slug": "krieg-pirates"
+    },
+    {
+      "name": "Kuja Pirates",
+      "slug": "kuja-pirates"
+    },
+    {
+      "name": "Land of Wano",
+      "slug": "land-of-wano"
+    },
+    {
+      "name": "Minks",
+      "slug": "minks"
+    },
+    {
+      "name": "Navy",
+      "slug": "navy"
+    },
+    {
+      "name": "Neo Navy",
+      "slug": "neo-navy"
+    },
+    {
+      "name": "New Giant Pirates",
+      "slug": "new-giant-pirates"
+    },
+    {
+      "name": "Red-Haired Pirates",
+      "slug": "red-haired-pirates"
+    },
+    {
+      "name": "Revolutionary Army",
+      "slug": "revolutionary-army"
+    },
+    {
+      "name": "Sky Island",
+      "slug": "sky-island"
+    },
+    {
+      "name": "Sniper Island",
+      "slug": "sniper-island"
+    },
+    {
+      "name": "Spade Pirates",
+      "slug": "spade-pirates"
+    },
+    {
+      "name": "Straw Hat Crew",
+      "slug": "straw-hat-crew"
+    },
+    {
+      "name": "Supernovas",
+      "slug": "supernovas"
+    },
+    {
+      "name": "The Akazaya Nine",
+      "slug": "the-akazaya-nine"
+    },
+    {
+      "name": "The Four Emperors",
+      "slug": "the-four-emperors"
+    },
+    {
+      "name": "The Seven Warlords of the Sea",
+      "slug": "the-seven-warlords-of-the-sea"
+    },
+    {
+      "name": "The Tontattas",
+      "slug": "the-tontattas"
+    },
+    {
+      "name": "The Vinsmoke Family",
+      "slug": "the-vinsmoke-family"
+    },
+    {
+      "name": "Thriller Bark Pirates",
+      "slug": "thriller-bark-pirates"
+    },
+    {
+      "name": "Vassals",
+      "slug": "vassals"
+    },
+    {
+      "name": "Water Seven",
+      "slug": "water-seven"
+    },
+    {
+      "name": "Whitebeard Pirates",
+      "slug": "whitebeard-pirates"
+    },
+    {
+      "name": "Whitebeard Pirates Allies",
+      "slug": "whitebeard-pirates-allies"
+    }
+  ],
+  "set": [
+    {
+      "name": "OP01 - Romance Dawn",
+      "slug": "romance-dawn"
+    },
+    {
+      "name": "OP02 - Paramount War",
+      "slug": "paramount-war"
+    },
+    {
+      "name": "OP03 - Pillars of Strength",
+      "slug": "op03-pillars-of-strength"
+    },
+    {
+      "name": "OP04 - Kingdom of Intrigue",
+      "slug": "op04-kingdom-of-intrigue"
+    },
+    {
+      "name": "OP05 - Awakening of the New Era",
+      "slug": "op05-awakening-of-the-new-era"
+    }
+  ],
+  "typeofcard": [
+    {
+      "name": "Character",
+      "slug": "character"
+    },
+    {
+      "name": "Event",
+      "slug": "event"
+    },
+    {
+      "name": "Leader",
+      "slug": "leader"
+    },
+    {
+      "name": "Stage",
+      "slug": "stage"
+    }
+  ]
+}
