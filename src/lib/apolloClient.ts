@@ -14,7 +14,9 @@ export function useApollo(pageProps: Record<string, unknown>) {
   const state =
     (pageProps?.[APOLLO_STATE_PROP_NAME] as Record<string, unknown>) ??
     (pageProps?.initialApolloState as Record<string, unknown>);
-  return useMemo(() => getApolloClient(state ?? undefined), [state]);
+  // return useMemo(() => getApolloClient(state ?? undefined), [state]);
+  return useMemo(() => getApolloClient(state as any), [state]);
+
 }
 
 /**

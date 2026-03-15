@@ -8,31 +8,56 @@ import { CardDataFragmentType } from '@/data/types';
 
 const GET_CARD_BY_SLUG = gql`
   query GetCardBySlug($slug: String!) {
-    cardBy(slug: $slug) {
-      title
-      slug
-      cardsFields {
-        cardTitle
-        color
-        counter
-        effect
-        life
-        power
-        rarity
-        type
-        image {
-          node {
-            mediaDetails {
-              file
-              height
-              width
-            }
-            slug
-          }
+  cardBy(slug: $slug) {
+    title
+    slug
+    cardsFields {
+      cardTitle
+      image {
+        node {
+          sourceUrl
+          mediaDetails { file height width }
+          slug
         }
+      }
+      attribute
+      counter
+      effect
+      life
+      power
+      price
+    }
+    colors {
+      nodes {
+        name
+        slug
+      }
+    }
+    features {
+      nodes {
+        name
+      }
+    }
+    rarities {
+      nodes {
+        name
+        slug
+      }
+    }
+    sets {
+        nodes {
+          name
+        }
+    }
+    typesOfCard {
+      nodes {
+        name
+        slug
       }
     }
   }
+}
+
 `;
 
 interface CardPageProps {

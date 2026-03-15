@@ -3,7 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const fetch = require("cross-fetch");
 const { GraphQLClient, gql } = require("graphql-request");
-require("dotenv").config({ path: ".env.local" });
+// require("dotenv").config({ path: ".env.local" });
+require("dotenv").config({ path: ".env" });
 
 const { WORDPRESS_URL, WP_USER, WP_APP_PASSWORD } = process.env;
 

@@ -15,7 +15,11 @@ const CardFeaturedMedia: FC<CardFeaturedMediaProps> = ({
 }) => {
 
   const renderContent = () => {
-    const imageUrl = card.cardsFields?.image?.node?.sourceUrl;
+    // const imageUrl = card.cardsFields?.image?.node?.sourceUrl;
+    const imageNode = card.cardsFields?.image?.node as any;
+    const imageUrl =
+      imageNode?.sourceUrl ?? imageNode?.mediaDetails?.file;
+
 
     if (!imageUrl) {
       return <div>Aucune image disponible</div>;
