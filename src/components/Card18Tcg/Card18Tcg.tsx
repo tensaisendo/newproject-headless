@@ -25,7 +25,7 @@ interface Card18TcgProps {
       effect?: string;
       life: number;
       power?: string;
-      price: string;
+      price?: string;
     };
     colors?: { nodes: { name: string; slug: string }[] };
     features?: { nodes: { name: string }[] };
@@ -47,9 +47,9 @@ const Card18Tcg: FC<Card18TcgProps> = ({
   const [isHover, setIsHover] = useState(false);
 
   const price =
-    card.cardsFields?.price && Number(card.cardsFields.price) > 0
-      ? card.cardsFields.price
-      : null;
+  card.cardsFields?.price && Number(card.cardsFields.price) > 0
+    ? card.cardsFields.price
+    : null;
 
   const rarity = card.rarities?.nodes?.[0]?.name || null;
 

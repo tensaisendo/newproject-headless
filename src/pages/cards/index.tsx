@@ -11,10 +11,14 @@ import ModalTaxonomy from "@/components/ModalTaxonomy/ModalTaxonomy";
 interface TaxonomyNode {
   name?: string;
 }
+
 interface CardType {
   title: string;
   slug: string;
-  cardsFields?: { price?: number; image?: { node: { sourceUrl: string } } };
+  cardsFields?: { 
+    price?: string; // 🔹 string au lieu de number
+    image?: { node: { sourceUrl: string } };
+  };
   rarities?: { nodes: TaxonomyNode[] };
   colors?: { nodes: TaxonomyNode[] };
   features?: { nodes: TaxonomyNode[] };
@@ -106,8 +110,8 @@ const CardsPage = () => {
       .filter(c => !selectedSet || c.sets?.nodes?.some(s => s.name === selectedSet))
       .sort((a, b) => {
         if (!selectedPrice) return 0;
-        const priceA = a.cardsFields?.price || 0;
-        const priceB = b.cardsFields?.price || 0;
+        const priceA = Number(a.cardsFields?.price) || 0;
+        const priceB = Number(b.cardsFields?.price) || 0;
         return selectedPrice === "price_asc" ? priceA - priceB : priceB - priceA;
       });
   }, [cards, selectedRarity, selectedColor, selectedFeature, selectedSet, selectedPrice]);
