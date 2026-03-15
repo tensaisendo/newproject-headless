@@ -1,3 +1,6 @@
+// useHandleGetPostsArchivePage.tsx
+import { useLazyQuery } from "@apollo/client";
+import React, { useEffect, useState } from "react";
 import {
   OrderEnum,
   PostObjectsConnectionOrderbyEnum,
@@ -7,16 +10,14 @@ import { PostDataFragmentType } from "@/data/types";
 import { QUERY_GET_POSTS_BY } from "@/fragments/queries";
 import errorHandling from "@/utils/errorHandling";
 import updatePostFromUpdateQuery from "@/utils/updatePostFromUpdateQuery";
-import { useLazyQuery } from "@apollo/client";
-import React, { useEffect, useState } from "react";
 
-// 1️⃣ Typage précis pour filterParam
-export type FilterValueType = `${PostObjectsConnectionOrderbyEnum}/${OrderEnum}`;
+// ✅ Type spécifique pour filterParam utilisé dans GraphQL ORDERBY
+export type FilterValueType = "DATE/ASC" | "DATE/DESC";
 
 interface Props {
   initPosts?: PostDataFragmentType[] | null;
   initPostsPageInfo?: {
-    endCursor?: string | null | undefined;
+    endCursor?: string | null;
     hasNextPage: boolean;
   } | null;
   tagDatabaseId?: number | null;
@@ -37,10 +38,9 @@ export default function useHandleGetPostsArchivePage(props: Props) {
     search,
   } = props;
 
-  // 2️⃣ State filterParam typé précisément
+  // ✅ filterParam typé correctement pour la prod Vercel
   const [filterParam, setfilterParam] = useState<FilterValueType | undefined>();
   const [refetchTimes, setRefetchTimes] = useState(0);
-
   const routerQueryFilter = filterParam;
 
   const [queryGetPostsByCategoryId, postsByCategoryIdResult] = useLazyQuery(
@@ -55,11 +55,7 @@ export default function useHandleGetPostsArchivePage(props: Props) {
         first: GET_POSTS_FIRST_COMMON,
       },
       notifyOnNetworkStatusChange: true,
-      context: {
-        fetchOptions: {
-          method: process.env.NEXT_PUBLIC_SITE_API_METHOD || "GET",
-        },
-      },
+      context: { fetchOptions: { method: process.env.NEXT_PUBLIC_SITE_API_METHOD || "GET" } },
       onError: (error) => {
         if (refetchTimes > 3) {
           errorHandling(error);
@@ -73,7 +69,6 @@ export default function useHandleGetPostsArchivePage(props: Props) {
 
   function checkRouterQueryFilter() {
     if (!routerQueryFilter) return false;
-
     const [field, order] = routerQueryFilter.split("/");
     return {
       field: field as PostObjectsConnectionOrderbyEnum,
@@ -81,10 +76,9 @@ export default function useHandleGetPostsArchivePage(props: Props) {
     };
   }
 
-  // get posts by category id and filter
+  // Charger posts selon le filter
   useEffect(() => {
     if (!routerQueryFilter) return;
-
     const filterValue = checkRouterQueryFilter();
     if (!filterValue) return;
 
@@ -101,30 +95,22 @@ export default function useHandleGetPostsArchivePage(props: Props) {
   const handleClickShowMore = () => {
     if (!postsByCategoryIdResult.called) {
       queryGetPostsByCategoryId({
-        variables: {
-          after: initPostsPageInfo?.endCursor,
-          first: GET_POSTS_FIRST_COMMON,
-        },
+        variables: { after: initPostsPageInfo?.endCursor, first: GET_POSTS_FIRST_COMMON },
       });
     } else {
       postsByCategoryIdResult.fetchMore({
-        variables: {
-          after: postsByCategoryIdResult.data?.posts?.pageInfo?.endCursor,
-          first: GET_POSTS_FIRST_COMMON,
-        },
-        updateQuery: (prev, { fetchMoreResult }) => {
-          return updatePostFromUpdateQuery(prev, fetchMoreResult);
-        },
+        variables: { after: postsByCategoryIdResult.data?.posts?.pageInfo?.endCursor, first: GET_POSTS_FIRST_COMMON },
+        updateQuery: (prev, { fetchMoreResult }) => updatePostFromUpdateQuery(prev, fetchMoreResult),
       });
     }
   };
 
-  // 3️⃣ Fonction de changement de filtre avec typage correct
+  // ✅ Correction clé pour Vercel : cast vers FilterValueType
   const handleChangeFilterPosts = (item: typeof FILTERS_OPTIONS[number]) => {
-    setfilterParam(item.value); // ✅ TypeScript accepte maintenant
+    setfilterParam(item.value as FilterValueType);
   };
 
-  // 4️⃣ Préparation des données pour le rendu
+  // Préparer les données pour le rendu
   let loading = postsByCategoryIdResult.loading;
   let currentPosts = posts || [];
   let hasNextPage = !!initPostsPageInfo?.hasNextPage;
