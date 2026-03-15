@@ -7,26 +7,30 @@ import GridCards from "@/components/GridCards";
 import { FILTERS_OPTIONS } from "@/contains/contants";
 import ModalTaxonomy from "@/components/ModalTaxonomy/ModalTaxonomy";
 
+// 🔹 Typage minimal pour TypeScript
+interface TaxonomyNode {
+  name?: string;
+}
+interface CardType {
+  title: string;
+  slug: string;
+  cardsFields?: { price?: number; image?: { node: { sourceUrl: string } } };
+  rarities?: { nodes: TaxonomyNode[] };
+  colors?: { nodes: TaxonomyNode[] };
+  features?: { nodes: TaxonomyNode[] };
+  sets?: { nodes: TaxonomyNode[] };
+}
+
+// GraphQL query
 const GET_CARDS = gql`
   query getCards($first: Int = 10, $after: String) {
-    cards(
-      first: $first
-      after: $after
-      where: {
-        orderby: { field: DATE, order: DESC }
-      }
-    ) {
+    cards(first: $first, after: $after) {
       nodes {
         title
         slug
-        cardsFields {
-          image {
-            node { sourceUrl mediaDetails { file height width } slug }
-          }
-          price
-        }
-        rarities { nodes { name slug } }
-        colors { nodes { name slug } }
+        cardsFields { price image { node { sourceUrl } } }
+        rarities { nodes { name } }
+        colors { nodes { name } }
         features { nodes { name } }
         sets { nodes { name } }
       }
@@ -38,9 +42,9 @@ const GET_CARDS = gql`
 const CardsPage = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_CARDS, { variables: { first: 10 } });
 
-  const cards = data?.cards?.nodes || [];
+  const cards: CardType[] = data?.cards?.nodes || [];
 
-  // Filtre et modal states
+  // 🔹 States filtres
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
   const [selectedRarity, setSelectedRarity] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -52,13 +56,48 @@ const CardsPage = () => {
   const [featureModalOpen, setFeatureModalOpen] = useState(false);
   const [setModalOpen, setSetModalOpen] = useState(false);
 
-  // Récupération unique de toutes les valeurs de chaque taxonomie
-  const allRarities = useMemo(() => Array.from(new Set(cards.flatMap(c => c.rarities?.nodes?.map(r => r.name || "")).filter(Boolean))), [cards]);
-  const allColors = useMemo(() => Array.from(new Set(cards.flatMap(c => c.colors?.nodes?.map(c => c.name || "")).filter(Boolean))), [cards]);
-  const allFeatures = useMemo(() => Array.from(new Set(cards.flatMap(c => c.features?.nodes?.map(f => f.name || "")).filter(Boolean))), [cards]);
-  const allSets = useMemo(() => Array.from(new Set(cards.flatMap(c => c.sets?.nodes?.map(s => s.name || "")).filter(Boolean))), [cards]);
+  // 🔹 Récupération unique de toutes les valeurs de chaque taxonomie
+  const allRarities = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          cards.flatMap((c: CardType) => c.rarities?.nodes.map(r => r.name || "") || []).filter(Boolean)
+        )
+      ),
+    [cards]
+  );
 
-  // Filtrage local
+  const allColors = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          cards.flatMap((c: CardType) => c.colors?.nodes.map(cl => cl.name || "") || []).filter(Boolean)
+        )
+      ),
+    [cards]
+  );
+
+  const allFeatures = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          cards.flatMap((c: CardType) => c.features?.nodes.map(f => f.name || "") || []).filter(Boolean)
+        )
+      ),
+    [cards]
+  );
+
+  const allSets = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          cards.flatMap((c: CardType) => c.sets?.nodes.map(s => s.name || "") || []).filter(Boolean)
+        )
+      ),
+    [cards]
+  );
+
+  // 🔹 Filtrage local
   const filteredCards = useMemo(() => {
     return cards
       .filter(c => !selectedRarity || c.rarities?.nodes?.some(r => r.name === selectedRarity))
@@ -107,10 +146,7 @@ const CardsPage = () => {
         />
 
         {/* Taxonomy Filters */}
-        <button
-          onClick={() => setRarityModalOpen(true)}
-          className="px-3 py-1 border rounded-md"
-        >
+        <button onClick={() => setRarityModalOpen(true)} className="px-3 py-1 border rounded-md">
           {selectedRarity || "Rarity"}
         </button>
 
