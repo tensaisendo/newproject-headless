@@ -35,19 +35,13 @@ const avatarColors = [
 
 const T = getTrans();
 
-export const FILTERS_OPTIONS: {
-  name: string;
-  value: `${PostObjectsConnectionOrderbyEnum}/${OrderEnum}`;
-}[] = [
-  { name: "Categories", value: "categories" },
-  { name: "Tags", value: "tags" },
+export const FILTERS_OPTIONS = [
   { name: "Price (Low → High)", value: "price_asc" },
   { name: "Price (High → Low)", value: "price_desc" },
   { name: "Rarity", value: "rarity" },
+  { name: "Color", value: "color" },
   { name: "Feature", value: "feature" },
   { name: "Set", value: "set" },
-  { name: "Type of Card", value: "typeOfCard" },
-  { name: "Color", value: "color" },
 ];
 
 export const GET_POSTS_FIRST_COMMON_FOR_DASHBOARD = 30;

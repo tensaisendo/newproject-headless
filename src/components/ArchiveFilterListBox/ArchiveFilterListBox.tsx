@@ -12,6 +12,10 @@ export interface ArchiveFilterListBoxProps<
   lists: T[];
   onChange?: (value: T) => void;
   defaultValue?: T;
+  onOpenRarityModal?: () => void;
+  onOpenColorModal?: () => void;
+  onOpenFeatureModal?: () => void;
+  onOpenSetModal?: () => void;
 }
 
 function ArchiveFilterListBox<T extends { name: string; value?: string }>({
@@ -19,6 +23,10 @@ function ArchiveFilterListBox<T extends { name: string; value?: string }>({
   lists,
   onChange,
   defaultValue,
+  onOpenRarityModal,
+  onOpenColorModal,
+  onOpenFeatureModal,
+  onOpenSetModal,
 }: ArchiveFilterListBoxProps<T>) {
   const [selected, setSelected] = useState(defaultValue || lists[0]);
 
@@ -28,7 +36,25 @@ function ArchiveFilterListBox<T extends { name: string; value?: string }>({
 
   const handleChange = (value: T) => {
     setSelected(value);
-    onChange && onChange(value);
+
+    switch (value.value) {
+      case "rarity":
+        onOpenRarityModal?.();
+        return;
+      case "color":
+        onOpenColorModal?.();
+        return;
+      case "feature":
+        onOpenFeatureModal?.();
+        return;
+      case "set":
+        onOpenSetModal?.();
+        return;
+      default:
+        break;
+    }
+
+    onChange?.(value);
   };
 
   return (
@@ -63,9 +89,7 @@ function ArchiveFilterListBox<T extends { name: string; value?: string }>({
                 >
                   {({ selected }) => (
                     <>
-                      <span
-                        className={`${selected ? "font-medium" : "font-normal"} block truncate`}
-                      >
+                      <span className={`${selected ? "font-medium" : "font-normal"} block truncate`}>
                         {item.name}
                       </span>
                       {selected && (

@@ -1,115 +1,99 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 interface ModalTaxonomyProps {
-  title: string
-  isOpen: boolean
-  onClose: () => void
-  items: {name:string, slug:string}[]
-  selected: string[]
-  onSelect: (value:string[]) => void
+  isOpen: boolean;
+  onClose: () => void;
+  items: string[];
+  selectedItem: string | null;
+  onSelect: (item: string | null) => void; // permet null pour reset
 }
 
-const ModalTaxonomy: FC<ModalTaxonomyProps> = ({
-  title,
-  isOpen,
-  onClose,
-  items,
-  selected,
-  onSelect
-}) => {
+const ModalTaxonomy: FC<ModalTaxonomyProps> = ({ isOpen, onClose, items, selectedItem, onSelect }) => {
+  const [tempSelected, setTempSelected] = useState<string | null>(selectedItem);
 
-  const toggleItem = (slug:string) => {
+  // Mettre à jour tempSelected quand la modal s'ouvre avec un selectedItem existant
+  useEffect(() => {
+    if (isOpen) setTempSelected(selectedItem);
+  }, [isOpen, selectedItem]);
 
-    if(selected.includes(slug)){
-      onSelect(selected.filter(s=>s!==slug))
-    }else{
-      onSelect([...selected,slug])
-    }
+  const handleOk = () => {
+    onSelect(tempSelected);
+    onClose();
+  };
 
-  }
-
-  const reset = ()=> onSelect([])
+  const handleReset = () => {
+    setTempSelected(null);
+  };
 
   return (
+    <Transition show={isOpen} as={React.Fragment}>
+      <Dialog as="div" className="relative z-50" onClose={onClose}>
+        <Transition.Child
+          as={React.Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black bg-opacity-30" />
+        </Transition.Child>
 
-<Transition show={isOpen} as={React.Fragment}>
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Transition.Child
+            as={React.Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <Dialog.Panel className="bg-white dark:bg-neutral-800 rounded-lg shadow-xl w-full max-w-md p-4">
+              <Dialog.Title className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                Select
+              </Dialog.Title>
 
-<Dialog onClose={onClose} className="relative z-50">
+              <div className="space-y-2 max-h-96 overflow-auto mb-4">
+                {items.map(item => (
+                  <button
+                    key={item}
+                    className={`w-full text-left px-3 py-2 rounded-md ${
+                      tempSelected === item
+                        ? "bg-primary-500 text-white"
+                        : "hover:bg-gray-200 dark:hover:bg-neutral-700"
+                    }`}
+                    onClick={() => setTempSelected(item)}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
 
-<Transition.Child
-enter="ease-out duration-200"
-enterFrom="opacity-0"
-enterTo="opacity-100"
-leave="ease-in duration-150"
-leaveFrom="opacity-100"
-leaveTo="opacity-0"
->
+              <div className="flex justify-end gap-2">
+                <button
+                  className="px-3 py-1 rounded-md border text-sm"
+                  onClick={handleReset}
+                >
+                  Reset
+                </button>
+                <button
+                  className="px-3 py-1 rounded-md bg-primary-500 text-white text-sm"
+                  onClick={handleOk}
+                >
+                  OK
+                </button>
+              </div>
+            </Dialog.Panel>
+          </Transition.Child>
+        </div>
+      </Dialog>
+    </Transition>
+  );
+};
 
-<div className="fixed inset-0 bg-black/30"/>
-
-</Transition.Child>
-
-<div className="fixed inset-0 flex items-center justify-center p-4">
-
-<Dialog.Panel className="bg-white dark:bg-neutral-900 rounded-xl p-6 max-w-md w-full">
-
-<Dialog.Title className="text-lg font-semibold mb-4">
-{title}
-</Dialog.Title>
-
-<div className="flex flex-col gap-2 max-h-96 overflow-y-auto">
-
-{items.map(item=>(
-
-<button
-key={item.slug}
-onClick={()=>toggleItem(item.slug)}
-className={`text-left p-2 rounded ${
-selected.includes(item.slug)
-? "bg-primary-100 dark:bg-primary-700 font-semibold"
-: "hover:bg-neutral-100 dark:hover:bg-neutral-700"
-}`}
->
-
-{item.name}
-
-</button>
-
-))}
-
-</div>
-
-<div className="flex justify-between mt-6">
-
-<button
-onClick={reset}
-className="px-4 py-2 bg-gray-200 dark:bg-neutral-700 rounded"
->
-Reset
-</button>
-
-<button
-onClick={onClose}
-className="px-4 py-2 bg-primary-600 text-white rounded"
->
-Close
-</button>
-
-</div>
-
-</Dialog.Panel>
-
-</div>
-
-</Dialog>
-
-</Transition>
-
-)
-
-}
-
-export default ModalTaxonomy
+export default ModalTaxonomy;
